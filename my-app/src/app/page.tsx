@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import Card from "@/components/Card";
 import { useState } from "react";
 
 const jeux = [
@@ -53,18 +53,12 @@ export default function Home() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {jeuxFiltres.map((jeu) => (
-            <Link
+            <Card
               key={jeu.href}
               href={jeu.href}
-              className="group border border-zinc-200 dark:border-zinc-700 rounded-lg p-5 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors shadow-sm flex items-center justify-between"
-            >
-              <span className="text-lg font-medium">
-                {jeu.emoji} {jeu.name}
-              </span>
-              <span className="text-zinc-400 group-hover:translate-x-1 transition-transform">
-                →
-              </span>
-            </Link>
+              emoji={jeu.emoji}
+              name={jeu.name}
+            />
           ))}
         </div>
       </div>
