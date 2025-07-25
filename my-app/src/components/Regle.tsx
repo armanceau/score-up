@@ -13,7 +13,7 @@ export default function Regle({ jeu, regle, lienExterneRegle }: RegleProps) {
 
   return (
     <>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 absolute">
         <button
           title="Voir les règles"
           onClick={() => setModalOuvert(true)}
