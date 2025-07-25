@@ -19,7 +19,7 @@ export default function Navbar() {
           </Link>
 
           <div className="space-x-4 text-sm flex items-center">
-            <Link href="/about" className="hover:underline">
+            <Link href="/apropos" className="hover:underline">
               À propos
             </Link>
             <div className="col-span-2 sm:col-span-1">
