@@ -24,9 +24,10 @@ git clone https://github.com/armanceau/score-up
 cd my-app
 npm install
 npm run dev
+```
 
-_Le projet sera accessible sur `http://localhost:3000`_
+_Le projet sera accessible sur `http://localhost:3000`._
 
 ## 📄 À propos
 
-Développé avec ❤️ par Arthur Manceau, pour tous ceux qui en ont marre de se perdre dans les règles ou de compter les points à la main.
+Développé avec ❤️ par [Arthur Manceau](https://github.com/armanceau), pour tous ceux qui en ont marre de se perdre dans les règles ou de compter les points à la main.
