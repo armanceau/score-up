@@ -84,7 +84,7 @@ export default function SixQuiPrendPage() {
     (a, b) => total(a.scores) - total(b.scores)
   );
   return (
-    <main className="flex flex-col justify-start h-full max-w-2xl mx-auto px-6 py-10 text-zinc-900 dark:text-zinc-100">
+    <main className="flex flex-col justify-start max-w-2xl mx-auto px-6 py-10 text-zinc-900 dark:text-zinc-100">
       <h1 className="text-3xl sm:text-4xl font-semibold text-center mb-10">
         🐮 6 qui prend
       </h1>
@@ -187,9 +187,9 @@ export default function SixQuiPrendPage() {
               </div>
               <button
                 onClick={validerManche}
-                className="mt-2 inline-flex items-center gap-2 bg-red-50 dark:bg-green-900 text-green-700 cursor-pointer dark:text-green-300 border border-green-200 dark:border-green-700 px-4 py-2 rounded-md text-sm font-medium shadow-sm hover:bg-green-100 dark:hover:bg-green-800 transition-colors"
+                className="mt-2 inline-flex items-center gap-2 bg-green-50 dark:bg-green-900 text-green-700 cursor-pointer dark:text-green-300 border border-green-200 dark:border-green-700 px-4 py-2 rounded-md text-sm font-medium shadow-sm hover:bg-green-100 dark:hover:bg-green-800 transition-colors"
               >
-                ✅ Valider la manche
+                Valider la manche
               </button>
             </section>
           )}
