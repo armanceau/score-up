@@ -3,7 +3,7 @@ import Card from "@/components/Card";
 import { useState } from "react";
 
 const jeux = [
-  { name: "Skyjo", emoji: "🃏", href: "/skyjo", players: 8 },
+  { name: "Skyjo", emoji: "🔢", href: "/skyjo", players: 8 },
   { name: "6 qui prend", emoji: "🐮", href: "/6quiprend", players: 10 },
   { name: "Scrabble", emoji: "🔤", href: "/scrabble", players: 4 },
   { name: "Saboteur", emoji: "⛏️", href: "/saboteur", players: 10 },
