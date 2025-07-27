@@ -117,7 +117,7 @@ export default function SkyjoPage() {
       />
 
       <h1 className="text-3xl sm:text-4xl font-semibold text-center mb-10">
-        🔢 Skyjo
+        🌈 Skyjo
       </h1>
 
       <section className="mb-10">
@@ -136,7 +136,7 @@ export default function SkyjoPage() {
             joueurs={joueurs}
             supprimerJoueur={supprimerJoueur}
             mancheEnCours={mancheEnCours}
-            emoji="🔢"
+            emoji="🌈"
           />
 
           <ControleManche
@@ -152,7 +152,7 @@ export default function SkyjoPage() {
               mancheScores={mancheScores}
               setMancheScores={setMancheScores}
               validerManche={validerManche}
-              emoji="🔢"
+              emoji="🌈"
             />
           )}
         </>
