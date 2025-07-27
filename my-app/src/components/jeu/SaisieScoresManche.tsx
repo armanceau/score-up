@@ -54,7 +54,6 @@ export default function SaisieScoresManche({
             <label className="w-32 text-sm font-medium">{j.nom} :</label>
             <input
               type="text"
-              inputMode="numeric"
               pattern="-?\d*"
               placeholder="0"
               value={inputScores[j.nom] ?? ""}
