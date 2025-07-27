@@ -34,7 +34,6 @@ export default function SaisieScoresManche({
                   [j.nom]: parseInt(e.target.value, 10) || 0,
                 })
               }
-              min={0}
               className="w-24 px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded-md bg-white dark:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-800 dark:focus:ring-zinc-500 text-sm transition"
             />
             <span className="text-lg">{emoji}</span>
