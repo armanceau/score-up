@@ -6,8 +6,8 @@ const jeux = [
   { name: "Skyjo", emoji: "🌈", href: "/skyjo", players: 8 },
   { name: "6 qui prend", emoji: "🐮", href: "/6quiprend", players: 10 },
   { name: "Scrabble", emoji: "🔤", href: "/scrabble", players: 4 },
-  { name: "Saboteur", emoji: "⛏️", href: "/saboteur", players: 10 },
-  { name: "Love Letter", emoji: "💌", href: "/loveletter", players: 4 },
+  { name: "Papattes", emoji: "🐾", href: "/papattes", players: 4 },
+  { name: "Mini-golf", emoji: "⛳", href: "/minigolf", players: 10 },
 ];
 
 const filtres = [
