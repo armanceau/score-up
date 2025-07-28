@@ -6,6 +6,7 @@ import InputJoueur from "@/components/jeu/InputJoueur";
 import ListeJoueurs from "@/components/jeu/ListeJoueurs";
 import ControleManche from "@/components/jeu/ControleManche";
 import SaisieScoresManche from "@/components/jeu/SaisieScoresManche";
+import { PartageBouton } from "@/components/PartageBouton";
 
 type Joueur = {
   nom: string;
@@ -108,6 +109,11 @@ export default function SixQuiPrendPage() {
     setMancheEnCours(false);
   };
 
+  const joueursAvecScoresTotaux = joueurs.map((j) => ({
+    name: j.nom,
+    score: j.scores.reduce((acc, s) => acc + s, 0),
+  }));
+
   return (
     <main className="flex flex-col justify-start max-w-2xl mx-auto px-6 py-10 text-zinc-900 dark:text-zinc-100">
       <Regle
@@ -155,6 +161,11 @@ export default function SixQuiPrendPage() {
               emoji="🐮"
             />
           )}
+
+          <PartageBouton
+            gameName="6 qui prend"
+            players={joueursAvecScoresTotaux}
+          />
         </>
       )}
     </main>
