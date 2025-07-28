@@ -7,6 +7,7 @@ import ListeJoueurs from "@/components/jeu/ListeJoueurs";
 import ControleManche from "@/components/jeu/ControleManche";
 import SaisieScoresManche from "@/components/jeu/SaisieScoresManche";
 import { PartageBouton } from "@/components/PartageBouton";
+import { PartageImage } from "@/components/PartageImage";
 
 type Joueur = {
   nom: string;
@@ -162,8 +163,15 @@ export default function SixQuiPrendPage() {
             />
           )}
 
-          <div id="resultat-partie" className="bg-white p-4 rounded shadow">
-            test
+          <div
+            id="resultat-partie"
+            className="flex justify-center py-4 opacity-0"
+          >
+            <PartageImage
+              ref={null}
+              gameName="6 qui prend"
+              players={joueursAvecScoresTotaux}
+            />
           </div>
 
           {/* <PartageBouton
