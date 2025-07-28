@@ -163,19 +163,18 @@ export default function SixQuiPrendPage() {
             />
           )}
 
-          <div id="resultat-partie" className="flex justify-center py-4">
+          <PartageBouton selectorToCapture="#resultat-partie" />
+
+          <div
+            id="resultat-partie"
+            className="flex justify-center py-4 absolute -z-10"
+          >
             <PartageImage
               ref={null}
               gameName="6 qui prend"
               players={joueursAvecScoresTotaux}
             />
           </div>
-
-          {/* <PartageBouton
-            gameName="6 qui prend"
-            players={joueursAvecScoresTotaux}
-          /> */}
-          <PartageBouton selectorToCapture="#resultat-partie" />
         </>
       )}
     </main>

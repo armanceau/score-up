@@ -56,9 +56,9 @@ export function PartageBouton({
       ref={boutonRef}
       onClick={partager}
       disabled={enCours}
-      className="mt-8 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+      className="py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
     >
-      {enCours ? "Partage en cours..." : "📤 Partager l'image"}
+      {enCours ? "Partage en cours..." : "📤 Partager les scores"}
     </button>
   );
 }
