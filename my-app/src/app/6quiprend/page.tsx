@@ -162,10 +162,15 @@ export default function SixQuiPrendPage() {
             />
           )}
 
-          <PartageBouton
+          <div id="resultat-partie" className="bg-white p-4 rounded shadow">
+            test
+          </div>
+
+          {/* <PartageBouton
             gameName="6 qui prend"
             players={joueursAvecScoresTotaux}
-          />
+          /> */}
+          <PartageBouton selectorToCapture="#resultat-partie" />
         </>
       )}
     </main>

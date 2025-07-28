@@ -2,57 +2,63 @@
 
 import { useRef, useState } from "react";
 import html2canvas from "html2canvas-pro";
-import { PartageImage } from "./PartageImage";
+
+type PartageBoutonProps = {
+  selectorToCapture: string; // ex: "#resultat-partie"
+  fileName?: string;
+};
 
 export function PartageBouton({
-  gameName,
-  players,
-}: {
-  gameName: string;
-  players: { name: string; score: number }[];
-}) {
-  const imageRef = useRef<HTMLDivElement>(null);
-  const [generating, setGenerating] = useState(false);
+  selectorToCapture,
+  fileName = "scoreup.png",
+}: PartageBoutonProps) {
+  const [enCours, setEnCours] = useState(false);
+  const boutonRef = useRef<HTMLButtonElement>(null);
 
-  const handleShare = async () => {
-    if (!imageRef.current) return;
-
-    setGenerating(true);
-
-    const canvas = await html2canvas(imageRef.current);
-    const dataUrl = canvas.toDataURL("image/png");
-
-    const blob = await (await fetch(dataUrl)).blob();
-    const file = new File([blob], "score.png", { type: "image/png" });
-
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      await navigator.share({
-        files: [file],
-        title: "Score Up",
-        text: `Résultat de la partie de ${gameName} !`,
-      });
-    } else {
-      const link = document.createElement("a");
-      link.href = dataUrl;
-      link.download = "score.png";
-      link.click();
+  const partager = async () => {
+    const element = document.querySelector(selectorToCapture) as HTMLElement;
+    if (!element) {
+      alert("Élément à capturer introuvable.");
+      return;
     }
 
-    setGenerating(false);
+    try {
+      setEnCours(true);
+
+      const canvas = await html2canvas(element, { backgroundColor: "#ffffff" });
+      const blob = await new Promise<Blob | null>((resolve) =>
+        canvas.toBlob(resolve, "image/png")
+      );
+
+      if (!blob) throw new Error("Échec de la conversion de l'image");
+
+      const file = new File([blob], fileName, { type: "image/png" });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          title: "Ma partie ScoreUp 🎮",
+          text: "Voici mon score, t'es chaud pour faire mieux ? 💪",
+          files: [file],
+        });
+      } else {
+        alert("Le partage de fichier n'est pas supporté sur ce navigateur.");
+      }
+    } catch (e) {
+      console.error("Erreur de partage :", e);
+      alert("Impossible de partager l'image.");
+    } finally {
+      setEnCours(false);
+    }
   };
 
   return (
-    <>
-      <button
-        onClick={handleShare}
-        className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm shadow hover:bg-blue-700"
-      >
-        {generating ? "Génération..." : "Partager la partie 📤"}
-      </button>
-
-      <div className="absolute opacity-0 pointer-events-none -z-10">
-        <PartageImage ref={imageRef} gameName={gameName} players={players} />
-      </div>
-    </>
+    <button
+      ref={boutonRef}
+      onClick={partager}
+      disabled={enCours}
+      className="mt-8 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+    >
+      {enCours ? "Partage en cours..." : "📤 Partager l'image"}
+    </button>
   );
 }
