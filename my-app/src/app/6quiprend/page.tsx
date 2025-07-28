@@ -163,10 +163,7 @@ export default function SixQuiPrendPage() {
             />
           )}
 
-          <div
-            id="resultat-partie"
-            className="flex justify-center py-4 opacity-0"
-          >
+          <div id="resultat-partie" className="flex justify-center py-4">
             <PartageImage
               ref={null}
               gameName="6 qui prend"
