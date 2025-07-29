@@ -6,6 +6,8 @@ import InputJoueur from "@/components/jeu/InputJoueur";
 import ListeJoueurs from "@/components/jeu/ListeJoueurs";
 import ControleManche from "@/components/jeu/ControleManche";
 import SaisieScoresManche from "@/components/jeu/SaisieScoresManche";
+import { PartageBouton } from "@/components/PartageBouton";
+import { PartageImage } from "@/components/PartageImage";
 
 type Joueur = {
   nom: string;
@@ -91,6 +93,11 @@ export default function ScrabblePage() {
     localStorage.removeItem(LOCALSTORAGE_KEY);
   };
 
+  const joueursAvecScoresTotaux = joueurs.map((j) => ({
+    name: j.nom,
+    score: j.scores.reduce((acc, s) => acc + s, 0),
+  }));
+
   const demarrerNouvelleManche = () => {
     const initialScores: Record<string, number> = {};
     joueurs.forEach((j) => {
@@ -157,6 +164,20 @@ export default function ScrabblePage() {
               emoji="🔤"
             />
           )}
+
+          <PartageBouton selectorToCapture="#resultat-partie" />
+
+          <div
+            id="resultat-partie"
+            className="flex justify-center py-4 "
+            style={{ position: "absolute", left: "-9999px", top: "-9999px" }}
+          >
+            <PartageImage
+              ref={null}
+              gameName="Scrabble"
+              players={joueursAvecScoresTotaux}
+            />
+          </div>
         </>
       )}
     </main>
