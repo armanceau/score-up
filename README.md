@@ -1,6 +1,6 @@
 # Score Up
 
-Une application web légère et intuitive pour consulter,  suivre les règles ainsi que compter les points de manière dynamique de vos jeux de société préférés.
+Une application web légère et intuitive pour consulter,  suivre les règles ainsi que compter les points de manière dynamique de vos jeux en groupe.
 
 ## ✨ Fonctionnalités
 
