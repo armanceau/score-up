@@ -167,7 +167,8 @@ export default function SixQuiPrendPage() {
 
           <div
             id="resultat-partie"
-            className="flex justify-center py-4 absolute -z-10"
+            className="flex justify-center py-4 "
+            style={{ position: "absolute", left: "-9999px", top: "-9999px" }}
           >
             <PartageImage
               ref={null}
