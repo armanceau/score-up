@@ -1,11 +1,34 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function Navbar() {
   const pathname = usePathname();
 
   const segments = pathname.split("/").filter(Boolean);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
+
+    return () => {
+      listener.subscription.unsubscribe();
+    };
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setUser(null);
+  };
+
+  console.log("user connecté : " + user);
 
   return (
     <nav className="w-full border-b border-zinc-200 dark:border-zinc-800 px-6 py-4 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
@@ -22,6 +45,24 @@ export default function Navbar() {
             <Link href="/apropos" className="hover:underline">
               À propos
             </Link>
+
+            {user ? (
+              <>
+                <Link href="/historique" className="hover:underline">
+                  Historique
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900 text-red-700 cursor-pointer dark:text-red-300 border border-red-200 dark:border-red-700 px-2 h-9 rounded-md text-sm font-medium shadow-sm hover:bg-red-100 dark:hover:bg-red-800 transition-colors"
+                >
+                  Déconnexion
+                </button>
+              </>
+            ) : (
+              <Link href="/authentification" className="hover:underline">
+                Connexion
+              </Link>
+            )}
             <div className="col-span-2 sm:col-span-1">
               <a
                 href="https://github.com/armanceau/score-up"

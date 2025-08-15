@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.55.0",
     "html2canvas-pro": "^1.5.11",
     "next": "15.4.3",
     "react": "19.1.0",
