@@ -69,7 +69,7 @@ export default function AuthForm() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-white dark:bg-black font-sans px-6 py-16">
+    <main className="flex justify-center font-sans px-6 py-16">
       <div className="w-full max-w-md p-8 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-700 transition-colors shadow-sm">
         <h2 className="text-3xl font-semibold text-center mb-6 text-zinc-900 dark:text-zinc-100">
           {isSignUp ? "Inscription" : "Connexion"} à{" "}
