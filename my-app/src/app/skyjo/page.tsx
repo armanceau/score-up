@@ -2,7 +2,7 @@
 
 import JeuPage from "@/components/jeu/JeuPage";
 
-const nomJeu = "Scrabble";
+const nomJeu = "Skyjo";
 const emoji = "🌈";
 const regles = `
 - Chaque joueur dispose de 12 cartes face cachée, disposées en 3 lignes de 4.

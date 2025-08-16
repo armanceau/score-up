@@ -26,7 +26,7 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-6 right-6 p-3 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-white shadow-lg transition-colors cursor-pointer"
+      className="fixed bottom-6 right-6 p-3 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-black dark:text-white shadow-lg transition-colors cursor-pointer"
     >
       <svg
         data-testid="geist-icon"
