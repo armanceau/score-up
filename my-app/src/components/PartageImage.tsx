@@ -14,7 +14,7 @@ export const PartageImage = React.forwardRef(function PartageImage(
       ref={ref}
       className="w-[400px] p-6 rounded-xl bg-white text-zinc-900 shadow-xl font-sans text-center"
     >
-      <h2 className="text-xl font-bold mb-2">🎲 {gameName}</h2>
+      <h2 className="text-xl font-bold mb-2">{gameName}</h2>
       <p className="text-sm text-zinc-500 mb-4">
         Partie du {new Date().toLocaleDateString("fr-FR")}
       </p>
