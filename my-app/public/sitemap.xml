@@ -1,4 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap><loc>https://scoreup.vercel.app/sitemap-0.xml</loc></sitemap>
-</sitemapindex>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://scoreup.vercel.app/</loc>
+  <lastmod>2025-08-17T13:52:39+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://scoreup.vercel.app/apropos</loc>
+  <lastmod>2025-08-17T13:52:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://scoreup.vercel.app/authentification</loc>
+  <lastmod>2025-08-17T13:52:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://scoreup.vercel.app/skyjo</loc>
+  <lastmod>2025-08-17T13:52:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://scoreup.vercel.app/6quiprend</loc>
+  <lastmod>2025-08-17T13:52:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://scoreup.vercel.app/scrabble</loc>
+  <lastmod>2025-08-17T13:52:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://scoreup.vercel.app/papattes</loc>
+  <lastmod>2025-08-17T13:52:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://scoreup.vercel.app/minigolf</loc>
+  <lastmod>2025-08-17T13:52:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>
