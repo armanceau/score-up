@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Score Up ",
   description:
-    "Plateforme permettant de compter les points de manière dynamique sur différents jeux de sociétés ",
+    "Compte les points, sauvegarde tes scores de jeux de société et partage-les avec tes amis !",
 };
 
 export default function RootLayout({
