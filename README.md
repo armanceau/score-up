@@ -9,12 +9,16 @@ Une application web légère et intuitive pour consulter,  suivre les règles ai
 - 🧠 Interface simplifiée pour que tout le monde comprenne les règles
 - 🌙 Mode sombre intégré
 - 🧩 Prise en charge de plusieurs jeux en parallèle (via localStorage)
+- 📤 Partage des scores
+- 💾 Sauvegarde des parties
+- 👨‍💻 Authentification
 
 ## 🛠️ Tech Stack
 
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [Supabase](https://supabase.com/)
 - LocalStorage pour la persistance côté client
 
 ## 🚀 Lancer le projet en local
