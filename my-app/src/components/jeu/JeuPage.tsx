@@ -117,6 +117,12 @@ export default function JeuPage({
     setMancheEnCours(false);
   };
 
+  const modifierScores = (nom: string, newScores: number[]) => {
+    setJoueurs((prev) =>
+      prev.map((j) => (j.nom === nom ? { ...j, scores: newScores } : j))
+    );
+  };
+
   const joueursAvecScoresTotaux = joueurs.map((j) => ({
     name: j.nom,
     score: j.scores.reduce((acc, s) => acc + s, 0),
@@ -145,6 +151,7 @@ export default function JeuPage({
           <ListeJoueurs
             joueurs={joueurs}
             supprimerJoueur={supprimerJoueur}
+            modifierScores={modifierScores}
             mancheEnCours={mancheEnCours}
             emoji={emoji}
           />
