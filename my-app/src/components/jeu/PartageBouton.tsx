@@ -38,6 +38,7 @@ export function PartageBouton({
         await navigator.share({
           title: "Ma partie ScoreUp 🎮",
           text: "Voici mon score, t'es chaud pour faire mieux ? 💪",
+          url: "https://scoreup.vercel.app/",
           files: [file],
         });
       } else {
