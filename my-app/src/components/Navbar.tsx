@@ -28,8 +28,6 @@ export default function Navbar() {
     setUser(null);
   };
 
-  console.log("user connecté : " + user);
-
   return (
     <nav className="w-full border-b border-zinc-200 dark:border-zinc-800 px-6 py-4 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
       <div className="max-w-4xl mx-auto flex flex-col gap-2">

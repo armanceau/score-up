@@ -16,8 +16,6 @@ export function SauvegarderPartieBouton({
 }: SauvegarderPartieBoutonProps) {
   const [enCours, setEnCours] = useState(false);
 
-  console.log(jeu);
-
   const handleSave = async () => {
     try {
       setEnCours(true);
