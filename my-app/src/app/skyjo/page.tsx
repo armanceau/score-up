@@ -2,8 +2,7 @@
 
 import JeuPage from "@/components/jeu/JeuPage";
 
-const nomJeu = "Skyjo";
-const emoji = "🌈";
+const id = "skyjo";
 const regles = `
 - Chaque joueur dispose de 12 cartes face cachée, disposées en 3 lignes de 4.
 - Au début, chaque joueur retourne 2 cartes.
@@ -23,8 +22,7 @@ const LOCALSTORAGE_KEY = "score-up-skyjo";
 export default function SkyjoPage() {
   return (
     <JeuPage
-      nomJeu={nomJeu}
-      emoji={emoji}
+      idJeu={id}
       regles={regles}
       lienExterneRegle={lienExterneRegle}
       localStorageKey={LOCALSTORAGE_KEY}

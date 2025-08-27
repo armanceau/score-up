@@ -11,6 +11,7 @@ type ListeJoueursProps = {
   modifierScores: (nom: string, scores: number[]) => void;
   mancheEnCours: boolean;
   emoji: string;
+  estAscendant: boolean;
 };
 
 export default function ListeJoueurs({
@@ -19,13 +20,15 @@ export default function ListeJoueurs({
   modifierScores,
   mancheEnCours,
   emoji,
+  estAscendant,
 }: ListeJoueursProps) {
   const [editNom, setEditNom] = useState<string | null>(null);
   const [editScores, setEditScores] = useState<string[]>([]);
   const total = (scores: number[]) => scores.reduce((acc, val) => acc + val, 0);
-  const joueursTries = [...joueurs].sort(
-    (a, b) => total(a.scores) - total(b.scores)
-  );
+  const joueursTries = [...joueurs].sort((a, b) => {
+    const diff = total(a.scores) - total(b.scores);
+    return estAscendant ? -diff : diff;
+  });
 
   const startEdit = (j: Joueur) => {
     setEditNom(j.nom);

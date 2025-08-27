@@ -2,8 +2,7 @@
 
 import JeuPage from "@/components/jeu/JeuPage";
 
-const nomJeu = "Scrabble";
-const emoji = "🔤";
+const id = "scrabble";
 const regles = `
 - Une partie se joue en plusieurs manches.
 - Chaque joueur pioche 7 lettres au début et à chaque tour pour avoir toujours 7 lettres.
@@ -25,8 +24,7 @@ const LOCALSTORAGE_KEY = "score-up-scrabble";
 export default function ScrabblePage() {
   return (
     <JeuPage
-      nomJeu={nomJeu}
-      emoji={emoji}
+      idJeu={id}
       regles={regles}
       lienExterneRegle={lienExterneRegle}
       localStorageKey={LOCALSTORAGE_KEY}
