@@ -2,8 +2,8 @@
 
 import JeuPage from "@/components/jeu/JeuPage";
 
-const nomJeu = "Papattes";
-const emoji = "🐾";
+const id = "papattes";
+
 const regles = `
 - Une partie se joue en plusieurs manches.
 - Chaque manche finit quand tous les joueurs ont lancé leurs 4 Papattes et leur banane.
@@ -25,8 +25,7 @@ const LOCALSTORAGE_KEY = "score-up-papattes";
 export default function PapattesPage() {
   return (
     <JeuPage
-      nomJeu={nomJeu}
-      emoji={emoji}
+      idJeu={id}
       regles={regles}
       lienExterneRegle={lienExterneRegle}
       localStorageKey={LOCALSTORAGE_KEY}

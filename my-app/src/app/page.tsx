@@ -1,14 +1,7 @@
 "use client";
 import Card from "@/components/Card";
 import { useState } from "react";
-
-const jeux = [
-  { name: "Skyjo", emoji: "🌈", href: "/skyjo", players: 8 },
-  { name: "6 qui prend", emoji: "🐮", href: "/6quiprend", players: 10 },
-  { name: "Scrabble", emoji: "🔤", href: "/scrabble", players: 4 },
-  { name: "Papattes", emoji: "🐾", href: "/papattes", players: 4 },
-  { name: "Mini-golf", emoji: "⛳", href: "/minigolf", players: 10 },
-];
+import { jeux } from "./data/jeux";
 
 const filtres = [
   { label: "Tous les jeux", value: "all" },
@@ -21,8 +14,8 @@ export default function Home() {
 
   const jeuxFiltres = jeux.filter((jeu) => {
     if (filtre === "all") return true;
-    if (filtre === "max4") return jeu.players <= 4;
-    if (filtre === "min5") return jeu.players >= 5;
+    if (filtre === "max4") return jeu.joueurs <= 4;
+    if (filtre === "min5") return jeu.joueurs >= 5;
   });
 
   return (
@@ -57,7 +50,7 @@ export default function Home() {
               key={jeu.href}
               href={jeu.href}
               emoji={jeu.emoji}
-              name={jeu.name}
+              name={jeu.nom}
             />
           ))}
         </div>
