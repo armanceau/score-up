@@ -3,6 +3,7 @@ import { useState } from "react";
 type Joueur = {
   nom: string;
   scores: number[];
+  couleur: string;
 };
 
 type ListeJoueursProps = {
@@ -52,6 +53,14 @@ export default function ListeJoueurs({
           <li
             key={j.nom}
             className="flex justify-between items-center border-b border-zinc-200 dark:border-zinc-700 py-2"
+            style={{
+              border: `1px ${j.couleur ?? "var(--color-zinc-700)"} solid`,
+              borderRadius: "8px",
+              padding: "5px 10px 5px 10px",
+              backgroundColor: j.couleur
+                ? j.couleur.replace("rgb", "rgba").replace(")", ", 0.1)")
+                : undefined,
+            }}
           >
             {editNom === j.nom ? (
               <span className="flex flex-col gap-2">
