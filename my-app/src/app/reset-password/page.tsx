@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
+import ResetPasswordLayout from "./layout";
 
 export default function ResetPasswordPage() {
   const [newPassword, setNewPassword] = useState("");
@@ -109,4 +110,8 @@ export default function ResetPasswordPage() {
       </div>
     </main>
   );
+}
+
+ResetPasswordPage.getLayout = function getLayout(page: React.ReactNode) {
+  return <ResetPasswordLayout>{page}</ResetPasswordLayout>
 }
