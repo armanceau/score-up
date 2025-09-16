@@ -4,4 +4,5 @@ export const jeux = [
   { id: "scrabble", nom: "Scrabble", emoji: "🔤", href: "/scrabble", joueurs: 4, estAscendant: true, limiteScore: null },
   { id: "papattes", nom: "Papattes", emoji: "🐾", href: "/papattes", joueurs: 4, estAscendant: true, limiteScore: 25 },
   { id: "mini-golf", nom: "Mini-golf", emoji: "⛳", href: "/minigolf", joueurs: 10, estAscendant: false, limiteScore: null },
+  { id: "petit-bac", nom: "Petit bac", emoji: "🎓", href: "/petitbac", joueurs: 10, estAscendant: true, limiteScore: null },
 ];

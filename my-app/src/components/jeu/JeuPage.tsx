@@ -138,11 +138,9 @@ export default function JeuPage({
         regle={regles}
         lienExterneRegle={lienExterneRegle}
       />
-
       <h1 className="text-3xl sm:text-4xl font-semibold text-center mb-10">
         {jeuConfig.emoji} {jeuConfig.nom}
       </h1>
-
       <section className="mb-10">
         <h2 className="text-xl font-medium mb-3">Ajoute les joueurs</h2>
         <InputJoueur
@@ -152,7 +150,6 @@ export default function JeuPage({
           disabled={mancheEnCours}
         />
       </section>
-
       {joueurs.length > 0 && (
         <>
           <ListeJoueurs
