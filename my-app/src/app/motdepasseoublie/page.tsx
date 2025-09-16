@@ -68,7 +68,7 @@ export default function MotDePasseOubliePage() {
             <button
               onClick={handleRecovery}
               disabled={loading}
-              className="w-full bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-md hover:opacity-90 transition"
+              className="w-full bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-md hover:opacity-90 transition cursor-pointer"
             >
               {loading ? "Envoi en cours..." : "Envoyer le lien"}
             </button>
