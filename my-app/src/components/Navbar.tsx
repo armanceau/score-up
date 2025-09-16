@@ -50,6 +50,9 @@ export default function Navbar() {
                 <Link href="/historique" className="hover:underline">
                   Historique
                 </Link>
+                <Link href="/profil" className="hover:underline">
+                  Profil
+                </Link>
                 <button
                   onClick={handleLogout}
                   className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900 text-red-700 cursor-pointer dark:text-red-300 border border-red-200 dark:border-red-700 px-2 h-9 rounded-md text-sm font-medium shadow-sm hover:bg-red-100 dark:hover:bg-red-800 transition-colors"
@@ -101,18 +104,20 @@ export default function Navbar() {
               À propos
             </Link>
             {user && (
-              <Link href="/historique" className="hover:underline">
-                Historique
-              </Link>
-            )}
-            {user && (
-              <button
-                onClick={handleLogout}
-                style={{ width: "fit-content" }}
-                className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-700 px-2 py-1 rounded-md text-sm font-medium shadow-sm hover:bg-red-100 dark:hover:bg-red-800 transition-colors"
-              >
-                Déconnexion
-              </button>
+              <>
+                <Link href="/historique" className="hover:underline">
+                  Historique
+                </Link>
+                <Link href="/profil" className="hover:underline">
+                  Profil
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900 text-red-700 cursor-pointer dark:text-red-300 border border-red-200 dark:border-red-700 px-2 h-9 rounded-md text-sm font-medium shadow-sm hover:bg-red-100 dark:hover:bg-red-800 transition-colors"
+                >
+                  Déconnexion
+                </button>
+              </>
             )}
             {!user && (
               <Link href="/authentification" className="hover:underline">

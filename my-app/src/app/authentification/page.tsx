@@ -23,7 +23,7 @@ export default function AuthForm() {
       }
     };
     checkUser();
-  }, []);
+  }, [router]);
 
   const handleAuth = async () => {
     setMessage("");
@@ -58,7 +58,7 @@ export default function AuthForm() {
           setIsError(false);
           setTimeout(() => {
             router.push("/");
-          }, 2000);
+          }, 500);
         }
       }
     } catch (err: unknown) {
