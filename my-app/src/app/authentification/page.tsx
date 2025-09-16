@@ -99,6 +99,15 @@ export default function AuthForm() {
           </button>
         </div>
 
+        {!isSignUp && (
+          <p
+            className="mt-2 text-sm text-center text-blue-600 dark:text-blue-400 cursor-pointer underline"
+            onClick={() => router.push("/motdepasseoublie")}
+          >
+            Mot de passe oublié ?
+          </p>
+        )}
+
         <p
           className="mt-4 text-sm text-center text-blue-600 dark:text-blue-400 cursor-pointer underline"
           onClick={() => setIsSignUp(!isSignUp)}

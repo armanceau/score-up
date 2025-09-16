@@ -53,7 +53,7 @@ export default function ResetPasswordPage() {
       setConfirmPassword("");
 
       setTimeout(() => {
-        router.push("/login");
+        router.push("/");
       }, 2000);
     }
   };

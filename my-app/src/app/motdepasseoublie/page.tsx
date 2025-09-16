@@ -45,45 +45,48 @@ export default function MotDePasseOubliePage() {
   };
 
   return (
-    <main className="flex justify-center items-center min-h-screen px-6 py-16 bg-gray-50 dark:bg-zinc-900">
-      <div className="w-full max-w-md p-8 bg-white dark:bg-zinc-800 rounded-xl shadow-md text-center">
-        <h2 className="text-2xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">
-          Mot de passe oublié
-        </h2>
-        <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-          Entrez votre email pour recevoir un lien de réinitialisation.
-        </p>
+    <>
+      <main className="flex justify-center font-sans px-6 py-16">
+        <div className="w-full max-w-md p-8 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-700 transition-colors shadow-sm">
+          <h2 className="text-3xl font-semibold text-center mb-6 text-zinc-900 dark:text-zinc-100">
+            Mot de passe oublié
+          </h2>
 
-        <div className="flex flex-col gap-4">
-          <input
-            type="email"
-            placeholder="Votre email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-2 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+          <p className="text-zinc-700 dark:text-zinc-300 mb-6">
+            Entrez votre email pour recevoir un lien de réinitialisation.
+          </p>
 
-          <button
-            onClick={handleRecovery}
-            disabled={loading}
-            className="w-full bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-md hover:opacity-90 transition"
-          >
-            {loading ? "Envoi en cours..." : "Envoyer le lien"}
-          </button>
+          <div className="flex flex-col gap-4">
+            <input
+              type="email"
+              placeholder="Votre email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-2 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
 
-          {message && (
-            <p
-              className={`mt-2 text-sm ${
-                isError
-                  ? "text-red-500 dark:text-red-400"
-                  : "text-green-500 dark:text-green-400"
-              }`}
+            <button
+              onClick={handleRecovery}
+              disabled={loading}
+              className="w-full bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-md hover:opacity-90 transition"
             >
-              {message}
-            </p>
-          )}
+              {loading ? "Envoi en cours..." : "Envoyer le lien"}
+            </button>
+
+            {message && (
+              <p
+                className={`mt-2 text-sm ${
+                  isError
+                    ? "text-red-500 dark:text-red-400"
+                    : "text-green-500 dark:text-green-400"
+                }`}
+              >
+                {message}
+              </p>
+            )}
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
