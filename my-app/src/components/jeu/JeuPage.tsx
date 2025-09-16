@@ -21,6 +21,7 @@ type Props = {
 type Joueur = {
   nom: string;
   scores: number[];
+  couleur: string;
 };
 
 export default function JeuPage({
@@ -59,7 +60,7 @@ export default function JeuPage({
         setMancheScores(parsed.mancheScores ?? {});
       } catch {}
     }
-  }, [mounted]);
+  }, [mounted, localStorageKey]);
 
   useEffect(() => {
     if (mounted) {
@@ -68,20 +69,20 @@ export default function JeuPage({
         JSON.stringify({ joueurs, mancheEnCours, mancheScores })
       );
     }
-  }, [joueurs, mancheEnCours, mancheScores, mounted]);
+  }, [joueurs, mancheEnCours, mancheScores, mounted, localStorageKey]);
 
   if (!mounted) return null;
 
   const jeuConfig = jeux.find((j) => j.id === idJeu);
   if (!jeuConfig) return null;
 
-  const ajouterJoueur = () => {
+  const ajouterJoueur = (couleur: string) => {
     const nomTrimmed = nomJoueur.trim();
     if (
       nomTrimmed &&
       !joueurs.some((j) => j.nom.toLowerCase() === nomTrimmed.toLowerCase())
     ) {
-      setJoueurs([...joueurs, { nom: nomTrimmed, scores: [] }]);
+      setJoueurs([...joueurs, { nom: nomTrimmed, scores: [], couleur }]);
       setNomJoueur("");
     }
   };
