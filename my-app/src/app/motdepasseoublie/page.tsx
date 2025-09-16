@@ -75,7 +75,7 @@ export default function MotDePasseOubliePage() {
 
             {message && (
               <p
-                className={`mt-2 text-sm ${
+                className={`mt-4 text-sm text-center ${
                   isError
                     ? "text-red-500 dark:text-red-400"
                     : "text-green-500 dark:text-green-400"

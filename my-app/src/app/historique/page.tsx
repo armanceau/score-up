@@ -33,7 +33,7 @@ export default function HistoriquePage() {
       }
     };
     checkUser();
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     const fetchUserAndParties = async () => {

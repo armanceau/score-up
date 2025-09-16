@@ -51,10 +51,7 @@ export default function ResetPasswordPage() {
       setIsError(false);
       setNewPassword("");
       setConfirmPassword("");
-
-      setTimeout(() => {
-        router.push("/");
-      }, 2000);
+      router.push("/");
     }
   };
 
@@ -70,9 +67,9 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <main className="flex justify-center items-center min-h-screen px-6 py-16 bg-gray-50 dark:bg-zinc-900">
-      <div className="w-full max-w-md p-8 bg-white dark:bg-zinc-800 rounded-xl shadow-md text-center">
-        <h2 className="text-2xl font-bold mb-4 text-zinc-900 dark:text-zinc-100">
+    <main className="flex justify-center font-sans px-6 py-16">
+      <div className="w-full max-w-md p-8 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-700 transition-colors shadow-sm">
+        <h2 className="text-3xl font-semibold text-center mb-6 text-zinc-900 dark:text-zinc-100">
           Réinitialisation du mot de passe
         </h2>
         <div className="flex flex-col gap-4">
@@ -92,14 +89,14 @@ export default function ResetPasswordPage() {
           />
           <button
             onClick={handleUpdatePassword}
-            className="w-full bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-md hover:opacity-90 transition"
+            className="w-full bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-md hover:opacity-90 transition cursor-pointer"
           >
             Mettre à jour le mot de passe
           </button>
 
           {message && (
             <p
-              className={`mt-2 text-sm ${
+              className={`mt-4 text-sm text-center ${
                 isError
                   ? "text-red-500 dark:text-red-400"
                   : "text-green-500 dark:text-green-400"
