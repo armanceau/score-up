@@ -50,7 +50,6 @@ export default function ListeJoueurs({
       <h2 className="text-xl font-medium mb-4">Classement actuel</h2>
       <ol className="space-y-2">
         {joueursTries.map((j) => {
-          console.log(j.nom + " " + j.couleur);
           return (
             <li
               key={j.nom}
