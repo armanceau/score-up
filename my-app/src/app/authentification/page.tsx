@@ -51,14 +51,27 @@ export default function AuthForm() {
           password,
         });
         if (error) {
-          setMessage("Aïe, une erreur est survenue.");
+          let errorMessage = "Aïe, une erreur est survenue.";
+
+          if (error.status === 400) {
+            errorMessage = "E-mail ou mot de passe invalide.";
+          } else if (error.status === 403) {
+            errorMessage = "Accès refusé.";
+          } else if (error.status === 404) {
+            errorMessage = "Ressource introuvable.";
+          } else if (error.status === 429) {
+            errorMessage = "Trop de tentatives, réessayez plus tard.";
+          } else if (error.status === 500) {
+            errorMessage =
+              "Aïe une erreur est survenue (c'est pas toi, c'est nous).";
+          }
+
+          setMessage(errorMessage);
           setIsError(true);
         } else {
           setMessage("Connexion réussie ! Redirection en cours...");
           setIsError(false);
-          setTimeout(() => {
-            router.push("/");
-          }, 500);
+          router.push("/");
         }
       }
     } catch (err: unknown) {
@@ -93,7 +106,7 @@ export default function AuthForm() {
           />
           <button
             onClick={handleAuth}
-            className="w-full bg-blue-600 dark:bg-blue-500 text-white font-medium py-2 px-4 rounded-md hover:opacity-90 transition"
+            className="w-full bg-blue-600 dark:bg-blue-500 text-white font-medium py-2 px-4 rounded-md hover:opacity-90 transition cursor-pointer"
           >
             {isSignUp ? "S'inscrire" : "Se connecter"}
           </button>
