@@ -18,7 +18,7 @@ export default function InputJoueur({
   const [couleurChoisie, setCouleurChoisie] = useState<string>("");
 
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-2 flex-wrap">
       <input
         type="text"
         value={nomJoueur}
