@@ -1,7 +1,8 @@
 "use client";
+
 import Card from "@/components/Card";
-import { useState } from "react";
-import { jeux } from "./data/jeux";
+import { useEffect, useState } from "react";
+import { getJeux, Jeu } from "@/lib/jeux";
 
 const filtres = [
   { label: "Tous les jeux", value: "all" },
@@ -11,6 +12,11 @@ const filtres = [
 
 export default function Home() {
   const [filtre, setFiltre] = useState("all");
+  const [jeux, setJeux] = useState<Jeu[]>([]);
+
+  useEffect(() => {
+    getJeux().then(setJeux);
+  }, []);
 
   const jeuxFiltres = jeux.filter((jeu) => {
     if (filtre === "all") return true;
