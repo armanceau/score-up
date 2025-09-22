@@ -1,11 +1,12 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const segments = pathname.split("/").filter(Boolean);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -26,6 +27,7 @@ export default function Navbar() {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setUser(null);
+    router.push("/");
   };
 
   const hiddenPaths = ["/reset-password"];

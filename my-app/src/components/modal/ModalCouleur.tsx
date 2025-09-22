@@ -1,4 +1,4 @@
-"use client";
+import { BaseModal } from "./BaseModal";
 
 type ModalCouleurProps = {
   isOpen: boolean;
@@ -26,42 +26,30 @@ export default function ModalCouleur({
     { valeur: "rgb(62, 63, 70)", label: "Défaut" },
   ];
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div className="bg-white dark:bg-zinc-900 rounded-xl shadow-xl p-6 max-w-md w-full animate-fade-in">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-            Sélectionnez une couleur
-          </h2>
+    <BaseModal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Sélectionnez une couleur"
+    >
+      <div className="grid grid-cols-5 gap-2">
+        {couleurs.map((c) => (
           <button
-            onClick={onClose}
-            className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition cursor-pointer"
-          >
-            ✖
-          </button>
-        </div>
-
-        <div className="grid grid-cols-5 gap-2">
-          {couleurs.map((c) => (
-            <button
-              key={c.valeur}
-              title={c.label}
-              style={{ backgroundColor: c.valeur }}
-              onClick={() => {
-                onSelectCouleur(c.valeur);
-                onClose();
-              }}
-              className={`w-10 h-10 rounded-full border-2 cursor-pointer transition ${
-                couleurActuelle === c.valeur
-                  ? "border-black dark:border-white scale-110"
-                  : "border-transparent"
-              }`}
-            />
-          ))}
-        </div>
+            key={c.valeur}
+            title={c.label}
+            style={{ backgroundColor: c.valeur }}
+            onClick={() => {
+              onSelectCouleur(c.valeur);
+              onClose();
+            }}
+            className={`w-10 h-10 rounded-full border-2 cursor-pointer transition ${
+              couleurActuelle === c.valeur
+                ? "border-black dark:border-white scale-110"
+                : "border-transparent"
+            }`}
+          />
+        ))}
       </div>
-    </div>
+    </BaseModal>
   );
 }

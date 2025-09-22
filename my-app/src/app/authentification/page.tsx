@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
+import { Lock, Eye, EyeOff } from "lucide-react";
 
 export default function AuthForm() {
   const [email, setEmail] = useState("");
@@ -10,6 +11,7 @@ export default function AuthForm() {
   const [isSignUp, setIsSignUp] = useState(false);
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -51,14 +53,27 @@ export default function AuthForm() {
           password,
         });
         if (error) {
-          setMessage("Aïe, une erreur est survenue.");
+          let errorMessage = "Aïe, une erreur est survenue.";
+
+          if (error.status === 400) {
+            errorMessage = "E-mail ou mot de passe invalide.";
+          } else if (error.status === 403) {
+            errorMessage = "Accès refusé.";
+          } else if (error.status === 404) {
+            errorMessage = "Ressource introuvable.";
+          } else if (error.status === 429) {
+            errorMessage = "Trop de tentatives, réessayez plus tard.";
+          } else if (error.status === 500) {
+            errorMessage =
+              "Aïe une erreur est survenue (c'est pas toi, c'est nous).";
+          }
+
+          setMessage(errorMessage);
           setIsError(true);
         } else {
           setMessage("Connexion réussie ! Redirection en cours...");
           setIsError(false);
-          setTimeout(() => {
-            router.push("/");
-          }, 500);
+          router.push("/");
         }
       }
     } catch (err: unknown) {
@@ -84,16 +99,31 @@ export default function AuthForm() {
             onChange={(e) => setEmail(e.target.value)}
             className="w-full px-4 py-2 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <input
-            type="password"
-            placeholder="Mot de passe"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+
+          <div className="flex items-center border rounded px-2 py-1 border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <Lock className="mr-2 w-4 h-4" />
+            <input
+              type={showPassword ? "text" : "password"}
+              className="w-full outline-none"
+              value={password}
+              placeholder="Mot de passe"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <EyeOff className="w-4 h-4 cursor-pointer" />
+              ) : (
+                <Eye className="w-4 h-4 cursor-pointer" />
+              )}
+            </button>
+          </div>
+
           <button
             onClick={handleAuth}
-            className="w-full bg-blue-600 dark:bg-blue-500 text-white font-medium py-2 px-4 rounded-md hover:opacity-90 transition"
+            className="w-full bg-blue-600 dark:bg-blue-500 text-white font-medium py-2 px-4 rounded-md hover:opacity-90 transition cursor-pointer"
           >
             {isSignUp ? "S'inscrire" : "Se connecter"}
           </button>
