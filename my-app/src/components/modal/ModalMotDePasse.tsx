@@ -27,15 +27,15 @@ export const ModalMotDePasse = ({
 
   const handleSave = async () => {
     if (!current || !next || !confirm) {
-      setError("Tous les champs sont obligatoires");
+      setError("Tous les champs sont obligatoires.");
       return;
     }
     if (next !== confirm) {
-      setError("Les mots de passe ne correspondent pas");
+      setError("Les mots de passe ne correspondent pas.");
       return;
     }
     if (next.length < 8) {
-      setError("Le nouveau mot de passe doit contenir au moins 8 caractères");
+      setError("Le nouveau mot de passe doit contenir au moins 8 caractères.");
       return;
     }
 
@@ -50,9 +50,8 @@ export const ModalMotDePasse = ({
         setNext("");
         setConfirm("");
       }, 1500);
-    } catch (err) {
-      console.error(err);
-      setError("Erreur lors de la mise à jour du mot de passe");
+    } catch {
+      setError("Erreur lors de la mise à jour du mot de passe.");
     }
   };
 
@@ -65,17 +64,17 @@ export const ModalMotDePasse = ({
       footer={
         <div className="flex justify-end gap-2">
           <button
-            className="px-4 py-2 border rounded hover:bg-gray-100"
+            className="px-4 py-2 border rounded text-red-500 hover:bg-red-900 cursor-pointer transition"
             onClick={onClose}
           >
             Annuler
           </button>
           <button
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50 transition cursor-pointer"
             onClick={handleSave}
             disabled={success}
           >
-            Enregistrer
+            Modifier
           </button>
         </div>
       }
@@ -92,7 +91,6 @@ export const ModalMotDePasse = ({
           <span>Mot de passe mis à jour !</span>
         </div>
       )}
-      {/** Champs mot de passe */}
       {[
         {
           label: "Mot de passe actuel",
