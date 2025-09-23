@@ -10,6 +10,7 @@ export type Jeu = {
   limite_score: number | null;
   regle_courte: string;
   lien_regle: string;
+  est_visible: boolean
 };
 
 export async function getJeux(): Promise<Jeu[]> {

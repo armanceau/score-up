@@ -157,6 +157,16 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
                 }
               />
             </label>
+            <label className="flex items-center gap-2">
+              Visible
+              <input
+                type="checkbox"
+                checked={formData.est_visible ?? true}
+                onChange={(e) =>
+                  setFormData({ ...formData, est_visible: e.target.checked })
+                }
+              />
+            </label>
           </div>
           <div className="flex gap-2">
             <button
@@ -192,6 +202,7 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
               <th className="px-4 py-2 text-left">Joueurs</th>
               <th className="px-4 py-2 text-left">Ascendant</th>
               <th className="px-4 py-2 text-left">Limite score</th>
+              <th className="px-4 py-2 text-left">Visible</th>
               <th className="px-4 py-2 text-left">Actions</th>
             </tr>
           </thead>
@@ -207,6 +218,35 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
                 <td className="px-4 py-2">{jeu.href}</td>
                 <td className="px-4 py-2">{jeu.joueurs}</td>
                 <td className="px-4 py-2">{jeu.est_ascendant ? "✅" : "❌"}</td>
+                <td className="px-4 py-2">
+                  <span
+                    className={`px-2 py-1 rounded text-xs ${
+                      jeu.est_visible
+                        ? "bg-green-100 text-green-800"
+                        : "bg-red-100 text-red-800"
+                    }`}
+                  >
+                    {jeu.est_visible ? "Visible" : "Non visible"}
+                  </span>
+                  <button
+                    className="ml-2 text-sm underline text-blue-600 dark:text-blue-400"
+                    onClick={async () => {
+                      try {
+                        await modifierJeu(jeu.id, {
+                          est_visible: !jeu.est_visible,
+                        });
+                        refreshJeux();
+                      } catch (err) {
+                        console.error(err);
+                        alert(
+                          "Erreur lors de la modification de la visibilité"
+                        );
+                      }
+                    }}
+                  >
+                    🔁
+                  </button>
+                </td>
                 <td className="px-4 py-2">{jeu.limite_score ?? "∞"}</td>
                 <td className="px-4 py-2 relative">
                   <button

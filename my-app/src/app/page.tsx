@@ -18,11 +18,13 @@ export default function Home() {
     getJeux().then(setJeux);
   }, []);
 
-  const jeuxFiltres = jeux.filter((jeu) => {
-    if (filtre === "all") return true;
-    if (filtre === "max4") return jeu.joueurs <= 4;
-    if (filtre === "min5") return jeu.joueurs >= 5;
-  });
+  const jeuxFiltres = jeux
+    .filter((jeu) => jeu.est_visible !== false)
+    .filter((jeu) => {
+      if (filtre === "all") return true;
+      if (filtre === "max4") return jeu.joueurs <= 4;
+      if (filtre === "min5") return jeu.joueurs >= 5;
+    });
 
   return (
     <main className="min-h-screen px-6 py-16 bg-white text-black dark:bg-black dark:text-white font-sans">
