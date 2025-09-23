@@ -9,8 +9,6 @@ export default function GamePage() {
   const id = params?.id;
 
   const { jeux } = useJeux();
-  console.log(jeux);
-  console.log(id);
   const jeu = jeux.find((j) => j.id === id);
 
   if (!id) return <p>ID manquant</p>;

@@ -82,18 +82,19 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
       )}
 
       {/* Formulaire Ajouter / Modifier */}
+      {/* Formulaire Ajouter / Modifier */}
       {formOpen && (
         <form
           onSubmit={handleFormSubmit}
           className="mb-6 p-4 border rounded space-y-4 bg-zinc-50 dark:bg-zinc-900"
         >
-          <div className="flex flex-col sm:flex-row gap-2">
+          <div className="flex flex-wrap gap-2">
             <input
               placeholder="ID"
               required
               value={formData.id ?? ""}
               onChange={(e) => setFormData({ ...formData, id: e.target.value })}
-              className="border p-2 rounded flex-1"
+              className="border p-2 rounded flex-1 min-w-[200px]"
               disabled={!!editingJeu}
             />
             <input
@@ -103,7 +104,7 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
               onChange={(e) =>
                 setFormData({ ...formData, nom: e.target.value })
               }
-              className="border p-2 rounded flex-1"
+              className="border p-2 rounded flex-1 min-w-[200px]"
             />
             <input
               placeholder="Emoji"
@@ -112,10 +113,8 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
               onChange={(e) =>
                 setFormData({ ...formData, emoji: e.target.value })
               }
-              className="border p-2 rounded flex-1"
+              className="border p-2 rounded flex-1 min-w-[200px]"
             />
-          </div>
-          <div className="flex flex-col sm:flex-row gap-2">
             <input
               placeholder="Href"
               required
@@ -123,7 +122,7 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
               onChange={(e) =>
                 setFormData({ ...formData, href: e.target.value })
               }
-              className="border p-2 rounded flex-1"
+              className="border p-2 rounded flex-1 min-w-[200px]"
             />
             <input
               type="number"
@@ -133,7 +132,7 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
               onChange={(e) =>
                 setFormData({ ...formData, joueurs: Number(e.target.value) })
               }
-              className="border p-2 rounded flex-1"
+              className="border p-2 rounded flex-1 min-w-[200px]"
             />
             <input
               type="number"
@@ -145,9 +144,10 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
                   limite_score: e.target.value ? Number(e.target.value) : null,
                 })
               }
-              className="border p-2 rounded flex-1"
+              className="border p-2 rounded flex-1 min-w-[200px]"
             />
-            <label className="flex items-center gap-2">
+
+            <label className="flex items-center gap-2 border p-2 rounded min-w-[200px]">
               Ascendant
               <input
                 type="checkbox"
@@ -157,7 +157,8 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
                 }
               />
             </label>
-            <label className="flex items-center gap-2">
+
+            <label className="flex items-center gap-2 border p-2 rounded min-w-[200px]">
               Visible
               <input
                 type="checkbox"
@@ -167,8 +168,28 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
                 }
               />
             </label>
+
+            <input
+              type="url"
+              placeholder="Lien vers les règles"
+              value={formData.lien_regle ?? ""}
+              onChange={(e) =>
+                setFormData({ ...formData, lien_regle: e.target.value })
+              }
+              className="border p-2 rounded flex-1 min-w-[300px]"
+            />
+
+            <textarea
+              placeholder="Règles courtes"
+              value={formData.regle_courte ?? ""}
+              onChange={(e) =>
+                setFormData({ ...formData, regle_courte: e.target.value })
+              }
+              className="border p-2 rounded w-full min-h-[100px]"
+            />
           </div>
-          <div className="flex gap-2">
+
+          <div className="flex gap-2 mt-4">
             <button
               type="submit"
               className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
@@ -191,7 +212,7 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
       )}
 
       {/* Tableau des jeux */}
-      <div className="">
+      <div className="overflow-x-auto">
         <table className="min-w-full border border-zinc-300 dark:border-zinc-700">
           <thead className="bg-zinc-100 dark:bg-zinc-800">
             <tr>
@@ -260,13 +281,13 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
                   {menuOpen === jeu.id && (
                     <div className="absolute right-0 mt-1 w-32 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md shadow-lg z-10">
                       <button
-                        className="block w-full text-left px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-700"
+                        className="block w-full text-left px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-700 cursor-pointer"
                         onClick={() => openEditForm(jeu)}
                       >
                         Modifier
                       </button>
                       <button
-                        className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-zinc-100 dark:hover:bg-zinc-700"
+                        className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-zinc-100 dark:hover:bg-zinc-700 cursor-pointer"
                         onClick={() => handleDelete(jeu.id)}
                       >
                         Supprimer

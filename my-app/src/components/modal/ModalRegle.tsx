@@ -24,13 +24,21 @@ export default function ModalRegle({
       title={`Règles du jeu ${titre}`}
     >
       {Array.isArray(regles) ? (
-        <ul className="list-disc list-inside space-y-1">
-          {regles.map((ligne, i) => (
-            <li key={i}>{ligne}</li>
-          ))}
-        </ul>
-      ) : (
+        regles.length > 0 ? (
+          <ul className="list-disc list-inside space-y-1">
+            {regles.map((ligne, i) => (
+              <li key={i}>{ligne}</li>
+            ))}
+          </ul>
+        ) : (
+          <div>Aucune règle disponible pour le moment</div>
+        )
+      ) : regles ? (
         <div className="whitespace-pre-line">{regles}</div>
+      ) : (
+        <div className="txt-gr text-sm text-gray-500">
+          Aucune règle disponible pour le moment.
+        </div>
       )}
 
       {lienExterneRegle && (
