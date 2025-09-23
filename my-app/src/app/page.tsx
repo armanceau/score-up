@@ -54,7 +54,7 @@ export default function Home() {
           {jeuxFiltres.map((jeu) => (
             <Card
               key={jeu.href}
-              href={jeu.href}
+              href={`/jeu/${jeu.href}`}
               emoji={jeu.emoji}
               name={jeu.nom}
             />

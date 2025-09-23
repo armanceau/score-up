@@ -9,12 +9,14 @@ import { SauvegarderPartieBouton } from "./SauvegarderPartieBouton";
 import { PartageBouton } from "./PartageBouton";
 import { PartageImage } from "../PartageImage";
 import ScrollToTop from "../ScrollTop";
-import { jeux } from "../../app/data/jeux";
 
 type Props = {
   idJeu: string;
-  regles: string;
-  lienExterneRegle: string;
+  nom: string;
+  emoji: string;
+  est_ascendant: boolean;
+  regle_courte: string;
+  lien_regle: string;
   localStorageKey: string;
 };
 
@@ -26,8 +28,11 @@ type Joueur = {
 
 export default function JeuPage({
   idJeu,
-  regles,
-  lienExterneRegle,
+  nom,
+  emoji,
+  est_ascendant,
+  regle_courte,
+  lien_regle,
   localStorageKey,
 }: Props) {
   const [mounted, setMounted] = useState(false);
@@ -72,9 +77,6 @@ export default function JeuPage({
   }, [joueurs, mancheEnCours, mancheScores, mounted, localStorageKey]);
 
   if (!mounted) return null;
-
-  const jeuConfig = jeux.find((j) => j.id === idJeu);
-  if (!jeuConfig) return null;
 
   const ajouterJoueur = (couleur: string) => {
     const nomTrimmed = nomJoueur.trim();
@@ -133,13 +135,9 @@ export default function JeuPage({
 
   return (
     <main className="flex flex-col justify-start max-w-2xl mx-auto px-6 py-10 text-zinc-900 dark:text-zinc-100">
-      <Regle
-        jeu={jeuConfig.nom}
-        regle={regles}
-        lienExterneRegle={lienExterneRegle}
-      />
+      <Regle jeu={nom} regle={regle_courte} lienExterneRegle={lien_regle} />
       <h1 className="text-3xl sm:text-4xl font-semibold text-center mb-10">
-        {jeuConfig.emoji} {jeuConfig.nom}
+        {emoji} {nom}
       </h1>
       <section className="mb-10">
         <h2 className="text-xl font-medium mb-3">Ajoute les joueurs</h2>
@@ -157,8 +155,8 @@ export default function JeuPage({
             supprimerJoueur={supprimerJoueur}
             modifierScores={modifierScores}
             mancheEnCours={mancheEnCours}
-            emoji={jeuConfig.emoji}
-            estAscendant={jeuConfig.estAscendant}
+            emoji={emoji}
+            estAscendant={est_ascendant}
           />
 
           <ControleManche
@@ -174,7 +172,7 @@ export default function JeuPage({
               mancheScores={mancheScores}
               setMancheScores={setMancheScores}
               validerManche={validerManche}
-              emoji={jeuConfig.emoji}
+              emoji={emoji}
             />
           )}
 
@@ -182,7 +180,7 @@ export default function JeuPage({
             {userId && (
               <SauvegarderPartieBouton
                 userId={userId}
-                jeu={`${jeuConfig.emoji} ${jeuConfig.nom}`}
+                jeu={`${emoji} ${nom}`}
                 players={joueursAvecScoresTotaux}
               />
             )}
@@ -197,7 +195,7 @@ export default function JeuPage({
           >
             <PartageImage
               ref={null}
-              gameName={`${jeuConfig.emoji} ${jeuConfig.nom}`}
+              gameName={`${emoji} ${nom}`}
               players={joueursAvecScoresTotaux}
             />
           </div>

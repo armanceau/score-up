@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { getJeux } from "@/lib/jeux";
+import { JeuxProvider } from "@/lib/jeuxContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,11 +24,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jeux = await getJeux(); // fetch côté serveur
   return (
     <html lang="en">
       <head>
@@ -38,9 +41,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
+          <JeuxProvider jeuxInitiaux={jeux}>
+          <Navbar />
 
-        {children}
+          {children}
+        </JeuxProvider>
       </body>
     </html>
   );

@@ -8,6 +8,8 @@ export type Jeu = {
   joueurs: number;
   est_ascendant: boolean;
   limite_score: number | null;
+  regle_courte: string;
+  lien_regle: string;
 };
 
 export async function getJeux(): Promise<Jeu[]> {
@@ -64,4 +66,19 @@ export async function modifierJeu(id: string, jeu: Partial<Jeu>): Promise<Jeu> {
   }
 
   return data!;
+}
+
+export async function getJeuParId(id: string): Promise<Jeu | null> {
+  const { data, error } = await supabase
+    .from("jeux")
+    .select("*")
+    .eq("id", id)
+    .single<Jeu>();
+
+  if (error) {
+    console.error("Erreur lors de la récupération du jeu :", error);
+    return null;
+  }
+
+  return data;
 }
