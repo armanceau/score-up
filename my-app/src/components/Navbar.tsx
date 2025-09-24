@@ -118,8 +118,13 @@ export default function Navbar() {
           </Link>
           <span className="mx-1">/</span>
           {segments.map((segment, i) => {
+            if (segment === "jeu") return null;
+
             const href = "/" + segments.slice(0, i + 1).join("/");
-            const label = decodeURIComponent(segment).replace(/-/g, " ");
+
+            const label = decodeURIComponent(segment)
+              .replace(/^jeu-/, "")
+              .replace(/-/g, " ");
 
             return (
               <span key={href}>

@@ -1,7 +1,8 @@
 "use client";
+
 import Card from "@/components/Card";
-import { useState } from "react";
-import { jeux } from "./data/jeux";
+import { useEffect, useState } from "react";
+import { getJeux, Jeu } from "@/lib/jeux";
 
 const filtres = [
   { label: "Tous les jeux", value: "all" },
@@ -11,12 +12,19 @@ const filtres = [
 
 export default function Home() {
   const [filtre, setFiltre] = useState("all");
+  const [jeux, setJeux] = useState<Jeu[]>([]);
 
-  const jeuxFiltres = jeux.filter((jeu) => {
-    if (filtre === "all") return true;
-    if (filtre === "max4") return jeu.joueurs <= 4;
-    if (filtre === "min5") return jeu.joueurs >= 5;
-  });
+  useEffect(() => {
+    getJeux().then(setJeux);
+  }, []);
+
+  const jeuxFiltres = jeux
+    .filter((jeu) => jeu.est_visible !== false)
+    .filter((jeu) => {
+      if (filtre === "all") return true;
+      if (filtre === "max4") return jeu.joueurs <= 4;
+      if (filtre === "min5") return jeu.joueurs >= 5;
+    });
 
   return (
     <main className="min-h-screen px-6 py-16 bg-white text-black dark:bg-black dark:text-white font-sans">
@@ -48,7 +56,7 @@ export default function Home() {
           {jeuxFiltres.map((jeu) => (
             <Card
               key={jeu.href}
-              href={jeu.href}
+              href={`/jeu/${jeu.href}`}
               emoji={jeu.emoji}
               name={jeu.nom}
             />
