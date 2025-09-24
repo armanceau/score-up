@@ -8,7 +8,7 @@ import {
   supprimerJeu,
   Jeu,
 } from "@/lib/jeux";
-import * as Lucide from "lucide-react";
+import { Tableau } from "./Tableau";
 
 type JeuxProps = {
   onBack?: () => void;
@@ -16,7 +16,6 @@ type JeuxProps = {
 
 export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
   const [jeux, setJeux] = useState<Jeu[]>([]);
-  const [menuOpen, setMenuOpen] = useState<string | null>(null);
   const [formOpen, setFormOpen] = useState(false);
   const [editingJeu, setEditingJeu] = useState<Jeu | null>(null);
   const [formData, setFormData] = useState<Partial<Jeu>>({});
@@ -81,7 +80,6 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
         </button>
       )}
 
-      {/* Formulaire Ajouter / Modifier */}
       {/* Formulaire Ajouter / Modifier */}
       {formOpen && (
         <form
@@ -192,13 +190,13 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
           <div className="flex gap-2 mt-4">
             <button
               type="submit"
-              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition cursor-pointer"
             >
               {editingJeu ? "Modifier" : "Ajouter"}
             </button>
             <button
               type="button"
-              className="px-4 py-2 bg-zinc-300 dark:bg-zinc-700 text-black dark:text-white rounded hover:bg-zinc-400 transition"
+              className="px-4 py-2 bg-zinc-300 dark:bg-zinc-700 text-black dark:text-white rounded hover:bg-zinc-400 transition cursor-pointer"
               onClick={() => {
                 setFormOpen(false);
                 setEditingJeu(null);
@@ -211,95 +209,13 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
         </form>
       )}
 
-      {/* Tableau des jeux */}
-      <div className="overflow-x-auto">
-        <table className="min-w-full border border-zinc-300 dark:border-zinc-700">
-          <thead className="bg-zinc-100 dark:bg-zinc-800">
-            <tr>
-              <th className="px-4 py-2 text-left">Emoji</th>
-              <th className="px-4 py-2 text-left">Nom</th>
-              <th className="px-4 py-2 text-left">ID</th>
-              <th className="px-4 py-2 text-left">Href</th>
-              <th className="px-4 py-2 text-left">Joueurs</th>
-              <th className="px-4 py-2 text-left">Ascendant</th>
-              <th className="px-4 py-2 text-left">Limite score</th>
-              <th className="px-4 py-2 text-left">Visible</th>
-              <th className="px-4 py-2 text-left">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {jeux.map((jeu) => (
-              <tr
-                key={jeu.id}
-                className="border-t border-zinc-200 dark:border-zinc-700"
-              >
-                <td className="px-4 py-2">{jeu.emoji}</td>
-                <td className="px-4 py-2">{jeu.nom}</td>
-                <td className="px-4 py-2">{jeu.id}</td>
-                <td className="px-4 py-2">{jeu.href}</td>
-                <td className="px-4 py-2">{jeu.joueurs}</td>
-                <td className="px-4 py-2">{jeu.est_ascendant ? "✅" : "❌"}</td>
-                <td className="px-4 py-2">
-                  <span
-                    className={`px-2 py-1 rounded text-xs ${
-                      jeu.est_visible
-                        ? "bg-green-100 text-green-800"
-                        : "bg-red-100 text-red-800"
-                    }`}
-                  >
-                    {jeu.est_visible ? "Visible" : "Non visible"}
-                  </span>
-                  <button
-                    className="ml-2 text-sm underline text-blue-600 dark:text-blue-400"
-                    onClick={async () => {
-                      try {
-                        await modifierJeu(jeu.id, {
-                          est_visible: !jeu.est_visible,
-                        });
-                        refreshJeux();
-                      } catch (err) {
-                        console.error(err);
-                        alert(
-                          "Erreur lors de la modification de la visibilité"
-                        );
-                      }
-                    }}
-                  >
-                    🔁
-                  </button>
-                </td>
-                <td className="px-4 py-2">{jeu.limite_score ?? "∞"}</td>
-                <td className="px-4 py-2 relative">
-                  <button
-                    className="p-1 rounded hover:bg-zinc-200 dark:hover:bg-zinc-700 cursor-pointer"
-                    onClick={() =>
-                      setMenuOpen(menuOpen === jeu.id ? null : jeu.id)
-                    }
-                  >
-                    <Lucide.MoreVertical className="w-5 h-5 text-zinc-600 dark:text-zinc-300" />
-                  </button>
-                  {menuOpen === jeu.id && (
-                    <div className="absolute right-0 mt-1 w-32 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md shadow-lg z-10">
-                      <button
-                        className="block w-full text-left px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-700 cursor-pointer"
-                        onClick={() => openEditForm(jeu)}
-                      >
-                        Modifier
-                      </button>
-                      <button
-                        className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-zinc-100 dark:hover:bg-zinc-700 cursor-pointer"
-                        onClick={() => handleDelete(jeu.id)}
-                      >
-                        Supprimer
-                      </button>
-                    </div>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <Tableau
+        data={jeux}
+        modifierJeu={modifierJeu}
+        refreshJeux={refreshJeux}
+        openEditForm={openEditForm}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 };
