@@ -182,6 +182,7 @@ export default function JeuPage({
                 userId={userId}
                 jeu={`${emoji} ${nom}`}
                 players={joueursAvecScoresTotaux}
+                jeu_id={idJeu}
               />
             )}
 
