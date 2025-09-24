@@ -31,7 +31,7 @@ export default function CardHistorique({ partie }: CardHistoriqueProps) {
     <div className="border border-zinc-200 dark:border-zinc-700 rounded-md overflow-hidden shadow-sm">
       <button
         onClick={toggleOpen}
-        className="w-full px-4 py-3 text-left cursor-pointer rounded-lg p-5 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors shadow-sm flex items-center justify-between"
+        className="w-full px-4 py-3 text-left cursor-pointer rounded-md p-5 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors shadow-sm flex items-center justify-between"
       >
         <div>
           <span className="font-semibold">{partie.jeu}</span>{" "}
