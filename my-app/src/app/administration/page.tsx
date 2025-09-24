@@ -23,7 +23,7 @@ export default function AdminPage() {
       } = await supabase.auth.getUser();
 
       if (!user) {
-        router.push("/login");
+        router.push("/authentification");
         return;
       }
 
