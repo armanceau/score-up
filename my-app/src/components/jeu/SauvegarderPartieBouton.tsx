@@ -7,12 +7,14 @@ type SauvegarderPartieBoutonProps = {
   userId: string;
   jeu: string;
   players: { name: string; score: number }[];
+  jeu_id: string;
 };
 
 export function SauvegarderPartieBouton({
   userId,
   jeu,
   players,
+  jeu_id,
 }: SauvegarderPartieBoutonProps) {
   const [enCours, setEnCours] = useState(false);
 
@@ -24,6 +26,7 @@ export function SauvegarderPartieBouton({
         user_id: userId,
         jeu: jeu,
         details: { joueurs: players },
+        jeu_id: jeu_id,
       });
 
       if (error) throw error;
