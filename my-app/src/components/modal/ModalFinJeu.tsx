@@ -14,6 +14,7 @@ type ModalFinJeuProps = {
   idJeu: string;
   userId: string | null;
   onReset: () => void;
+  est_ascendant: boolean;
 };
 
 export default function ModalFinJeu({
@@ -25,12 +26,19 @@ export default function ModalFinJeu({
   idJeu,
   userId,
   onReset,
+  est_ascendant,
 }: ModalFinJeuProps) {
+  console.log(joueursAvecScoresTotaux);
+  const joueursTries = [...joueursAvecScoresTotaux].sort((a, b) => {
+    const diff = a.score - b.score;
+    return est_ascendant ? -diff : diff;
+  });
+
   return (
     <BaseModal isOpen={isOpen} onClose={onClose} title="Fin de partie">
       <h3 className="text-lg font-semibold mb-3">Résultats :</h3>
       <ul className="mb-4">
-        {joueursAvecScoresTotaux.map((j) => (
+        {joueursTries.map((j) => (
           <li key={j.name} className="flex justify-between border-b py-1">
             <span>{j.name}</span>
             <span className="font-bold">{j.score}</span>
@@ -44,7 +52,7 @@ export default function ModalFinJeu({
           <SauvegarderPartieBouton
             userId={userId}
             jeu={`${emoji} ${nom}`}
-            players={joueursAvecScoresTotaux}
+            players={joueursTries}
             jeu_id={idJeu}
             onReset={onReset}
           />
@@ -59,7 +67,7 @@ export default function ModalFinJeu({
         <PartageImage
           ref={null}
           gameName={`${emoji} ${nom}`}
-          players={joueursAvecScoresTotaux}
+          players={joueursTries}
         />
       </div>
     </BaseModal>

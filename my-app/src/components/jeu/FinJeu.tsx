@@ -8,6 +8,7 @@ type FinJeuProps = {
   idJeu: string;
   userId: string | null;
   onReset: () => void;
+  est_ascendant: boolean;
 };
 
 export const FinJeu = ({
@@ -17,6 +18,7 @@ export const FinJeu = ({
   idJeu,
   userId,
   onReset,
+  est_ascendant,
 }: FinJeuProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -40,6 +42,7 @@ export const FinJeu = ({
         idJeu={idJeu}
         userId={userId}
         onReset={onReset}
+        est_ascendant={est_ascendant}
       />
     </>
   );

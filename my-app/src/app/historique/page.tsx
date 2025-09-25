@@ -168,9 +168,18 @@ export default function HistoriquePage() {
       )}
 
       <div className="space-y-4">
-        {partiesFiltres.map((partie) => (
-          <CardHistorique key={partie.id} partie={partie} />
-        ))}
+        {partiesFiltres.map((partie) => {
+          const jeu = jeuxVisibles.find((j) => j.id === partie.jeu_id);
+          const est_Ascendant = jeu?.est_ascendant ?? false;
+
+          return (
+            <CardHistorique
+              key={partie.id}
+              partie={partie}
+              est_ascendant={est_Ascendant}
+            />
+          );
+        })}
       </div>
 
       <ScrollToTop />

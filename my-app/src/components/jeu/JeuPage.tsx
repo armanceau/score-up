@@ -181,6 +181,7 @@ export default function JeuPage({
             idJeu={idJeu}
             userId={userId}
             onReset={() => setJoueurs([])}
+            est_ascendant={est_ascendant}
           />
 
           <ScrollToTop />
