@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ModalCouleur from "../modal/ModalCouleur";
+import { PaintRoller } from "lucide-react";
 
 type InputJoueurProps = {
   nomJoueur: string;
@@ -32,12 +33,12 @@ export default function InputJoueur({
         onClick={() => setIsModalOpen(true)}
         className="px-4 py-2 border rounded-md border-zinc-300 dark:border-zinc-700 hover:bg-gray-300 dark:hover:bg-zinc-700 transition cursor-pointer disabled:opacity-40"
       >
-        🎨
+        <PaintRoller height={18} />
       </button>
       <ModalCouleur
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onSelectCouleur={(c) => setCouleurChoisie(c)}
+        onSelectCouleur={(c) => setCouleurChoisie(c!)}
         couleurActuelle={couleurChoisie}
       />
       <button

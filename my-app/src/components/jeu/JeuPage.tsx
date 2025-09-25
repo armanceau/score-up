@@ -5,10 +5,8 @@ import InputJoueur from "./InputJoueur";
 import ListeJoueurs from "./ListeJoueurs";
 import SaisieScoresManche from "./SaisieScoresManche";
 import { supabase } from "@/lib/supabaseClient";
-import { SauvegarderPartieBouton } from "./SauvegarderPartieBouton";
-import { PartageBouton } from "./PartageBouton";
-import { PartageImage } from "../PartageImage";
 import ScrollToTop from "../ScrollTop";
+import { FinJeu } from "./FinJeu";
 
 type Props = {
   idJeu: string;
@@ -176,30 +174,15 @@ export default function JeuPage({
             />
           )}
 
-          <div className="flex gap-2">
-            {userId && (
-              <SauvegarderPartieBouton
-                userId={userId}
-                jeu={`${emoji} ${nom}`}
-                players={joueursAvecScoresTotaux}
-                jeu_id={idJeu}
-              />
-            )}
-
-            <PartageBouton selectorToCapture="#resultat-partie" />
-          </div>
-
-          <div
-            id="resultat-partie"
-            className="flex justify-center py-4 "
-            style={{ position: "absolute", left: "-9999px", top: "-9999px" }}
-          >
-            <PartageImage
-              ref={null}
-              gameName={`${emoji} ${nom}`}
-              players={joueursAvecScoresTotaux}
-            />
-          </div>
+          <FinJeu
+            joueursAvecScoresTotaux={joueursAvecScoresTotaux}
+            emoji={emoji}
+            nom={nom}
+            idJeu={idJeu}
+            userId={userId}
+            onReset={() => setJoueurs([])}
+            est_ascendant={est_ascendant}
+          />
 
           <ScrollToTop />
         </>

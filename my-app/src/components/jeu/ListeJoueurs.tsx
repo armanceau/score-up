@@ -1,3 +1,4 @@
+import { SquarePen, Trash, User } from "lucide-react";
 import { useState } from "react";
 
 type Joueur = {
@@ -55,7 +56,7 @@ export default function ListeJoueurs({
               key={j.nom}
               className="flex justify-between items-center border-b border-zinc-200 dark:border-zinc-700 py-2"
               style={{
-                border: `1px solid ${j.couleur || "rgb(62, 63, 70)"}`,
+                border: `0.5px solid ${j.couleur || "rgb(62, 63, 70)"}`,
                 borderRadius: "8px",
                 padding: "5px 10px 5px 10px",
                 backgroundColor: j.couleur
@@ -102,8 +103,12 @@ export default function ListeJoueurs({
                   </div>
                 </span>
               ) : (
-                <span>
-                  👤 <span className="font-semibold">{j.nom}</span> –{" "}
+                <span
+                  className="flex items-center gap-1"
+                  style={{ color: `${j.couleur || "rgb(255, 255, 255)"}` }}
+                >
+                  <User height={18} />{" "}
+                  <span className="font-semibold">{j.nom}</span> –{" "}
                   <span className="text-sm">
                     {total(j.scores)} {emoji}
                   </span>{" "}
@@ -114,29 +119,20 @@ export default function ListeJoueurs({
               )}
 
               {!mancheEnCours && (
-                <div className="flex gap-2">
+                <div className="flex gap-05">
                   <button
                     onClick={() => startEdit(j)}
-                    className="text-blue-500 hover:text-blue-600 text-sm transition cursor-pointer"
+                    className="hover:bg-blue-900 text-zinc-500 hover:text-blue-400 text-sm transition cursor-pointer p-1 rounded-sm w-7 flex items-center justify-center"
                     title="Modifier les scores"
                   >
-                    ✏️
+                    <SquarePen size={18} />
                   </button>
                   <button
                     onClick={() => supprimerJoueur(j.nom)}
-                    className="text-red-800 hover:text-red-600 text-sm transition cursor-pointer"
+                    className="hover:bg-red-900 text-zinc-500 hover:text-red-400 text-sm transition cursor-pointer p-1 rounded-sm w-7 flex items-center justify-center"
                     title="Supprimer"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      className="bi bi-trash3"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                    </svg>
+                    <Trash height={18} />
                   </button>
                 </div>
               )}

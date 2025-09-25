@@ -16,16 +16,26 @@ type Partie = {
 
 type CardHistoriqueProps = {
   partie: Partie;
+  est_ascendant: boolean;
 };
 
-export default function CardHistorique({ partie }: CardHistoriqueProps) {
+export default function CardHistorique({
+  partie,
+  est_ascendant,
+}: CardHistoriqueProps) {
   const [open, setOpen] = useState(false);
 
   const toggleOpen = () => setOpen(!open);
 
-  const top3 = [...partie.details.joueurs]
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3);
+  const trierJoueurs = (joueurs: Player[]) =>
+    [...joueurs].sort((a, b) => {
+      const scoreA = Number(a.score);
+      const scoreB = Number(b.score);
+      return est_ascendant ? scoreB - scoreA : scoreA - scoreB;
+    });
+
+  const top3 = trierJoueurs(partie.details.joueurs).slice(0, 3);
+  const tousLesJoueurs = trierJoueurs(partie.details.joueurs);
 
   return (
     <div className="border border-zinc-200 dark:border-zinc-700 rounded-md overflow-hidden shadow-sm">
@@ -52,9 +62,9 @@ export default function CardHistorique({ partie }: CardHistoriqueProps) {
         <div className="px-4 py-3 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
           <h3 className="font-semibold mb-2">Tous les joueurs</h3>
           <ul className="space-y-1 text-sm">
-            {partie.details.joueurs.map((p) => (
-              <li key={p.name}>
-                {p.name} : {p.score} pts
+            {tousLesJoueurs.map((joueur) => (
+              <li key={joueur.name}>
+                {joueur.name} : {joueur.score} pts
               </li>
             ))}
           </ul>

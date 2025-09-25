@@ -7,8 +7,6 @@ export const PartageImage = React.forwardRef(function PartageImage(
   }: { gameName: string; players: { name: string; score: number }[] },
   ref: React.Ref<HTMLDivElement>
 ) {
-  const sorted = [...players].sort((a, b) => a.score - b.score);
-
   return (
     <div
       ref={ref}
@@ -22,7 +20,7 @@ export const PartageImage = React.forwardRef(function PartageImage(
       <div className="mb-4">
         <h3 className="font-semibold">🏆 Podium</h3>
         <ol className="text-left pl-6 mt-1">
-          {sorted.slice(0, 3).map((p, i) => (
+          {players.slice(0, 3).map((p, i) => (
             <li key={p.name}>
               {["🥇", "🥈", "🥉"][i]} {p.name} - {p.score} pts
             </li>
@@ -33,7 +31,7 @@ export const PartageImage = React.forwardRef(function PartageImage(
       <div>
         <h3 className="font-semibold mb-1">👥 Tous les joueurs</h3>
         <ul className="text-sm">
-          {sorted.map((p) => (
+          {players.map((p) => (
             <li key={p.name}>
               {p.name} : {p.score} pts
             </li>
