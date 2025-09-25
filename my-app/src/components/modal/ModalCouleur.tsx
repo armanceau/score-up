@@ -1,9 +1,10 @@
+import { useState, useEffect } from "react";
 import { BaseModal } from "./BaseModal";
 
 type ModalCouleurProps = {
   isOpen: boolean;
   onClose: () => void;
-  onSelectCouleur: (couleur: string) => void;
+  onSelectCouleur: (couleur: string | null) => void;
   couleurActuelle?: string;
 };
 
@@ -23,8 +24,29 @@ export default function ModalCouleur({
     { valeur: "rgb(0, 206, 209)", label: "Turquoise" },
     { valeur: "rgb(255, 105, 180)", label: "Rose" },
     { valeur: "rgb(255, 165, 0)", label: "Orange" },
-    { valeur: "rgb(62, 63, 70)", label: "Défaut" },
+    { valeur: "rgb(255, 255, 255)", label: "Défaut" },
   ];
+
+  const [selection, setSelection] = useState<string | null>(
+    couleurActuelle ?? null
+  );
+
+  useEffect(() => {
+    setSelection(couleurActuelle ?? null);
+  }, [isOpen, couleurActuelle]);
+
+  const toggleSelection = (valeur: string) => {
+    if (selection === valeur) {
+      setSelection(null);
+    } else {
+      setSelection(valeur);
+    }
+  };
+
+  const valider = () => {
+    onSelectCouleur(selection);
+    onClose();
+  };
 
   return (
     <BaseModal
@@ -32,23 +54,29 @@ export default function ModalCouleur({
       onClose={onClose}
       title="Sélectionnez une couleur"
     >
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid grid-cols-5 gap-2 mb-4">
         {couleurs.map((c) => (
           <button
             key={c.valeur}
             title={c.label}
             style={{ backgroundColor: c.valeur }}
-            onClick={() => {
-              onSelectCouleur(c.valeur);
-              onClose();
-            }}
+            onClick={() => toggleSelection(c.valeur)}
             className={`w-10 h-10 rounded-full border-2 cursor-pointer transition ${
-              couleurActuelle === c.valeur
+              selection === c.valeur
                 ? "border-black dark:border-white scale-110"
                 : "border-transparent"
             }`}
           />
         ))}
+      </div>
+
+      <div className="flex justify-end">
+        <button
+          onClick={valider}
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition cursor-pointer"
+        >
+          Valider
+        </button>
       </div>
     </BaseModal>
   );

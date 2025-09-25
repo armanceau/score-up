@@ -8,6 +8,7 @@ type SauvegarderPartieBoutonProps = {
   jeu: string;
   players: { name: string; score: number }[];
   jeu_id: string;
+  onReset: () => void;
 };
 
 export function SauvegarderPartieBouton({
@@ -15,6 +16,7 @@ export function SauvegarderPartieBouton({
   jeu,
   players,
   jeu_id,
+  onReset,
 }: SauvegarderPartieBoutonProps) {
   const [enCours, setEnCours] = useState(false);
 
@@ -30,6 +32,9 @@ export function SauvegarderPartieBouton({
       });
 
       if (error) throw error;
+
+      localStorage.removeItem(`score-up-${jeu_id}`);
+      onReset();
 
       alert("✅ Partie sauvegardée !");
     } catch (err) {

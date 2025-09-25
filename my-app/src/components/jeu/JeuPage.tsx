@@ -9,6 +9,8 @@ import { SauvegarderPartieBouton } from "./SauvegarderPartieBouton";
 import { PartageBouton } from "./PartageBouton";
 import { PartageImage } from "../PartageImage";
 import ScrollToTop from "../ScrollTop";
+import ModalFinJeu from "../modal/ModalFinJeu";
+import { FinJeu } from "./FinJeu";
 
 type Props = {
   idJeu: string;
@@ -176,6 +178,15 @@ export default function JeuPage({
             />
           )}
 
+          <FinJeu
+            joueursAvecScoresTotaux={joueursAvecScoresTotaux}
+            emoji={emoji}
+            nom={nom}
+            idJeu={idJeu}
+            userId={userId}
+            onReset={() => setJoueurs([])}
+          />
+
           <div className="flex gap-2">
             {userId && (
               <SauvegarderPartieBouton
@@ -183,6 +194,7 @@ export default function JeuPage({
                 jeu={`${emoji} ${nom}`}
                 players={joueursAvecScoresTotaux}
                 jeu_id={idJeu}
+                onReset={() => setJoueurs([])}
               />
             )}
 
