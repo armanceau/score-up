@@ -38,7 +38,8 @@ export default function ModalFinJeu({
         ))}
       </ul>
 
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-2 mb-4 flex-wrap justify-center">
+        <PartageBouton selectorToCapture="#resultat-partie" />
         {userId && (
           <SauvegarderPartieBouton
             userId={userId}
@@ -48,7 +49,6 @@ export default function ModalFinJeu({
             onReset={onReset}
           />
         )}
-        <PartageBouton selectorToCapture="#resultat-partie" />
       </div>
 
       <div
@@ -61,15 +61,6 @@ export default function ModalFinJeu({
           gameName={`${emoji} ${nom}`}
           players={joueursAvecScoresTotaux}
         />
-      </div>
-
-      <div className="flex justify-end">
-        <button
-          onClick={onClose}
-          className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition"
-        >
-          Revenir à la partie
-        </button>
       </div>
     </BaseModal>
   );

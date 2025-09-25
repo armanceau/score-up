@@ -187,32 +187,6 @@ export default function JeuPage({
             onReset={() => setJoueurs([])}
           />
 
-          <div className="flex gap-2">
-            {userId && (
-              <SauvegarderPartieBouton
-                userId={userId}
-                jeu={`${emoji} ${nom}`}
-                players={joueursAvecScoresTotaux}
-                jeu_id={idJeu}
-                onReset={() => setJoueurs([])}
-              />
-            )}
-
-            <PartageBouton selectorToCapture="#resultat-partie" />
-          </div>
-
-          <div
-            id="resultat-partie"
-            className="flex justify-center py-4 "
-            style={{ position: "absolute", left: "-9999px", top: "-9999px" }}
-          >
-            <PartageImage
-              ref={null}
-              gameName={`${emoji} ${nom}`}
-              players={joueursAvecScoresTotaux}
-            />
-          </div>
-
           <ScrollToTop />
         </>
       )}

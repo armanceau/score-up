@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import { Save } from "lucide-react";
 
 type SauvegarderPartieBoutonProps = {
   userId: string;
@@ -49,9 +50,21 @@ export function SauvegarderPartieBouton({
     <button
       onClick={handleSave}
       disabled={enCours}
-      className="py-2 px-3 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50 flex-1 cursor-pointer transition-colors"
+      className="bg-green-500 text-white hover:text-green-400 cursor-pointer px-4 py-2 rounded-lg group flex items-center justify-center disabled:opacity-40 transition-[background-color,border-radius] duration-500 hover:bg-green-900 hover:rounded-[9999px] relative overflow-hidden"
     >
-      {enCours ? "Sauvegarde en cours..." : "💾 Sauvegarder la partie"}
+      {enCours ? (
+        "Sauvegarde en cours..."
+      ) : (
+        <>
+          <span className="transition-all duration-300 group-hover:pr-8">
+            Sauvegarder
+          </span>
+
+          <span className="absolute right-1 w-8 h-8 rounded-full bg-green-400 text-green-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+            <Save height={18} />
+          </span>
+        </>
+      )}
     </button>
   );
 }
