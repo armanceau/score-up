@@ -24,9 +24,7 @@ export const FinJeu = ({
     <>
       <button
         onClick={() => {
-          if (confirm("Es-tu certain de vouloir terminer cette partie ?")) {
-            setIsModalOpen(true);
-          }
+          setIsModalOpen(true);
         }}
         className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
       >

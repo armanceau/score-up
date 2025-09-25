@@ -5,11 +5,7 @@ import InputJoueur from "./InputJoueur";
 import ListeJoueurs from "./ListeJoueurs";
 import SaisieScoresManche from "./SaisieScoresManche";
 import { supabase } from "@/lib/supabaseClient";
-import { SauvegarderPartieBouton } from "./SauvegarderPartieBouton";
-import { PartageBouton } from "./PartageBouton";
-import { PartageImage } from "../PartageImage";
 import ScrollToTop from "../ScrollTop";
-import ModalFinJeu from "../modal/ModalFinJeu";
 import { FinJeu } from "./FinJeu";
 
 type Props = {

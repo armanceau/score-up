@@ -1,4 +1,4 @@
-import { Pencil, SquarePen, Trash, User } from "lucide-react";
+import { SquarePen, Trash, User } from "lucide-react";
 import { useState } from "react";
 
 type Joueur = {
