@@ -111,7 +111,7 @@ export default function HistoriquePage() {
       </h1>
 
       <div className="mb-6 flex flex-wrap gap-1 items-center justify-between w-full">
-        <div className="flex flex-col">
+        <div className="flex flex-col w-48">
           <label className="text-sm font-medium mb-1">Date</label>
           <div className="flex items-center border rounded px-2 py-1 border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white focus-within:ring-2 focus-within:ring-blue-500">
             <input
@@ -124,7 +124,7 @@ export default function HistoriquePage() {
           </div>
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col w-48">
           <label className="text-sm font-medium mb-1">Jeu</label>
           <div className="flex items-center border rounded px-2 py-1 bg-white border-zinc-300 dark:border-zinc-700 dark:bg-zinc-800 focus-within:ring-2 focus-within:ring-blue-500">
             <Dice6 className="w-6 h-6 mr-2 text-zinc-500 dark:text-zinc-400" />
@@ -145,7 +145,7 @@ export default function HistoriquePage() {
         </div>
 
         {/* Joueurs */}
-        <div className="flex flex-col">
+        <div className="flex flex-col w-48">
           <label className="text-sm font-medium mb-1">Joueurs</label>
           <div className="flex items-center border rounded px-2 py-1 border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white focus-within:ring-2 focus-within:ring-blue-500">
             <UserIcon className="w-6 h-6 mr-2 text-zinc-500 dark:text-zinc-400" />

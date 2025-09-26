@@ -20,7 +20,7 @@ export const Tableau: React.FC<TableauProps> = ({
   const [menuOpen, setMenuOpen] = useState<string | null>(null);
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-scroll">
       <table className="min-w-full border border-zinc-300 dark:border-zinc-700">
         <thead className="bg-zinc-100 dark:bg-zinc-800">
           <tr>

@@ -8,7 +8,6 @@ import { useParams } from "next/navigation";
 export default function GamePage() {
   const params = useParams();
   const id = params?.id;
-
   const { jeux } = useJeux();
   const jeu = jeux.find((j) => j.id === id);
 
