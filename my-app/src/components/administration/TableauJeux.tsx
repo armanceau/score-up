@@ -2,7 +2,7 @@ import { Jeu } from "@/lib/jeux";
 import { Eye, EyeOff, MoreVertical, SquarePen, Trash2 } from "lucide-react";
 import { useState } from "react";
 
-interface TableauProps {
+interface TableauJeuxProps {
   data: Jeu[];
   modifierJeu: (id: Jeu["id"], update: Partial<Jeu>) => Promise<Jeu>;
   refreshJeux: () => void;
@@ -10,7 +10,7 @@ interface TableauProps {
   handleDelete: (id: Jeu["id"]) => void;
 }
 
-export const Tableau: React.FC<TableauProps> = ({
+export const TableauJeux: React.FC<TableauJeuxProps> = ({
   data,
   modifierJeu,
   refreshJeux,

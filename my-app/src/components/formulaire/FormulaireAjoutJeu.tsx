@@ -3,14 +3,14 @@
 import React, { useState, useEffect } from "react";
 import { Jeu } from "@/lib/jeux";
 
-type FormulaireJeuProps = {
+type FormulaireAjoutJeuProps = {
   initialData?: Partial<Jeu>;
   onSubmit: (data: Partial<Jeu>) => void;
   onCancel: () => void;
   isEditing?: boolean;
 };
 
-export const FormulaireJeu: React.FC<FormulaireJeuProps> = ({
+export const FormulaireAjoutJeu: React.FC<FormulaireAjoutJeuProps> = ({
   initialData = {},
   onSubmit,
   onCancel,
