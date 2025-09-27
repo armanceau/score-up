@@ -8,14 +8,14 @@ import {
   supprimerJeu,
   Jeu,
 } from "@/lib/jeux";
-import { Tableau } from "./Tableau";
-import { FormulaireJeu } from "./FormulaireJeu";
+import { TableauJeux } from "./TableauJeux";
+import { FormulaireAjoutJeu } from "../formulaire/FormulaireAjoutJeu";
 
-type JeuxProps = {
+type JeuxAdminProps = {
   onBack?: () => void;
 };
 
-export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
+export const JeuxAdmin: React.FC<JeuxAdminProps> = ({ onBack }) => {
   const [jeux, setJeux] = useState<Jeu[]>([]);
   const [formOpen, setFormOpen] = useState(false);
   const [editingJeu, setEditingJeu] = useState<Jeu | null>(null);
@@ -62,7 +62,7 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
       )}
 
       {formOpen && (
-        <FormulaireJeu
+        <FormulaireAjoutJeu
           initialData={editingJeu ?? {}}
           onSubmit={async (data) => {
             if (editingJeu) {
@@ -82,7 +82,7 @@ export const Jeux: React.FC<JeuxProps> = ({ onBack }) => {
         />
       )}
 
-      <Tableau
+      <TableauJeux
         data={jeux}
         modifierJeu={modifierJeu}
         refreshJeux={refreshJeux}

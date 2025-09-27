@@ -61,6 +61,12 @@ export default function Home() {
               name={jeu.nom}
             />
           ))}
+          <Card
+            href="/demande-de-jeu"
+            emoji="➕"
+            name="Jeu manquant ?"
+            description="Proposez-en un via notre formulaire"
+          />
         </div>
       </div>
     </main>
