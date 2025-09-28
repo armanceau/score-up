@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { getJeux } from "@/lib/jeux";
 import { JeuxProvider } from "@/lib/jeuxContext";
+import { Contact } from "@/components/Contact";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,10 +42,11 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-          <JeuxProvider jeuxInitiaux={jeux}>
+        <JeuxProvider jeuxInitiaux={jeux}>
           <Navbar />
 
           {children}
+          <Contact />
         </JeuxProvider>
       </body>
     </html>
