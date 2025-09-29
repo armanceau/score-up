@@ -19,14 +19,13 @@ export default function AuthForm() {
       const { data } = await supabase.auth.getSession();
       if (data.session?.user) {
         setMessage("Vous êtes déjà connecté ! Redirection…");
-        setTimeout(() => {
-          router.push("/");
-        }, 3000);
+        setTimeout(() => router.push("/"), 3000);
       }
     };
     checkUser();
   }, [router]);
 
+  // --- Auth email/password ---
   const handleAuth = async () => {
     setMessage("");
     setIsError(false);
@@ -55,17 +54,23 @@ export default function AuthForm() {
         if (error) {
           let errorMessage = "Aïe, une erreur est survenue.";
 
-          if (error.status === 400) {
-            errorMessage = "E-mail ou mot de passe invalide.";
-          } else if (error.status === 403) {
-            errorMessage = "Accès refusé.";
-          } else if (error.status === 404) {
-            errorMessage = "Ressource introuvable.";
-          } else if (error.status === 429) {
-            errorMessage = "Trop de tentatives, réessayez plus tard.";
-          } else if (error.status === 500) {
-            errorMessage =
-              "Aïe une erreur est survenue (c'est pas toi, c'est nous).";
+          switch (error.status) {
+            case 400:
+              errorMessage = "E-mail ou mot de passe invalide.";
+              break;
+            case 403:
+              errorMessage = "Accès refusé.";
+              break;
+            case 404:
+              errorMessage = "Ressource introuvable.";
+              break;
+            case 429:
+              errorMessage = "Trop de tentatives, réessayez plus tard.";
+              break;
+            case 500:
+              errorMessage =
+                "Aïe une erreur est survenue (c'est pas toi, c'est nous).";
+              break;
           }
 
           setMessage(errorMessage);
@@ -76,8 +81,30 @@ export default function AuthForm() {
           router.push("/");
         }
       }
-    } catch (err: unknown) {
+    } catch (err) {
       setMessage("Une erreur est survenue. Réessaie plus tard.");
+      setIsError(true);
+      console.error(err);
+    }
+  };
+
+  // --- Auth via Google ---
+  const handleOAuthSignIn = async (provider: "google") => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: { redirectTo: `${window.location.origin}/` },
+      });
+
+      if (error) {
+        setMessage(error.message);
+        setIsError(true);
+      } else {
+        setMessage("Redirection vers Google pour authentification...");
+        setIsError(false);
+      }
+    } catch (err) {
+      setMessage("Une erreur est survenue lors de l'authentification Google.");
       setIsError(true);
       console.error(err);
     }
@@ -126,6 +153,39 @@ export default function AuthForm() {
             className="w-full bg-blue-600 dark:bg-blue-500 text-white font-medium py-2 px-4 rounded-md hover:opacity-90 transition cursor-pointer"
           >
             {isSignUp ? "S'inscrire" : "Se connecter"}
+          </button>
+
+          <button
+            onClick={() => handleOAuthSignIn("google")}
+            className="w-full flex items-center justify-center gap-3 px-4 py-2 rounded-md border border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-gray-900 dark:text-white font-medium 
+              hover:bg-gray-100 dark:hover:bg-zinc-700 
+              hover:shadow-lg 
+              transition-all duration-150 cursor-pointer"
+          >
+            <svg
+              className="w-5 h-5"
+              viewBox="0 0 533.5 544.3"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M533.5 278.4c0-17.8-1.6-35-4.6-51.6H272v97.7h147.4c-6.3 33.9-25.2 62.6-53.8 82v68h86.9c50.9-46.9 80-115.9 80-196.1z"
+                fill="#4285F4"
+              />
+              <path
+                d="M272 544.3c72.6 0 133.6-24 178.2-65.3l-86.9-68c-24.2 16.3-55 25.9-91.3 25.9-70.3 0-129.8-47.5-151.2-111.2H31.6v69.9C75.8 480.3 168.1 544.3 272 544.3z"
+                fill="#34A853"
+              />
+              <path
+                d="M120.8 329.6c-10.9-32.6-10.9-67.7 0-100.3V159.4H31.6c-21.9 43.3-21.9 94.7 0 138z"
+                fill="#FBBC05"
+              />
+              <path
+                d="M272 107.7c37.3-.6 72.9 13.5 100.1 39.1l75-75C404.8 24.6 343.8 0 272 0 168.1 0 75.8 64 31.6 159.4l89.2 69c21.4-63.7 80.9-111.2 151.2-111z"
+                fill="#EA4335"
+              />
+            </svg>
+
+            <span>Se connecter avec Google</span>
           </button>
         </div>
 
