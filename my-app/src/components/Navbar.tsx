@@ -3,6 +3,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import useDarkMode from "@/lib/darkMode";
+import DarkModeToggle from "@/lib/darkMode";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -50,6 +52,7 @@ export default function Navbar() {
             <Link href="/apropos" className="hover:underline">
               À propos
             </Link>
+            <DarkModeToggle />
 
             {user ? (
               <>
