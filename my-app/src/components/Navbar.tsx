@@ -3,6 +3,10 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import DarkModeToggle from "@/lib/darkMode";
+import { BoutonDanger } from "./bouton/BoutonDanger";
+import { Info } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -47,29 +51,47 @@ export default function Navbar() {
 
           {/* Desktop menu */}
           <div className="hidden md:flex space-x-4 items-center text-sm">
-            <Link href="/apropos" className="hover:underline">
-              À propos
-            </Link>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  href="/apropos"
+                  className="hover:underline underline-offset-4"
+                >
+                  <Info height={18} />
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>À propos</p>
+              </TooltipContent>
+            </Tooltip>
 
             {user ? (
               <>
-                <Link href="/historique" className="hover:underline">
+                <Link
+                  href="/historique"
+                  className="hover:underline underline-offset-4"
+                >
                   Historique
                 </Link>
-                <Link href="/profil" className="hover:underline">
+                <Link
+                  href="/profil"
+                  className="hover:underline underline-offset-4"
+                >
                   Profil
                 </Link>
-                <button
-                  onClick={handleLogout}
-                  className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900 text-red-700 cursor-pointer dark:text-red-300 border border-red-200 dark:border-red-700 px-2 h-9 rounded-md text-sm font-medium shadow-sm hover:bg-red-100 dark:hover:bg-red-800 transition-colors"
-                >
-                  Déconnexion
-                </button>
+                <DarkModeToggle />
+                <BoutonDanger onClick={handleLogout}>Déconnexion</BoutonDanger>
               </>
             ) : (
-              <Link href="/authentification" className="hover:underline">
-                Connexion
-              </Link>
+              <>
+                <DarkModeToggle />
+                <Link
+                  href="/authentification"
+                  className="hover:underline underline-offset-4"
+                >
+                  Connexion
+                </Link>
+              </>
             )}
           </div>
 
@@ -85,17 +107,27 @@ export default function Navbar() {
         {/* Mobile menu */}
         {mobileOpen && (
           <div className="flex flex-col mt-2 space-y-2 md:hidden text-sm items-center">
-            <Link href="/apropos" className="hover:underline">
+            <Link
+              href="/apropos"
+              className="hover:underline underline-offset-4"
+            >
               À propos
             </Link>
             {user && (
               <>
-                <Link href="/historique" className="hover:underline">
+                <Link
+                  href="/historique"
+                  className="hover:underline underline-offset-4"
+                >
                   Historique
                 </Link>
-                <Link href="/profil" className="hover:underline">
+                <Link
+                  href="/profil"
+                  className="hover:underline underline-offset-4"
+                >
                   Profil
                 </Link>
+                <DarkModeToggle />
                 <button
                   onClick={handleLogout}
                   className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900 text-red-700 cursor-pointer dark:text-red-300 border border-red-200 dark:border-red-700 px-2 h-9 rounded-md text-sm font-medium shadow-sm hover:bg-red-100 dark:hover:bg-red-800 transition-colors"
@@ -105,15 +137,21 @@ export default function Navbar() {
               </>
             )}
             {!user && (
-              <Link href="/authentification" className="hover:underline">
-                Connexion
-              </Link>
+              <>
+                <DarkModeToggle />
+                <Link
+                  href="/authentification"
+                  className="hover:underline underline-offset-4"
+                >
+                  Connexion
+                </Link>
+              </>
             )}
           </div>
         )}
 
         <div className="text-sm text-zinc-500 dark:text-zinc-400">
-          <Link href="/" className="hover:underline">
+          <Link href="/" className="hover:underline underline-offset-4">
             Accueil
           </Link>
           <span className="mx-1">/</span>
@@ -128,7 +166,10 @@ export default function Navbar() {
 
             return (
               <span key={href}>
-                <Link href={href} className="hover:underline capitalize">
+                <Link
+                  href={href}
+                  className="hover:underline underline-offset-4 capitalize"
+                >
                   {label}
                 </Link>
               </span>

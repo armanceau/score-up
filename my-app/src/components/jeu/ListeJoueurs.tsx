@@ -1,5 +1,6 @@
 import { SquarePen, Trash, User } from "lucide-react";
 import { useState } from "react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 type Joueur = {
   nom: string;
@@ -83,32 +84,45 @@ export default function ListeJoueurs({
                     ))}
                   </div>
                   <div className="flex gap-2 mt-1">
-                    <button
-                      onClick={saveEdit}
-                      className="inline-flex justify-center items-center gap-2 bg-green-50 dark:bg-green-900 text-green-700 cursor-pointer dark:text-green-300 border border-green-200 dark:border-green-700 px-2 py-1 rounded-md text-sm font-medium shadow-sm hover:bg-green-100 dark:hover:bg-green-800 transition-colors"
-                      title="Mettre à jour les scores"
-                    >
-                      ✅
-                    </button>
-                    <button
-                      onClick={() => {
-                        setEditNom(null);
-                        setEditScores([]);
-                      }}
-                      className="inline-flex justify-center items-center gap-2 bg-red-50 dark:bg-red-900 text-red-700 cursor-pointer dark:text-red-300 border border-red-200 dark:border-red-700 px-2 py-1 rounded-md text-sm font-medium shadow-sm hover:bg-red-100 dark:hover:bg-red-800 transition-colors"
-                      title="Annuler"
-                    >
-                      ❌
-                    </button>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          onClick={saveEdit}
+                          className="inline-flex justify-center items-center gap-2 bg-green-50 dark:bg-green-900 text-green-700 cursor-pointer dark:text-green-300 border border-green-200 dark:border-green-700 px-2 py-1 rounded-md text-sm font-medium shadow-sm hover:bg-green-100 dark:hover:bg-green-800 transition-colors"
+                        >
+                          ✅
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Mettre à jour les scores</p>
+                      </TooltipContent>
+                    </Tooltip>
+
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          onClick={() => {
+                            setEditNom(null);
+                            setEditScores([]);
+                          }}
+                          className="inline-flex justify-center items-center gap-2 bg-red-50 dark:bg-red-900 text-red-700 cursor-pointer dark:text-red-300 border border-red-200 dark:border-red-700 px-2 py-1 rounded-md text-sm font-medium shadow-sm hover:bg-red-100 dark:hover:bg-red-800 transition-colors"
+                        >
+                          ❌
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Annuler</p>
+                      </TooltipContent>
+                    </Tooltip>
                   </div>
                 </span>
               ) : (
                 <span
                   className="flex items-center gap-1"
-                  style={{ color: `${j.couleur || "rgb(255, 255, 255)"}` }}
+                  style={{ color: `${j.couleur || "rgb(128, 128, 128)"}` }}
                 >
-                  <User height={18} />{" "}
-                  <span className="font-semibold">{j.nom}</span> –{" "}
+                  <User height={18} /> <span className="text-sm">{j.nom}</span>
+                  <span>-</span>
                   <span className="text-sm">
                     {total(j.scores)} {emoji}
                   </span>{" "}
