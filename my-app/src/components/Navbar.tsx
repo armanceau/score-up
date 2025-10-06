@@ -3,7 +3,6 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
-import useDarkMode from "@/lib/darkMode";
 import DarkModeToggle from "@/lib/darkMode";
 import { BoutonDanger } from "./bouton/BoutonDanger";
 import { Info } from "lucide-react";

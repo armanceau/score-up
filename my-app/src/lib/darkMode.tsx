@@ -3,18 +3,36 @@
 import { useEffect, useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { Moon, Sun } from "lucide-react";
+
 export default function DarkModeToggle() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const html = document.documentElement;
-    setIsDark(html.classList.contains("dark"));
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark") {
+      html.classList.add("dark");
+      setIsDark(true);
+    } else if (saved === "light") {
+      html.classList.remove("dark");
+      setIsDark(false);
+    } else {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      if (prefersDark) {
+        html.classList.add("dark");
+        setIsDark(true);
+      }
+    }
   }, []);
 
   const toggleDark = () => {
     const html = document.documentElement;
     html.classList.toggle("dark");
-    setIsDark(html.classList.contains("dark"));
+    const newValue = html.classList.contains("dark");
+    setIsDark(newValue);
+    localStorage.setItem("theme", newValue ? "dark" : "light");
   };
 
   return (

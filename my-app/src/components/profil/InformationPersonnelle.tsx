@@ -35,7 +35,7 @@ export const InformationPersonnelle = ({ user }: PersonalInfoCardProps) => {
         <div className="flex justify-between items-center">
           <label className="text-sm font-medium">Mot de passe</label>
           <button
-            className="font-medium transition-colors disabled:opacity-50 hover:bg-white/90 dark:hover:bg-zinc-800 rounded-md px-3 h-7 text-xs text-primary cursor-pointer text-blue-500"
+            className="font-medium transition-colors disabled:opacity-50 hover:bg-white/90 dark:hover:bg-zinc-800 rounded-md px-3 h-7 text-xs cursor-pointer text-blue-500"
             onClick={() => setIsPasswordDialogOpen(true)}
           >
             Modifier

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import CardHistorique from "@/components/CardHistorique";
 import ScrollToTop from "@/components/ScrollTop";
 import { getJeux, Jeu } from "@/lib/jeux";
-import { FunnelX, UserIcon } from "lucide-react";
+import { FunnelX } from "lucide-react";
 import { Combobox, ComboboxOption } from "@/components/ui/combobox";
 import { DatePicker } from "@/components/ui/datepicker";
 import { Label } from "@/components/ui/label";
@@ -17,6 +17,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Player = {
   name: string;
@@ -35,11 +36,8 @@ export default function HistoriquePage() {
   const [userId, setUserId] = useState<string | null>(null);
   const [parties, setParties] = useState<Partie[]>([]);
   const [jeuxVisibles, setJeuxVisibles] = useState<Jeu[]>([]);
-  const [filters, setFilters] = useState({
-    date: "",
-    jeu: "",
-    joueurs: "",
-  });
+  const [filters, setFilters] = useState({ date: "", jeu: "", joueurs: "" });
+  const [loading, setLoading] = useState(true);
 
   const router = useRouter();
 
@@ -53,6 +51,7 @@ export default function HistoriquePage() {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const { data: sessionData } = await supabase.auth.getSession();
       const id = sessionData.session?.user.id ?? null;
       setUserId(id);
@@ -66,12 +65,10 @@ export default function HistoriquePage() {
 
         if (partiesError) console.error(partiesError);
         else setParties(partiesData ?? []);
+
         const jeux = await getJeux();
-
         const visibles = jeux.filter((j) => j.est_visible !== false && j.id);
-
         const visiblesIds = new Set(visibles.map((j) => j.id));
-
         const partiesValides = (partiesData ?? []).filter((p) =>
           visiblesIds.has(p.jeu_id)
         );
@@ -79,6 +76,7 @@ export default function HistoriquePage() {
         setJeuxVisibles(visibles);
         setParties(partiesValides);
       }
+      setLoading(false);
     };
 
     fetchData();
@@ -132,6 +130,7 @@ export default function HistoriquePage() {
         📜 Historique des parties
       </h1>
 
+      {/* FILTRES */}
       <div className="mb-6 flex flex-wrap gap-0.5 items-center justify-between w-full">
         <div className="flex flex-col">
           <label className="text-sm font-medium mb-1">Date</label>
@@ -171,6 +170,7 @@ export default function HistoriquePage() {
             className="w-48 border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-sm px-3 py-2 rounded-md"
           />
         </div>
+
         <div className="flex items-end">
           <Tooltip>
             <TooltipTrigger asChild>
@@ -195,26 +195,33 @@ export default function HistoriquePage() {
         </div>
       </div>
 
-      {partiesFiltres.length === 0 && (
+      {/* LISTE DES PARTIES OU SKELETON */}
+      {loading ? (
+        <div className="space-y-4">
+          {Array.from({ length: 5 }).map((_, idx) => (
+            <Skeleton key={idx} className="w-full h-24 rounded-lg" />
+          ))}
+        </div>
+      ) : partiesFiltres.length === 0 ? (
         <p className="text-center text-gray-500">
           Aucune partie correspondante.
         </p>
+      ) : (
+        <div className="space-y-4">
+          {partiesFiltres.map((partie) => {
+            const jeu = jeuxVisibles.find((j) => j.id === partie.jeu_id);
+            const est_Ascendant = jeu?.est_ascendant ?? false;
+
+            return (
+              <CardHistorique
+                key={partie.id}
+                partie={partie}
+                est_ascendant={est_Ascendant}
+              />
+            );
+          })}
+        </div>
       )}
-
-      <div className="space-y-4">
-        {partiesFiltres.map((partie) => {
-          const jeu = jeuxVisibles.find((j) => j.id === partie.jeu_id);
-          const est_Ascendant = jeu?.est_ascendant ?? false;
-
-          return (
-            <CardHistorique
-              key={partie.id}
-              partie={partie}
-              est_ascendant={est_Ascendant}
-            />
-          );
-        })}
-      </div>
 
       <ScrollToTop />
     </main>
