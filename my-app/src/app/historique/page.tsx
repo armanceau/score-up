@@ -33,6 +33,7 @@ type Partie = {
 };
 
 export default function HistoriquePage() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userId, setUserId] = useState<string | null>(null);
   const [parties, setParties] = useState<Partie[]>([]);
   const [jeuxVisibles, setJeuxVisibles] = useState<Jeu[]>([]);

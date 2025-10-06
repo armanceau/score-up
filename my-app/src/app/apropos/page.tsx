@@ -45,6 +45,21 @@ export default function AProposPage() {
           ></path>
         </svg>
       </a>
+
+      <div className="mt-6 flex justify-center gap-6 text-xs text-zinc-500 dark:text-zinc-400">
+        <a
+          href="/conditions-utilisation"
+          className="hover:underline hover:text-blue-600 dark:hover:text-blue-400"
+        >
+          Conditions d’utilisation
+        </a>
+        <a
+          href="/politique-de-confidentialite"
+          className="hover:underline hover:text-blue-600 dark:hover:text-blue-400"
+        >
+          Politique de confidentialité
+        </a>
+      </div>
     </section>
   );
 }

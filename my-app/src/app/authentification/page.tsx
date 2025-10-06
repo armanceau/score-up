@@ -272,8 +272,8 @@ export default function AuthForm() {
         </Card>
         <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
           En continuant, vous acceptez nos{" "}
-          <a href="#">Conditions d’utilisation</a> et notre{" "}
-          <a href="#">Politique de confidentialité</a>.
+          <a href="/conditions-utilisation">Conditions d’utilisation</a> et notre{" "}
+          <a href="/politique-de-confidentialite">Politique de confidentialité</a>.
         </div>
       </div>
     </main>
