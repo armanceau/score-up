@@ -90,7 +90,9 @@ export default function AuthForm() {
   };
 
   // --- Auth via Google ---
-  const handleOAuthSignIn = async (provider: "google") => {
+  const handleOAuthSignIn = async (
+    provider: "google" | "discord" | "facebook"
+  ) => {
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider,
@@ -101,15 +103,32 @@ export default function AuthForm() {
         setMessage(error.message);
         setIsError(true);
       } else {
-        setMessage("Redirection vers Google pour authentification...");
+        setMessage(`Redirection vers ${provider} pour authentification...`);
         setIsError(false);
       }
     } catch (err) {
-      setMessage("Une erreur est survenue lors de l'authentification Google.");
+      setMessage(
+        `Une erreur est survenue lors de l'authentification avec ${provider}.`
+      );
       setIsError(true);
       console.error(err);
     }
   };
+
+  // const handleOAuthSignIn = async (provider: "google" | "discord") => {
+  //   try {
+  //     const { error } = await supabase.auth.signInWithOAuth({
+  //       provider,
+  //       options: { redirectTo: `${window.location.origin}/` },
+  //     });
+  //     if (error) throw error;
+  //     setMessage(`Redirection vers ${provider} pour authentification...`);
+  //     setIsError(false);
+  //   } catch (err: any) {
+  //     setMessage(`Erreur avec ${provider}: ${err.message}`);
+  //     setIsError(true);
+  //   }
+  // };
 
   return (
     <main className="flex justify-center font-sans px-6 py-16">
@@ -181,8 +200,8 @@ export default function AuthForm() {
                   <Button
                     variant="outline"
                     type="button"
-                    disabled={true}
-                    className="w-full disabled:opacity-50 disabled:bg-gray-200 disabled:cursor-not-allowed"
+                    className="w-full"
+                    onClick={() => handleOAuthSignIn("facebook")}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -213,8 +232,8 @@ export default function AuthForm() {
                   <Button
                     variant="outline"
                     type="button"
-                    disabled={true}
-                    className="w-full disabled:opacity-50 disabled:bg-gray-200 disabled:cursor-not-allowed"
+                    className="w-full"
+                    onClick={() => handleOAuthSignIn("discord")}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -272,8 +291,12 @@ export default function AuthForm() {
         </Card>
         <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
           En continuant, vous acceptez nos{" "}
-          <a href="/conditions-utilisation">Conditions d’utilisation</a> et notre{" "}
-          <a href="/politique-de-confidentialite">Politique de confidentialité</a>.
+          <a href="/conditions-utilisation">Conditions d’utilisation</a> et
+          notre{" "}
+          <a href="/politique-de-confidentialite">
+            Politique de confidentialité
+          </a>
+          .
         </div>
       </div>
     </main>
