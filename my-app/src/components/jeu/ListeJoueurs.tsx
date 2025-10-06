@@ -119,10 +119,10 @@ export default function ListeJoueurs({
               ) : (
                 <span
                   className="flex items-center gap-1"
-                  style={{ color: `${j.couleur || "rgb(255, 255, 255)"}` }}
+                  style={{ color: `${j.couleur || "rgb(128, 128, 128)"}` }}
                 >
-                  <User height={18} />{" "}
-                  <span className="font-semibold">{j.nom}</span> –{" "}
+                  <User height={18} /> <span className="text-sm">{j.nom}</span>
+                  <span>-</span>
                   <span className="text-sm">
                     {total(j.scores)} {emoji}
                   </span>{" "}

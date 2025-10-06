@@ -25,7 +25,7 @@ export default function ModalCouleur({
     { valeur: "rgb(0, 206, 209)", label: "Turquoise" },
     { valeur: "rgb(255, 105, 180)", label: "Rose" },
     { valeur: "rgb(255, 165, 0)", label: "Orange" },
-    { valeur: "rgb(255, 255, 255)", label: "Défaut" },
+    { valeur: "rgb(128, 128, 128)", label: "Défaut" },
   ];
 
   const [selection, setSelection] = useState<string | null>(

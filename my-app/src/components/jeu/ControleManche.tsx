@@ -1,3 +1,5 @@
+import { BoutonDanger } from "../bouton/BoutonDanger";
+
 type ControleMancheProps = {
   reinitialiserPartie: () => void;
   demarrerNouvelleManche: () => void;
@@ -12,19 +14,22 @@ export default function ControleManche({
   joueursLength,
 }: ControleMancheProps) {
   return (
-    <div className="flex gap-2 mb-5">
-      <button
+    <div className="flex gap-2 mb-3">
+      {/* <button
         onClick={reinitialiserPartie}
         className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900 text-red-700 cursor-pointer dark:text-red-300 border border-red-200 dark:border-red-700 px-4 py-2 rounded-md text-sm font-medium shadow-sm hover:bg-red-100 dark:hover:bg-red-800 transition-colors"
       >
         Réinitialiser la partie
-      </button>
+      </button> */}
+      <BoutonDanger className="flex-1 px-4 py-2" onClick={reinitialiserPartie}>
+        Réinitialiser la partie
+      </BoutonDanger>
 
       {!mancheEnCours && (
         <button
           onClick={demarrerNouvelleManche}
           disabled={joueursLength === 0}
-          className="bg-black dark:bg-white text-white dark:text-black cursor-pointer px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition disabled:opacity-40"
+          className="bg-black dark:bg-white text-white dark:text-black cursor-pointer px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition disabled:opacity-40 flex-1"
         >
           Nouvelle manche
         </button>
