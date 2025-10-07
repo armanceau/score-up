@@ -118,6 +118,15 @@ export default function Navbar() {
         {mobileOpen && (
           <div className="flex flex-col mt-2 space-y-2 md:hidden text-sm items-center">
             <Link
+              href="https://www.paypal.com/donate/?hosted_button_id=9JJXNXSZG58ZY"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline underline-offset-4 flex items-center gap-1 text-green-600 dark:text-green-400"
+            >
+              <Heart height={18} />
+              Faire un don
+            </Link>
+            <Link
               href="/apropos"
               className="hover:underline underline-offset-4"
             >
