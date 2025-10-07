@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import DarkModeToggle from "@/lib/darkMode";
 import { BoutonDanger } from "./bouton/BoutonDanger";
-import { Info } from "lucide-react";
+import { Heart, Info } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 export default function Navbar() {
@@ -51,6 +51,16 @@ export default function Navbar() {
 
           {/* Desktop menu */}
           <div className="hidden md:flex space-x-4 items-center text-sm">
+            <Link
+              href="https://www.paypal.com/donate/?hosted_button_id=9JJXNXSZG58ZY"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline underline-offset-4 flex items-center gap-1 text-green-600 dark:text-green-400 font-semibold"
+            >
+              <Heart height={18} />
+              Faire un don
+            </Link>
+
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
