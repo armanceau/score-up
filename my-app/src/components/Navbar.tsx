@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import DarkModeToggle from "@/lib/darkMode";
 import { BoutonDanger } from "./bouton/BoutonDanger";
-import { Heart, Info } from "lucide-react";
+import { Heart, Info, LogOut } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 export default function Navbar() {
@@ -90,7 +90,16 @@ export default function Navbar() {
                   Profil
                 </Link>
                 <DarkModeToggle />
-                <BoutonDanger onClick={handleLogout}>Déconnexion</BoutonDanger>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <BoutonDanger onClick={handleLogout} className="w-min">
+                      <LogOut height={16} />
+                    </BoutonDanger>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Déconnexion</p>
+                  </TooltipContent>
+                </Tooltip>
               </>
             ) : (
               <>
