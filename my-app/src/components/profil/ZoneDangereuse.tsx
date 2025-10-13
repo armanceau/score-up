@@ -8,7 +8,17 @@ export const ZoneDangereuse = () => {
   return (
     <div className="flex flex-col gap-2 border border-red-600 dark:border-red-700 bg-white dark:bg-zinc-900 text-sm px-3 py-2 rounded-md">
       <h2 className="text-2xl font-medium mb-2">Zone dangereuse</h2>
-
+      <p className="text-sm">
+        ℹ️ Cette fonctionnalité n&apos;a pas encore été développée, si toutefois
+        vous souhaitez quand même supprimer votre compte merci de me contacter à
+        l&apos;adresse suivante :
+        <a
+          href="mailto:arthur.manceau1@outlook.fr"
+          className="flex items-center gap-2 text-blue-400 hover:underline underline-offset-4"
+        >
+          arthur.manceau1@outlook.fr
+        </a>
+      </p>
       <div className="space-y-2">
         <BoutonDanger
           className="px-4 py-2"
