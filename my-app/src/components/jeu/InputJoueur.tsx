@@ -47,7 +47,7 @@ export default function InputJoueur({
           setCouleurChoisie("");
         }}
         disabled={disabled || !nomJoueur.trim()}
-        className="bg-black dark:bg-white text-white dark:text-black cursor-pointer px-5 rounded-md font-medium hover:opacity-90 transition disabled:opacity-40"
+        className="bg-black dark:bg-white text-white dark:text-black cursor-pointer px-5 py-1.5 rounded-md font-medium hover:opacity-90 transition disabled:opacity-40"
       >
         Ajouter
       </button>

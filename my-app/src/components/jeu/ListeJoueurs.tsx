@@ -1,4 +1,4 @@
-import { SquarePen, Trash, User } from "lucide-react";
+import { SquarePen, Trash } from "lucide-react";
 import { useState } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
@@ -47,11 +47,27 @@ export default function ListeJoueurs({
     }
   };
 
+  // Fonction pour obtenir l'emoji de la médaille
+  const getMedailleEmoji = (position: number) => {
+    switch (position) {
+      case 1:
+        return "🥇";
+      case 2:
+        return "🥈";
+      case 3:
+        return "🥉";
+      default:
+        return `${position}e`;
+    }
+  };
+
   return (
     <section className="mb-10">
       <h2 className="text-xl font-medium mb-4">Classement actuel</h2>
       <ol className="space-y-2">
-        {joueursTries.map((j) => {
+        {joueursTries.map((j, index) => {
+          const position = index + 1;
+
           return (
             <li
               key={j.nom}
@@ -67,7 +83,12 @@ export default function ListeJoueurs({
             >
               {editNom === j.nom ? (
                 <span className="flex flex-col gap-2">
-                  <span className="font-semibold">{j.nom}</span>
+                  <span className="font-semibold flex items-center gap-2">
+                    <span className="text-sm font-bold bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded-full min-w-[2rem] text-center">
+                      {getMedailleEmoji(position)}
+                    </span>
+                    {j.nom}
+                  </span>
                   <div className="flex flex-wrap gap-2">
                     {editScores.map((val, idx) => (
                       <input
@@ -121,7 +142,10 @@ export default function ListeJoueurs({
                   className="flex items-center gap-1"
                   style={{ color: `${j.couleur || "rgb(128, 128, 128)"}` }}
                 >
-                  <User height={18} /> <span className="text-sm">{j.nom}</span>
+                  <span className="text-sm font-bold bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 px-2 py-1 rounded-full min-w-[2rem] text-center">
+                    {getMedailleEmoji(position)}
+                  </span>
+                  <span className="text-sm font-medium">{j.nom}</span>
                   <span>-</span>
                   <span className="text-sm">
                     {total(j.scores)} {emoji}
