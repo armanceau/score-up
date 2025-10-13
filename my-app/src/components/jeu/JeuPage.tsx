@@ -141,9 +141,11 @@ export default function JeuPage({
       <h1 className="text-3xl sm:text-4xl font-semibold text-center mb-10 mt-16 sm:mt-0">
         {emoji} {nom}
       </h1>
-      <div className="absolute top-10 right-6 sm:top-16 sm:right-6">
-        <NombreManche nombreManche={nombreManche} />
-      </div>
+      {nombreManche > 0 && (
+        <div className="absolute top-10 right-6 sm:top-16 sm:right-6">
+          <NombreManche nombreManche={nombreManche} />
+        </div>
+      )}
       <section className="mb-10">
         <h2 className="text-xl font-medium mb-3">Ajoute les joueurs</h2>
         <InputJoueur
