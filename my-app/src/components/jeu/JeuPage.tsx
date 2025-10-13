@@ -7,6 +7,7 @@ import SaisieScoresManche from "./SaisieScoresManche";
 import { supabase } from "@/lib/supabaseClient";
 import ScrollToTop from "../ScrollTop";
 import { FinJeu } from "./FinJeu";
+import { NombreManche } from "./NombreManche";
 
 type Props = {
   idJeu: string;
@@ -39,6 +40,7 @@ export default function JeuPage({
   const [mancheScores, setMancheScores] = useState<Record<string, number>>({});
   const [mancheEnCours, setMancheEnCours] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
+  const [nombreManche, setNombreManche] = useState(0);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -99,6 +101,7 @@ export default function JeuPage({
     setMancheEnCours(false);
     setNomJoueur("");
     localStorage.removeItem(localStorageKey);
+    setNombreManche(0);
   };
 
   const demarrerNouvelleManche = () => {
@@ -118,6 +121,7 @@ export default function JeuPage({
     setJoueurs(joueursMisAJour);
     setMancheScores({});
     setMancheEnCours(false);
+    setNombreManche((prev) => prev + 1);
   };
 
   const modifierScores = (nom: string, newScores: number[]) => {
@@ -132,11 +136,16 @@ export default function JeuPage({
   }));
 
   return (
-    <main className="flex flex-col justify-start max-w-2xl mx-auto px-6 py-10 text-zinc-900 dark:text-zinc-100">
+    <main className="flex flex-col justify-start max-w-2xl mx-auto px-6 py-10 text-zinc-900 dark:text-zinc-100 relative">
       <Regle jeu={nom} regle={regle_courte} lienExterneRegle={lien_regle} />
-      <h1 className="text-3xl sm:text-4xl font-semibold text-center mb-10">
+      <h1 className="text-3xl sm:text-4xl font-semibold text-center mb-10 mt-16 sm:mt-0">
         {emoji} {nom}
       </h1>
+      {nombreManche > 0 && (
+        <div className="absolute top-10 right-6 sm:top-16 sm:right-6">
+          <NombreManche nombreManche={nombreManche} />
+        </div>
+      )}
       <section className="mb-10">
         <h2 className="text-xl font-medium mb-3">Ajoute les joueurs</h2>
         <InputJoueur
