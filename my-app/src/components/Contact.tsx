@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 
-export function Contact() {
+export const Contact = () => {
   return (
     <div className="fixed bottom-6 left-6 z-50">
       <Popover>
