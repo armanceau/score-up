@@ -29,7 +29,7 @@ export default function ModalFinJeu({
   est_ascendant,
 }: ModalFinJeuProps) {
   const joueursTries = [...joueursAvecScoresTotaux].sort((a, b) => {
-    const diff = b.score - b.score;
+    const diff = a.score - b.score;
     return est_ascendant ? -diff : diff;
   });
 
