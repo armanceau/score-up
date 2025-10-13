@@ -21,7 +21,7 @@ export function Contact() {
             ?
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-65 space-y-3" side="top" align="start">
+        <PopoverContent className="space-y-3" side="top" align="start">
           <p className="text-sm text-gray-500">
             Une question, un bug, une remarque ?
           </p>
