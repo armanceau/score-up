@@ -14,8 +14,6 @@ import {
   TooltipProps,
 } from "recharts";
 
-// Composant Tooltip personnalisé
-
 type StatistiquesProps = {
   userId: string;
 };
