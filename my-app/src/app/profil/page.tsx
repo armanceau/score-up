@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
 import { InformationPersonnelle } from "@/components/profil/InformationPersonnelle";
 import { ZoneDangereuse } from "@/components/profil/ZoneDangereuse";
+import StatistiquesUtilisateur from "@/components/profil/StatistiquesUtilisateur";
 
 export default function ProfilPage() {
   const [message, setMessage] = useState("");
@@ -63,6 +64,7 @@ export default function ProfilPage() {
       ) : user ? (
         <>
           <InformationPersonnelle user={user} />
+          <StatistiquesUtilisateur userId={user.id} />
           <ZoneDangereuse />
         </>
       ) : null}
