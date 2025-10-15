@@ -8,6 +8,10 @@ import { supabase } from "@/lib/supabaseClient";
 import ScrollToTop from "../ScrollTop";
 import { FinJeu } from "./FinJeu";
 import { NombreManche } from "./NombreManche";
+import GenerateurEquipes from "./GenerateurEquipes";
+import { Shuffle, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import ListeEquipesGenerees from "./ListeEquipesGenerees";
 
 type Props = {
   idJeu: string;
@@ -23,6 +27,11 @@ type Joueur = {
   nom: string;
   scores: number[];
   couleur: string;
+};
+
+type Equipe = {
+  emoji: string;
+  membres: string[];
 };
 
 export default function JeuPage({
@@ -41,6 +50,8 @@ export default function JeuPage({
   const [mancheEnCours, setMancheEnCours] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
   const [nombreManche, setNombreManche] = useState(0);
+  const [showGenerateurEquipes, setShowGenerateurEquipes] = useState(false);
+  const [equipesGenerees, setEquipesGenerees] = useState<Equipe[]>([]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -100,8 +111,9 @@ export default function JeuPage({
     setMancheScores({});
     setMancheEnCours(false);
     setNomJoueur("");
-    localStorage.removeItem(localStorageKey);
     setNombreManche(0);
+    setEquipesGenerees([]);
+    localStorage.removeItem(localStorageKey);
   };
 
   const demarrerNouvelleManche = () => {
@@ -135,26 +147,104 @@ export default function JeuPage({
     score: j.scores.reduce((acc, s) => acc + s, 0),
   }));
 
+  const handleEquipesGenerees = (equipes: Equipe[]) => {
+    setEquipesGenerees(equipes);
+
+    const nouvellesCouleurs = [
+      "rgb(34, 197, 94)",
+      "rgb(239, 68, 68)",
+      "rgb(59, 130, 246)",
+      "rgb(245, 158, 11)",
+      "rgb(139, 92, 246)",
+      "rgb(236, 72, 153)",
+      "rgb(6, 182, 212)",
+      "rgb(132, 204, 22)",
+    ];
+
+    const nouveauxJoueurs = [...joueurs];
+
+    equipes.forEach((equipe, index) => {
+      const nomEquipe = `${equipe.emoji} Équipe ${index + 1}`;
+
+      if (!nouveauxJoueurs.find((j) => j.nom === nomEquipe)) {
+        const couleurEquipe =
+          nouvellesCouleurs[index % nouvellesCouleurs.length];
+
+        nouveauxJoueurs.push({
+          nom: nomEquipe,
+          scores: [],
+          couleur: couleurEquipe,
+        });
+      }
+    });
+
+    setJoueurs(nouveauxJoueurs);
+  };
+
   return (
     <main className="flex flex-col justify-start max-w-2xl mx-auto px-6 py-10 text-zinc-900 dark:text-zinc-100 relative">
-      <Regle jeu={nom} regle={regle_courte} lienExterneRegle={lien_regle} />
-      <h1 className="text-3xl sm:text-4xl font-semibold text-center mb-10 mt-16 sm:mt-0">
-        {emoji} {nom}
-      </h1>
+      <div className="text-center mb-4  ">
+        <div className="inline-flex items-center justify-center w-20 h-20 bg-zinc-200 dark:bg-zinc-900 rounded-full mb-2">
+          <span className="text-4xl">{emoji}</span>
+        </div>
+        <h1 className="text-4xl font-bold mb-4">{nom}</h1>
+        <Regle jeu={nom} regle={regle_courte} lienExterneRegle={lien_regle} />
+      </div>
+
       {nombreManche > 0 && (
         <div className="absolute top-10 right-6 sm:top-16 sm:right-6">
           <NombreManche nombreManche={nombreManche} />
         </div>
       )}
-      <section className="mb-10">
-        <h2 className="text-xl font-medium mb-3">Ajoute les joueurs</h2>
+
+      <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border p-8 mb-8">
+        <div className="flex items-center gap-3 mb-6">
+          <Users className="w-6 h-6 text-blue-500 dark:text-blue-400" />
+          <h2 className="text-xl font-semibold">Ajoute les joueurs</h2>
+        </div>
+
+        <div className="mb-4">
+          <Button
+            onClick={() => setShowGenerateurEquipes(true)}
+            disabled={mancheEnCours}
+            className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 py-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-3 shadow-lg shadow-green-500/20"
+          >
+            <Shuffle className="w-5 h-5" />
+            Générer des équipes aléatoires
+          </Button>
+        </div>
+
         <InputJoueur
           nomJoueur={nomJoueur}
           setNomJoueur={setNomJoueur}
           ajouterJoueur={ajouterJoueur}
           disabled={mancheEnCours}
         />
-      </section>
+
+        {joueurs.length === 0 && (
+          <div className="text-center py-8">
+            <div className="w-16 h-16 bg-muted/30 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Users className="w-8 h-8 text-muted-foreground" />
+            </div>
+            <p className="text-muted-foreground">
+              Aucun joueur ajouté pour le moment
+            </p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Commence par ajouter des joueurs pour créer ta partie
+            </p>
+          </div>
+        )}
+
+        {joueurs.length > 0 && (
+          <div className="mt-6">
+            <p className="text-sm text-muted-foreground mb-3">
+              {joueurs.length} joueur{joueurs.length > 1 ? "s" : ""} ajouté
+              {joueurs.length > 1 ? "s" : ""}
+            </p>
+          </div>
+        )}
+      </div>
+
       {joueurs.length > 0 && (
         <>
           <ListeJoueurs
@@ -189,13 +279,33 @@ export default function JeuPage({
             nom={nom}
             idJeu={idJeu}
             userId={userId}
-            onReset={() => setJoueurs([])}
+            onReset={() => {
+              setJoueurs([]);
+              setEquipesGenerees([]);
+              setNombreManche(0);
+              setMancheEnCours(false);
+              setMancheScores({});
+            }}
             est_ascendant={est_ascendant}
           />
 
           <ScrollToTop />
         </>
       )}
+
+      <ListeEquipesGenerees
+        equipesGenerees={equipesGenerees}
+        joueurs={joueurs}
+        setJoueurs={setJoueurs}
+        setEquipesGenerees={setEquipesGenerees}
+        mancheEnCours={mancheEnCours}
+      />
+
+      <GenerateurEquipes
+        isOpen={showGenerateurEquipes}
+        onClose={() => setShowGenerateurEquipes(false)}
+        onEquipesGenerees={handleEquipesGenerees}
+      />
     </main>
   );
 }
