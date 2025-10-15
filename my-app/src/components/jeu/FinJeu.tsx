@@ -22,6 +22,10 @@ export const FinJeu = ({
 }: FinJeuProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleReset = () => {
+    onReset();
+  };
+
   return (
     <>
       <button
@@ -41,7 +45,7 @@ export const FinJeu = ({
         nom={nom}
         idJeu={idJeu}
         userId={userId}
-        onReset={onReset}
+        onReset={handleReset}
         est_ascendant={est_ascendant}
       />
     </>

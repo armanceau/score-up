@@ -4,12 +4,13 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { Save } from "lucide-react";
 
+// Ajoutez ces props au type existant
 type SauvegarderPartieBoutonProps = {
   userId: string;
   jeu: string;
   players: { name: string; score: number }[];
   jeu_id: string;
-  onReset: () => void;
+  onReset?: () => void; // Fonction pour réinitialiser l'état local
 };
 
 export function SauvegarderPartieBouton({
@@ -35,7 +36,10 @@ export function SauvegarderPartieBouton({
       if (error) throw error;
 
       localStorage.removeItem(`score-up-${jeu_id}`);
-      onReset();
+
+      if (onReset) {
+        onReset();
+      }
 
       alert("✅ Partie sauvegardée !");
     } catch (err) {
