@@ -65,7 +65,7 @@ export default function ProfilPage() {
         <>
           <InformationPersonnelle user={user} />
           <StatistiquesUtilisateur userId={user.id} />
-          <ZoneDangereuse />
+          <ZoneDangereuse userEmail={user.email || ""} userId={user.id} />
         </>
       ) : null}
     </main>
