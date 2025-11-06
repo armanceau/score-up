@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Trash2, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -31,13 +32,14 @@ export default function SuppressionCompte({
   userId,
 }: SuppressionCompteProps) {
   const router = useRouter();
+  const { t } = useTranslation('profil');
   const [confirmationText, setConfirmationText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState("");
 
   const handleDelete = async () => {
     if (confirmationText !== "SUPPRIMER") {
-      setError("Vous devez taper 'SUPPRIMER' pour confirmer");
+      setError(t('erreurConfirmation'));
       return;
     }
 
@@ -54,13 +56,13 @@ export default function SuppressionCompte({
       const { error: signOutError } = await supabase.auth.signOut();
 
       if (signOutError) {
-        console.warn("Avertissement lors de la déconnexion:", signOutError);
+    console.warn(t('avertissementSuppression'), signOutError);
       }
 
       router.push("/");
     } catch (error) {
-      console.error("Erreur lors de la suppression du compte:", error);
-      setError("Erreur lors de la suppression du compte. Veuillez réessayer.");
+      console.error(t('erreurSuppression'), error);
+      setError(t('erreurSuppression'));
       setIsDeleting(false);
     }
   };
@@ -79,37 +81,35 @@ export default function SuppressionCompte({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-red-600 dark:text-red-400">
             <AlertTriangle className="w-5 h-5" />
-            Supprimer le compte
+            {t('supprimerCompte')}
           </DialogTitle>
           <DialogDescription className="text-left">
-            Cette action est irréversible. Toutes vos données seront
-            définitivement supprimées.
+            {t('descriptionSuppression')}
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4">
           <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
             <h4 className="font-semibold text-red-800 dark:text-red-200 mb-2">
-              Données qui seront supprimées :
+              {t('donneesSupprimeees')}
             </h4>
             <ul className="text-sm text-red-700 dark:text-red-300 space-y-1">
-              <li>• Vos statistiques de jeu</li>
-              <li>• Vos informations personnelles</li>
-              <li>• Votre historique de parties</li>
+              <li>• {t('vosStatistiquesJeu')}</li>
+              <li>• {t('vosInformationsPersonnelles')}</li>
+              <li>• {t('historiqueParties')}</li>
             </ul>
           </div>
 
           <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
             <p className="text-sm text-amber-800 dark:text-amber-200">
-              <strong>Attention :</strong> Cette action est irréversible et ne
-              peut pas être annulée.
+              <strong>{t('irreversible')}</strong> {t('messageIrreversible')}
             </p>
           </div>
 
           {/* Confirmation */}
           <div className="space-y-2">
             <Label htmlFor="confirmation">
-              Tapez &quot;SUPPRIMER&quot; pour confirmer :
+              {t('tapezSupprimer')}
             </Label>
             <Input
               id="confirmation"
@@ -122,7 +122,7 @@ export default function SuppressionCompte({
           </div>
 
           <div className="text-xs text-muted-foreground">
-            Compte associé : <strong>{userEmail}</strong>
+            {t('compteAssocie')} <strong>{userEmail}</strong>
           </div>
 
           {error && (
@@ -134,7 +134,7 @@ export default function SuppressionCompte({
 
         <DialogFooter className="gap-2">
           <Button variant="outline" onClick={handleClose} disabled={isDeleting}>
-            Annuler
+            {t('annuler')}
           </Button>
           <Button
             variant="destructive"
@@ -145,12 +145,12 @@ export default function SuppressionCompte({
             {isDeleting ? (
               <>
                 <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                Suppression...
+                {t('suppressionEnCours')}
               </>
             ) : (
               <>
                 <Trash2 className="w-4 h-4" />
-                Supprimer définitivement
+                {t('supprimerDefinitivement')}
               </>
             )}
           </Button>

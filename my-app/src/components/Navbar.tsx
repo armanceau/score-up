@@ -2,15 +2,18 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/lib/supabaseClient";
 import DarkModeToggle from "@/lib/darkMode";
 import { BoutonDanger } from "./bouton/BoutonDanger";
 import { Heart, Info, LogOut } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import LanguageSelector from "./LanguageSelector";
 
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
+  const { t } = useTranslation('navigation');
   const [mobileOpen, setMobileOpen] = useState(false);
   const segments = pathname.split("/").filter(Boolean);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -58,7 +61,7 @@ export default function Navbar() {
               className="hover:underline underline-offset-4 flex items-center gap-1 text-green-600 dark:text-green-400 font-semibold"
             >
               <Heart height={18} />
-              Faire un don
+              {t('faireUnDon')}
             </Link>
 
             <Tooltip>
@@ -71,7 +74,7 @@ export default function Navbar() {
                 </Link>
               </TooltipTrigger>
               <TooltipContent>
-                <p>À propos</p>
+                <p>{t('apropos')}</p>
               </TooltipContent>
             </Tooltip>
 
@@ -81,14 +84,15 @@ export default function Navbar() {
                   href="/historique"
                   className="hover:underline underline-offset-4"
                 >
-                  Historique
+                  {t('historique')}
                 </Link>
                 <Link
                   href="/profil"
                   className="hover:underline underline-offset-4"
                 >
-                  Profil
+                  {t('profil')}
                 </Link>
+                <LanguageSelector />
                 <DarkModeToggle />
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -97,18 +101,19 @@ export default function Navbar() {
                     </BoutonDanger>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Déconnexion</p>
+                    <p>{t('deconnexion')}</p>
                   </TooltipContent>
                 </Tooltip>
               </>
             ) : (
               <>
+                <LanguageSelector />
                 <DarkModeToggle />
                 <Link
                   href="/authentification"
                   className="hover:underline underline-offset-4"
                 >
-                  Connexion
+                  {t('connexion')}
                 </Link>
               </>
             )}
@@ -133,13 +138,13 @@ export default function Navbar() {
               className="hover:underline underline-offset-4 flex items-center gap-1 text-green-600 dark:text-green-400"
             >
               <Heart height={18} />
-              Faire un don
+              {t('faireUnDon')}
             </Link>
             <Link
               href="/apropos"
               className="hover:underline underline-offset-4"
             >
-              À propos
+              {t('apropos')}
             </Link>
             {user && (
               <>
@@ -147,31 +152,33 @@ export default function Navbar() {
                   href="/historique"
                   className="hover:underline underline-offset-4"
                 >
-                  Historique
+                  {t('historique')}
                 </Link>
                 <Link
                   href="/profil"
                   className="hover:underline underline-offset-4"
                 >
-                  Profil
+                  {t('profil')}
                 </Link>
+                <LanguageSelector />
                 <DarkModeToggle />
                 <button
                   onClick={handleLogout}
                   className="inline-flex items-center gap-2 bg-red-50 dark:bg-red-900 text-red-700 cursor-pointer dark:text-red-300 border border-red-200 dark:border-red-700 px-2 h-9 rounded-md text-sm font-medium shadow-sm hover:bg-red-100 dark:hover:bg-red-800 transition-colors"
                 >
-                  Déconnexion
+                  {t('deconnexion')}
                 </button>
               </>
             )}
             {!user && (
               <>
+                <LanguageSelector />
                 <DarkModeToggle />
                 <Link
                   href="/authentification"
                   className="hover:underline underline-offset-4"
                 >
-                  Connexion
+                  {t('connexion')}
                 </Link>
               </>
             )}
@@ -180,7 +187,7 @@ export default function Navbar() {
 
         <div className="text-sm text-zinc-500 dark:text-zinc-400">
           <Link href="/" className="hover:underline underline-offset-4">
-            Accueil
+            {t('accueil')}
           </Link>
           <span className="mx-1">/</span>
           {segments.map((segment, i) => {

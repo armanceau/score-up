@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useTranslation } from "react-i18next";
 
 type Equipe = {
   emoji: string;
@@ -29,6 +30,7 @@ export default function GenerateurEquipes({
   onClose,
   onEquipesGenerees,
 }: GenerateurEquipesProps) {
+  const { t } = useTranslation('equipes');
   const [currentStep, setCurrentStep] = useState(1);
   const [numPlayers, setNumPlayers] = useState("");
   const [numTeams, setNumTeams] = useState("");
@@ -117,7 +119,7 @@ export default function GenerateurEquipes({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3">
             <Shuffle className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-            Générateur d&apos;équipes
+            {t('generateurEquipes')}
           </DialogTitle>
         </DialogHeader>
 
@@ -134,7 +136,7 @@ export default function GenerateurEquipes({
             ))}
           </div>
           <p className="text-sm text-muted-foreground text-center mb-4">
-            Étape {currentStep} sur 5
+            {t('etape', { current: currentStep, total: 5 })}
           </p>
         </div>
 
@@ -144,7 +146,7 @@ export default function GenerateurEquipes({
               <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto">
                 <Users className="w-8 h-8 text-blue-500" />
               </div>
-              <h3 className="text-2xl font-semibold">Combien de joueurs ?</h3>
+              <h3 className="text-2xl font-semibold">{t('combienJoueurs')}</h3>
               <Input
                 type="number"
                 min="1"
@@ -280,10 +282,10 @@ export default function GenerateurEquipes({
                   className="flex-1 flex items-center justify-center gap-2"
                 >
                   <RefreshCw className="w-5 h-5" />
-                  Regénérer
+                  {t('regenerer', { ns: 'commun' })}
                 </Button>
                 <Button onClick={confirmTeams} className="flex-1">
-                  Valider
+                  {t('valider', { ns: 'commun' })}
                 </Button>
               </div>
             </div>
@@ -294,9 +296,9 @@ export default function GenerateurEquipes({
             <div className="text-center space-y-6 py-8">
               <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
               <h3 className="text-2xl font-semibold">
-                Peuplement des équipes…
+                {t('peuplement')}
               </h3>
-              <p className="text-muted-foreground">Enregistrement en cours</p>
+              <p className="text-muted-foreground">{t('enregistrement')}</p>
             </div>
           )}
         </div>

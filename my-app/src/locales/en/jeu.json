@@ -1,0 +1,21 @@
+{
+  "ajouterJoueurs": "Add players",
+  "genererEquipes": "Generate random teams",
+  "aucunJoueurEncore": "No players added yet",
+  "commencerParAjouter": "Start by adding players to create your game",
+  "joueursAjoutes": "{{count}} player added",
+  "joueursAjoutes_plural": "{{count}} players added",
+  "commentJouer": "How to play?",
+  "reinitialiserPartie": "Reset game",
+  "confirmerReinitialisation": "Do you really want to reset the game?",
+  "nouvelleManchen": "Start new round",
+  "manche": "Round {{number}}",
+  "nomJoueur": "Player name",
+  "scoreTotal": "Total: {{score}}",
+  "scores": "Scores",
+  "validerManche": "Validate round",
+  "sauvegarderPartie": "Save game",
+  "finPartie": "Game over",
+  "resultats": "Results:",
+  "classementActuel": "Current ranking"
+}
