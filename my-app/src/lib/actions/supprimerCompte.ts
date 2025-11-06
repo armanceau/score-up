@@ -1,10 +1,21 @@
 "use server";
 
-import { supabaseAdmin } from "@/lib/supabaseClient";
+import { createClient } from "@supabase/supabase-js";
 import { revalidatePath } from "next/cache";
 
 export async function supprimerCompteAction(userId: string) {
   try {
+    const supabaseAdmin = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false,
+        },
+      }
+    );
+
     const { error: deleteHistoriqueError } = await supabaseAdmin
       .from("partie")
       .delete()
