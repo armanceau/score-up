@@ -1,0 +1,21 @@
+{
+  "fermer": "Close",
+  "annuler": "Cancel",
+  "confirmer": "Confirm",
+  "sauvegarder": "Save",
+  "supprimer": "Delete",
+  "modifier": "Edit",
+  "chargement": "Loading...",
+  "erreur": "Error",
+  "succes": "Success",
+  "valider": "Validate",
+  "ajouter": "Add",
+  "regenerer": "Regenerate",
+  "suivant": "Next",
+  "bienvenueSur": "Welcome to",
+  "filtrerJeux": "Filter games...",
+  "tousLesJeux": "All games",
+  "deuxAQuatreJoueurs": "2 to 4 players", 
+  "cinqJoueursEtPlus": "5 players and more",
+  "aucunJeuTrouve": "No games found for this filter"
+}

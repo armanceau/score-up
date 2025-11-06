@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import { getJeux } from "@/lib/jeux";
 import { JeuxProvider } from "@/lib/jeuxContext";
 import { Contact } from "@/components/Contact";
+import ClientI18nWrapper from "@/components/ClientI18nWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,12 +43,13 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <JeuxProvider jeuxInitiaux={jeux}>
-          <Navbar />
-
-          {children}
-          <Contact />
-        </JeuxProvider>
+        <ClientI18nWrapper>
+          <JeuxProvider jeuxInitiaux={jeux}>
+            <Navbar />
+            {children}
+            <Contact />
+          </JeuxProvider>
+        </ClientI18nWrapper>
       </body>
     </html>
   );

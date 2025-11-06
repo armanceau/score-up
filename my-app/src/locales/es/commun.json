@@ -1,0 +1,21 @@
+{
+  "fermer": "Cerrar",
+  "annuler": "Cancelar",
+  "confirmer": "Confirmar",
+  "sauvegarder": "Guardar",
+  "supprimer": "Eliminar",
+  "modifier": "Modificar",
+  "chargement": "Cargando...",
+  "erreur": "Error",
+  "succes": "Éxito",
+  "valider": "Validar",
+  "ajouter": "Añadir",
+  "regenerer": "Regenerar",
+  "suivant": "Siguiente",
+  "bienvenueSur": "Bienvenido a",
+  "filtrerJeux": "Filtrar juegos...",
+  "tousLesJeux": "Todos los juegos",
+  "deuxAQuatreJoueurs": "2 a 4 jugadores", 
+  "cinqJoueursEtPlus": "5 jugadores y más",
+  "aucunJeuTrouve": "No se encontraron juegos para este filtro"
+}

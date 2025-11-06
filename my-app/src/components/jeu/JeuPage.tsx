@@ -12,6 +12,7 @@ import GenerateurEquipes from "./GenerateurEquipes";
 import { Shuffle, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ListeEquipesGenerees from "./ListeEquipesGenerees";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   idJeu: string;
@@ -43,6 +44,7 @@ export default function JeuPage({
   lien_regle,
   localStorageKey,
 }: Props) {
+  const { t } = useTranslation('jeu');
   const [mounted, setMounted] = useState(false);
   const [nomJoueur, setNomJoueur] = useState("");
   const [joueurs, setJoueurs] = useState<Joueur[]>([]);
@@ -106,7 +108,7 @@ export default function JeuPage({
   };
 
   const reinitialiserPartie = () => {
-    if (!confirm("Voulez-vous vraiment réinitialiser la partie ?")) return;
+    if (!confirm(t('confirmerReinitialisation'))) return;
     setJoueurs([]);
     setMancheScores({});
     setMancheEnCours(false);
@@ -200,7 +202,7 @@ export default function JeuPage({
       <div className="bg-card/50 backdrop-blur-sm rounded-2xl border border-border p-8 mb-8">
         <div className="flex items-center gap-3 mb-6">
           <Users className="w-6 h-6 text-blue-500 dark:text-blue-400" />
-          <h2 className="text-xl font-semibold">Ajoute les joueurs</h2>
+          <h2 className="text-xl font-semibold">{t('ajouterJoueurs')}</h2>
         </div>
 
         <div className="mb-4">
@@ -210,7 +212,7 @@ export default function JeuPage({
             className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 py-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-3 shadow-lg shadow-green-500/20"
           >
             <Shuffle className="w-5 h-5" />
-            Générer des équipes aléatoires
+            {t('genererEquipes')}
           </Button>
         </div>
 
@@ -227,10 +229,10 @@ export default function JeuPage({
               <Users className="w-8 h-8 text-muted-foreground" />
             </div>
             <p className="text-muted-foreground">
-              Aucun joueur ajouté pour le moment
+              {t('aucunJoueurEncore')}
             </p>
             <p className="text-sm text-muted-foreground mt-1">
-              Commence par ajouter des joueurs pour créer ta partie
+              {t('commencerParAjouter')}
             </p>
           </div>
         )}

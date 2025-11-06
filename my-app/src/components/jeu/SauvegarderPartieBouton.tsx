@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { Save } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 // Ajoutez ces props au type existant
 type SauvegarderPartieBoutonProps = {
@@ -20,6 +21,7 @@ export function SauvegarderPartieBouton({
   jeu_id,
   onReset,
 }: SauvegarderPartieBoutonProps) {
+  const { t } = useTranslation('jeu');
   const [enCours, setEnCours] = useState(false);
 
   const handleSave = async () => {
@@ -41,10 +43,10 @@ export function SauvegarderPartieBouton({
         onReset();
       }
 
-      alert("✅ Partie sauvegardée !");
+      alert(t('partieEnregistree'));
     } catch (err) {
       console.error(err);
-      alert("❌ Impossible de sauvegarder la partie");
+      alert(t('erreurEnregistrement'));
     } finally {
       setEnCours(false);
     }
@@ -57,11 +59,11 @@ export function SauvegarderPartieBouton({
       className="bg-green-500 text-white hover:text-green-400 cursor-pointer px-4 py-2 rounded-lg group flex items-center justify-center disabled:opacity-40 transition-[background-color,border-radius] duration-500 hover:bg-green-900 hover:rounded-[9999px] relative overflow-hidden"
     >
       {enCours ? (
-        "Sauvegarde en cours..."
+        t('sauvegardeEnCours')
       ) : (
         <>
           <span className="transition-all duration-300 group-hover:pr-8">
-            Sauvegarder
+            {t('sauvegarder')}
           </span>
 
           <span className="absolute right-1 w-8 h-8 rounded-full bg-green-400 text-green-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">

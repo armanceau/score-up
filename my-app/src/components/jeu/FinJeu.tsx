@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import ModalFinJeu from "../modal/ModalFinJeu";
 
 type FinJeuProps = {
@@ -21,6 +22,7 @@ export const FinJeu = ({
   est_ascendant,
 }: FinJeuProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useTranslation('jeu');
 
   const handleReset = () => {
     onReset();
@@ -34,7 +36,7 @@ export const FinJeu = ({
         }}
         className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition cursor-pointer"
       >
-        Fin de partie
+        {t('finPartie')}
       </button>
 
       <ModalFinJeu

@@ -13,6 +13,7 @@ import {
   Tooltip,
   TooltipProps,
 } from "recharts";
+import { useTranslation } from "react-i18next";
 
 type StatistiquesProps = {
   userId: string;
@@ -32,6 +33,7 @@ const COULEURS = [
 ];
 
 export default function StatistiquesUtilisateur({ userId }: StatistiquesProps) {
+  const { t } = useTranslation('profil');
   const [stats, setStats] = useState<StatsType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -42,7 +44,7 @@ export default function StatistiquesUtilisateur({ userId }: StatistiquesProps) {
         const statistiques = await getStatistiquesUtilisateur(userId);
         setStats(statistiques);
       } catch {
-        setError("Erreur lors du chargement des statistiques");
+        setError(t('erreurStats'));
       } finally {
         setLoading(false);
       }
@@ -51,7 +53,7 @@ export default function StatistiquesUtilisateur({ userId }: StatistiquesProps) {
     if (userId) {
       fetchStats();
     }
-  }, [userId]);
+  }, [userId, t]);
 
   const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
     if (active && payload && payload.length) {

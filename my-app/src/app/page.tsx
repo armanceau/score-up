@@ -5,17 +5,19 @@ import { useEffect, useState } from "react";
 import { getJeux, Jeu } from "@/lib/jeux";
 import { Combobox } from "@/components/ui/combobox";
 import { Skeleton } from "@/components/ui/skeleton";
-
-const filtres = [
-  { label: "Tous les jeux", value: "all" },
-  { label: "2 à 4 joueurs", value: "max4" },
-  { label: "5 joueurs et +", value: "min5" },
-];
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
+  const { t } = useTranslation('commun');
   const [filtre, setFiltre] = useState("all");
   const [jeux, setJeux] = useState<Jeu[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const filtres = [
+    { label: t('tousLesJeux'), value: "all" },
+    { label: t('deuxAQuatreJoueurs'), value: "max4" },
+    { label: t('cinqJoueursEtPlus'), value: "min5" },
+  ];
 
   useEffect(() => {
     getJeux().then((data) => {
@@ -36,7 +38,7 @@ export default function Home() {
     <main className="min-h-screen px-6 py-16 bg-white text-black dark:bg-black dark:text-white font-sans">
       <div className="max-w-2xl mx-auto space-y-6">
         <h1 className="text-3xl font-semibold">
-          Bienvenue sur
+          {t('bienvenueSur')}
           <span className="text-blue-600 dark:text-blue-400"> Score Up</span> 🎲
         </h1>
 
@@ -45,7 +47,7 @@ export default function Home() {
             options={filtres}
             value={filtre}
             onChange={setFiltre}
-            placeholder="Filtrer les jeux..."
+            placeholder={t('filtrerJeux')}
             widthClass="w-64"
           />
         </div>
