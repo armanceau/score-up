@@ -22,7 +22,7 @@ export const FinJeu = ({
   est_ascendant,
 }: FinJeuProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { t } = useTranslation('jeu');
+  const { t } = useTranslation("jeu");
 
   const handleReset = () => {
     onReset();
@@ -36,7 +36,7 @@ export const FinJeu = ({
         }}
         className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition cursor-pointer"
       >
-        {t('finPartie')}
+        {t("finPartie")}
       </button>
 
       <ModalFinJeu

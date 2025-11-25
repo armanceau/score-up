@@ -30,7 +30,7 @@ export default function GenerateurEquipes({
   onClose,
   onEquipesGenerees,
 }: GenerateurEquipesProps) {
-  const { t } = useTranslation('equipes');
+  const { t } = useTranslation("equipes");
   const [currentStep, setCurrentStep] = useState(1);
   const [numPlayers, setNumPlayers] = useState("");
   const [numTeams, setNumTeams] = useState("");
@@ -119,7 +119,7 @@ export default function GenerateurEquipes({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3">
             <Shuffle className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-            {t('generateurEquipes')}
+            {t("generateurEquipes")}
           </DialogTitle>
         </DialogHeader>
 
@@ -136,7 +136,7 @@ export default function GenerateurEquipes({
             ))}
           </div>
           <p className="text-sm text-muted-foreground text-center mb-4">
-            {t('etape', { current: currentStep, total: 5 })}
+            {t("etape", { current: currentStep, total: 5 })}
           </p>
         </div>
 
@@ -146,7 +146,7 @@ export default function GenerateurEquipes({
               <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto">
                 <Users className="w-8 h-8 text-blue-500" />
               </div>
-              <h3 className="text-2xl font-semibold">{t('combienJoueurs')}</h3>
+              <h3 className="text-2xl font-semibold">{t("combienJoueurs")}</h3>
               <Input
                 type="number"
                 min="1"
@@ -282,10 +282,10 @@ export default function GenerateurEquipes({
                   className="flex-1 flex items-center justify-center gap-2"
                 >
                   <RefreshCw className="w-5 h-5" />
-                  {t('regenerer', { ns: 'commun' })}
+                  {t("regenerer", { ns: "commun" })}
                 </Button>
                 <Button onClick={confirmTeams} className="flex-1">
-                  {t('valider', { ns: 'commun' })}
+                  {t("valider", { ns: "commun" })}
                 </Button>
               </div>
             </div>
@@ -295,10 +295,8 @@ export default function GenerateurEquipes({
           {currentStep === 5 && (
             <div className="text-center space-y-6 py-8">
               <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-              <h3 className="text-2xl font-semibold">
-                {t('peuplement')}
-              </h3>
-              <p className="text-muted-foreground">{t('enregistrement')}</p>
+              <h3 className="text-2xl font-semibold">{t("peuplement")}</h3>
+              <p className="text-muted-foreground">{t("enregistrement")}</p>
             </div>
           )}
         </div>

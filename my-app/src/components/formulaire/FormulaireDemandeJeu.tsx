@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { Mail, Gamepad } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 type FormulaireDemandeJeuProps = {
   onSubmit: (data: {
@@ -19,6 +20,7 @@ export const FormulaireDemandeJeu: React.FC<FormulaireDemandeJeuProps> = ({
   const [isEmailEditable, setIsEmailEditable] = useState(true);
   const [nomJeu, setNomJeu] = useState("");
   const [descriptionJeu, setDescriptionJeu] = useState("");
+  const { t } = useTranslation("formulaire");
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -55,7 +57,7 @@ export const FormulaireDemandeJeu: React.FC<FormulaireDemandeJeuProps> = ({
               className="font-medium transition-colors disabled:opacity-50 hover:bg-white/90 dark:hover:bg-zinc-800 rounded-md px-3 h-7 text-xs text-blue-500 cursor-pointer"
               onClick={() => setIsEmailEditable(true)}
             >
-              Modifier
+              {t("modifier")}
             </button>
           )}
         </div>
@@ -66,6 +68,7 @@ export const FormulaireDemandeJeu: React.FC<FormulaireDemandeJeuProps> = ({
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="exemple@scoreup.com"
             disabled={!isEmailEditable}
             className="flex-1 bg-transparent border-none outline-none text-sm text-black dark:text-white"
           />
@@ -74,7 +77,7 @@ export const FormulaireDemandeJeu: React.FC<FormulaireDemandeJeuProps> = ({
 
       <div className="space-y-2">
         <div className="flex justify-between items-center">
-          <label className="text-sm font-medium">Nom du jeu</label>
+          <label className="text-sm font-medium">{t("nomDuJeu")}</label>
         </div>
         <div className="flex items-center h-10 px-3 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-black dark:text-white">
           <Gamepad className="h-4 w-4 text-muted-foreground mr-2" />
@@ -92,12 +95,12 @@ export const FormulaireDemandeJeu: React.FC<FormulaireDemandeJeuProps> = ({
       <div className="space-y-2">
         <div className="flex justify-between items-center">
           <label className="text-sm font-medium">
-            Courte description du jeu
+            {t("courteDescriptionDuJeu")}
           </label>
         </div>
         <textarea
           required
-          placeholder="Jeu de cartes stratégique où chaque joueur tente d'éviter de ramasser des cartes à pénalité."
+          placeholder={t("courteDescriptionDuJeuPlaceHolder")}
           value={descriptionJeu}
           onChange={(e) => setDescriptionJeu(e.target.value)}
           className="border border-zinc-300 dark:border-zinc-700 rounded-md p-2 w-full bg-white dark:bg-zinc-800 text-black dark:text-white min-h-[80px] resize-none"
@@ -108,7 +111,7 @@ export const FormulaireDemandeJeu: React.FC<FormulaireDemandeJeuProps> = ({
         type="submit"
         className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition cursor-pointer"
       >
-        Proposer le jeu
+        {t("proposerLeJeu")}
       </button>
     </form>
   );

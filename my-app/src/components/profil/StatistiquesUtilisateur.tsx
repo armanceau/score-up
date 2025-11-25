@@ -33,7 +33,7 @@ const COULEURS = [
 ];
 
 export default function StatistiquesUtilisateur({ userId }: StatistiquesProps) {
-  const { t } = useTranslation('profil');
+  const { t } = useTranslation("profil");
   const [stats, setStats] = useState<StatsType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -44,7 +44,7 @@ export default function StatistiquesUtilisateur({ userId }: StatistiquesProps) {
         const statistiques = await getStatistiquesUtilisateur(userId);
         setStats(statistiques);
       } catch {
-        setError(t('erreurStats'));
+        setError(t("erreurStats"));
       } finally {
         setLoading(false);
       }

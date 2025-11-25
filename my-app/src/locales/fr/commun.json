@@ -37,5 +37,12 @@
   "aProposAuteur2": "en utilisant Next.js, React, Tailwind CSS, et beaucoup de passion pour les jeux de société et le développement web 🐵.",
   "conditionsUtilisation": "Conditions d’utilisation",
   "politiqueConfidentialite": "Politique de confidentialité",
-  "bienvenue": "Bienvenue"
+  "bienvenue": "Bienvenue",
+  "demandeEnvoyee": "Merci ! Ta demande a été envoyée.",
+  "demandeErreur": "Une erreur est survenue, réessaie plus tard.",
+  "demandeDeJeu": "Demande de jeu",
+  "demandeDeJeuDescription": "Tu ne trouves pas ton jeu ? Demande l'ajout de celui-ci !",
+  "jeuManquant": "Jeu manquant ?",
+  "proposerUnJeu": "Proposez-en un via notre formulaire",
+  "choisirJeu": "Choisis ton jeu :"
 }

@@ -29,7 +29,7 @@ export default function ListeEquipesGenerees({
   setEquipesGenerees,
   mancheEnCours,
 }: ListeEquipesGenereesProps) {
-  const { t } = useTranslation('equipes');
+  const { t } = useTranslation("equipes");
   if (equipesGenerees.length === 0) return null;
 
   const supprimerEquipes = () => {
@@ -46,14 +46,14 @@ export default function ListeEquipesGenerees({
 
   return (
     <section className="mb-10 mt-10">
-      <h2 className="text-xl font-medium mb-4">{t('creees')}</h2>
+      <h2 className="text-xl font-medium mb-4">{t("creees")}</h2>
 
       <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-xl p-4 mb-4">
         <p className="text-sm text-green-700 dark:text-green-300 mb-2">
-          ✅ {t('ajouteesCommeJoueurs')}
+          ✅ {t("ajouteesCommeJoueurs")}
         </p>
         <p className="text-xs text-green-600 dark:text-green-400">
-          {t('scorePartage')}
+          {t("scorePartage")}
         </p>
       </div>
 
@@ -64,7 +64,7 @@ export default function ListeEquipesGenerees({
             className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-xl p-4"
           >
             <h3 className="text-lg font-semibold mb-3 text-green-600 dark:text-green-400">
-              {equipe.emoji} {t('equipe', { number: idx + 1 })}
+              {equipe.emoji} {t("equipe", { number: idx + 1 })}
             </h3>
             <p className="text-xs text-green-600 dark:text-green-400 mb-2">
               Membres :
@@ -88,7 +88,7 @@ export default function ListeEquipesGenerees({
           disabled={mancheEnCours}
           className="w-full text-red-600 hover:text-red-700 border-red-200 hover:border-red-300"
         >
-          {t('supprimerToutes')}
+          {t("supprimerToutes")}
         </Button>
       </div>
     </section>

@@ -2,7 +2,6 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
-// Import des traductions
 import frCommun from "../locales/fr/commun.json";
 import frNavigation from "../locales/fr/navigation.json";
 import frJeu from "../locales/fr/jeu.json";
@@ -11,6 +10,7 @@ import frProfil from "../locales/fr/profil.json";
 import frAuthentification from "../locales/fr/authentification.json";
 import frConditionUtilisation from "../locales/fr/conditions-utilisation.json";
 import frPolitiqueConfidentialite from "../locales/fr/politique-confidentialite.json";
+import frFormulaire from "../locales/fr/formulaire.json";
 
 import enCommun from "../locales/en/commun.json";
 import enNavigation from "../locales/en/navigation.json";
@@ -20,6 +20,7 @@ import enProfil from "../locales/en/profil.json";
 import enAuthenfictication from "../locales/en/authentification.json";
 import enConditionUtilisation from "../locales/en/conditions-utilisation.json";
 import enPolitiqueConfidentialite from "../locales/en/politique-confidentialite.json";
+import enFormulaire from "../locales/en/formulaire.json";
 
 const resources = {
   fr: {
@@ -31,6 +32,7 @@ const resources = {
     authentification: frAuthentification,
     conditionsUtilisation: frConditionUtilisation,
     politiqueConfidentialite: frPolitiqueConfidentialite,
+    formulaire: frFormulaire,
   },
   en: {
     commun: enCommun,
@@ -41,6 +43,7 @@ const resources = {
     authentification: enAuthenfictication,
     conditionsUtilisation: enConditionUtilisation,
     politiqueConfidentialite: enPolitiqueConfidentialite,
+    formulaire: enFormulaire,
   },
 };
 
@@ -72,6 +75,9 @@ i18n
       "equipes",
       "profil",
       "authentification",
+      "conditionsUtilisation",
+      "politiqueConfidentialite",
+      "formulaire",
     ],
   });
 

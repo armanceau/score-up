@@ -25,19 +25,19 @@ export const ModalMotDePasse = ({
   const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const { t } = useTranslation('profil');
+  const { t } = useTranslation("profil");
 
   const handleSave = async () => {
     if (!current || !next || !confirm) {
-      setError(t('champsObligatoires'));
+      setError(t("champsObligatoires"));
       return;
     }
     if (next !== confirm) {
-      setError(t('motsDePasseNonIdentiques'));
+      setError(t("motsDePasseNonIdentiques"));
       return;
     }
     if (next.length < 8) {
-      setError(t('motDePasseTropCourt'));
+      setError(t("motDePasseTropCourt"));
       return;
     }
 
@@ -53,7 +53,7 @@ export const ModalMotDePasse = ({
         setConfirm("");
       }, 1500);
     } catch {
-      setError(t('erreurMiseAJour'));
+      setError(t("erreurMiseAJour"));
     }
   };
 
@@ -61,22 +61,22 @@ export const ModalMotDePasse = ({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      title={t('modifierMotDePasse')}
-      description={t('descriptionModifierMotDePasse')}
+      title={t("modifierMotDePasse")}
+      description={t("descriptionModifierMotDePasse")}
       footer={
         <div className="flex justify-end gap-2">
           <button
             className="px-4 py-2 border rounded text-red-500 hover:bg-red-900 cursor-pointer transition"
             onClick={onClose}
           >
-            {t('annuler', { ns: 'commun' })}
+            {t("annuler", { ns: "commun" })}
           </button>
           <button
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50 transition cursor-pointer"
             onClick={handleSave}
             disabled={success}
           >
-            {t('modifier', { ns: 'commun' })}
+            {t("modifier", { ns: "commun" })}
           </button>
         </div>
       }
@@ -90,26 +90,26 @@ export const ModalMotDePasse = ({
       {success && (
         <div className="flex items-center gap-2 text-green-500 mb-2">
           <Check className="w-4 h-4" />
-          <span>{t('motDePasseMisAJour')}</span>
+          <span>{t("motDePasseMisAJour")}</span>
         </div>
       )}
       {[
         {
-          label: t('motDePasseActuel'),
+          label: t("motDePasseActuel"),
           value: current,
           setValue: setCurrent,
           show: showCurrent,
           setShow: setShowCurrent,
         },
         {
-          label: t('nouveauMotDePasse'),
+          label: t("nouveauMotDePasse"),
           value: next,
           setValue: setNext,
           show: showNext,
           setShow: setShowNext,
         },
         {
-          label: t('confirmerMotDePasse'),
+          label: t("confirmerMotDePasse"),
           value: confirm,
           setValue: setConfirm,
           show: showConfirm,

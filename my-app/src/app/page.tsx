@@ -8,15 +8,15 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslation } from "react-i18next";
 
 export default function Home() {
-  const { t } = useTranslation('commun');
+  const { t } = useTranslation("commun");
   const [filtre, setFiltre] = useState("all");
   const [jeux, setJeux] = useState<Jeu[]>([]);
   const [loading, setLoading] = useState(true);
 
   const filtres = [
-    { label: t('tousLesJeux'), value: "all" },
-    { label: t('deuxAQuatreJoueurs'), value: "max4" },
-    { label: t('cinqJoueursEtPlus'), value: "min5" },
+    { label: t("tousLesJeux"), value: "all" },
+    { label: t("deuxAQuatreJoueurs"), value: "max4" },
+    { label: t("cinqJoueursEtPlus"), value: "min5" },
   ];
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function Home() {
     <main className="min-h-screen px-6 py-16 bg-white text-black dark:bg-black dark:text-white font-sans">
       <div className="max-w-2xl mx-auto space-y-6">
         <h1 className="text-3xl font-semibold">
-          {t('bienvenueSur')}
+          {t("bienvenueSur")}
           <span className="text-blue-600 dark:text-blue-400"> Score Up</span> 🎲
         </h1>
 
@@ -47,13 +47,13 @@ export default function Home() {
             options={filtres}
             value={filtre}
             onChange={setFiltre}
-            placeholder={t('filtrerJeux')}
+            placeholder={t("filtrerJeux")}
             widthClass="w-64"
           />
         </div>
 
         <p className="text-gray-600 dark:text-gray-400 text-lg">
-          Choisis ton jeu :
+          {t("choisirJeu")}
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -78,8 +78,8 @@ export default function Home() {
               <Card
                 href="/demande-de-jeu"
                 emoji="➕"
-                name="Jeu manquant ?"
-                description="Proposez-en un via notre formulaire"
+                name={t("jeuManquant")}
+                description={t("proposerUnJeu")}
               />
             </>
           )}

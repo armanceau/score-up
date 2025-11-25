@@ -64,7 +64,6 @@ export default function DonSucces() {
   );
 }
 
-// --- Petit watcher pour détecter la fin du typing ---
 function TypingWatcher({
   text,
   duration,

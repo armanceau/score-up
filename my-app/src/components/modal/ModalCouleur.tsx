@@ -16,19 +16,19 @@ export default function ModalCouleur({
   onSelectCouleur,
   couleurActuelle,
 }: ModalCouleurProps) {
-  const { t } = useTranslation('commun');
-  
+  const { t } = useTranslation("commun");
+
   const couleurs = [
-    { valeur: "rgb(255, 89, 94)", label: t('couleurs.rouge') },
-    { valeur: "rgb(255, 202, 58)", label: t('couleurs.jaune') },
-    { valeur: "rgb(138, 201, 38)", label: t('couleurs.vert') },
-    { valeur: "rgb(25, 130, 196)", label: t('couleurs.bleu') },
-    { valeur: "rgb(106, 76, 147)", label: t('couleurs.violet') },
-    { valeur: "rgb(255, 127, 80)", label: t('couleurs.corail') },
-    { valeur: "rgb(0, 206, 209)", label: t('couleurs.turquoise') },
-    { valeur: "rgb(255, 105, 180)", label: t('couleurs.rose') },
-    { valeur: "rgb(255, 165, 0)", label: t('couleurs.orange') },
-    { valeur: "rgb(128, 128, 128)", label: t('couleurs.defaut') },
+    { valeur: "rgb(255, 89, 94)", label: t("couleurs.rouge") },
+    { valeur: "rgb(255, 202, 58)", label: t("couleurs.jaune") },
+    { valeur: "rgb(138, 201, 38)", label: t("couleurs.vert") },
+    { valeur: "rgb(25, 130, 196)", label: t("couleurs.bleu") },
+    { valeur: "rgb(106, 76, 147)", label: t("couleurs.violet") },
+    { valeur: "rgb(255, 127, 80)", label: t("couleurs.corail") },
+    { valeur: "rgb(0, 206, 209)", label: t("couleurs.turquoise") },
+    { valeur: "rgb(255, 105, 180)", label: t("couleurs.rose") },
+    { valeur: "rgb(255, 165, 0)", label: t("couleurs.orange") },
+    { valeur: "rgb(128, 128, 128)", label: t("couleurs.defaut") },
   ];
 
   const [selection, setSelection] = useState<string | null>(
@@ -56,7 +56,7 @@ export default function ModalCouleur({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      title={t('selectionnerCouleur')}
+      title={t("selectionnerCouleur")}
     >
       <div className="grid grid-cols-5 gap-2 mb-4">
         {couleurs.map((c) => (
@@ -85,7 +85,7 @@ export default function ModalCouleur({
           onClick={valider}
           className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition cursor-pointer"
         >
-          {t('valider')}
+          {t("valider")}
         </button>
       </div>
     </BaseModal>
