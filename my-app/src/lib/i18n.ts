@@ -9,6 +9,8 @@ import frJeu from "../locales/fr/jeu.json";
 import frEquipes from "../locales/fr/equipes.json";
 import frProfil from "../locales/fr/profil.json";
 import frAuthentification from "../locales/fr/authentification.json";
+import frConditionUtilisation from "../locales/fr/conditions-utilisation.json";
+import frPolitiqueConfidentialite from "../locales/fr/politique-confidentialite.json";
 
 import enCommun from "../locales/en/commun.json";
 import enNavigation from "../locales/en/navigation.json";
@@ -16,6 +18,8 @@ import enJeu from "../locales/en/jeu.json";
 import enEquipes from "../locales/en/equipes.json";
 import enProfil from "../locales/en/profil.json";
 import enAuthenfictication from "../locales/en/authentification.json";
+import enConditionUtilisation from "../locales/en/conditions-utilisation.json";
+import enPolitiqueConfidentialite from "../locales/en/politique-confidentialite.json";
 
 const resources = {
   fr: {
@@ -25,6 +29,8 @@ const resources = {
     equipes: frEquipes,
     profil: frProfil,
     authentification: frAuthentification,
+    conditionsUtilisation: frConditionUtilisation,
+    politiqueConfidentialite: frPolitiqueConfidentialite,
   },
   en: {
     commun: enCommun,
@@ -33,6 +39,8 @@ const resources = {
     equipes: enEquipes,
     profil: enProfil,
     authentification: enAuthenfictication,
+    conditionsUtilisation: enConditionUtilisation,
+    politiqueConfidentialite: enPolitiqueConfidentialite,
   },
 };
 
