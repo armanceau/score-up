@@ -29,15 +29,15 @@ export const ModalMotDePasse = ({
 
   const handleSave = async () => {
     if (!current || !next || !confirm) {
-      setError(t("champsObligatoires"));
+      setError(t("motDePasse.champsObligatoires"));
       return;
     }
     if (next !== confirm) {
-      setError(t("motsDePasseNonIdentiques"));
+      setError(t("motDePasse.motsDePasseNonIdentiques"));
       return;
     }
     if (next.length < 8) {
-      setError(t("motDePasseTropCourt"));
+      setError(t("motDePasse.motDePasseTropCourt"));
       return;
     }
 
@@ -53,7 +53,7 @@ export const ModalMotDePasse = ({
         setConfirm("");
       }, 1500);
     } catch {
-      setError(t("erreurMiseAJour"));
+      setError(t("motDePasse.erreurMiseAJour"));
     }
   };
 
@@ -61,22 +61,22 @@ export const ModalMotDePasse = ({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      title={t("modifierMotDePasse")}
-      description={t("descriptionModifierMotDePasse")}
+      title={t("motDePasse.modifierMotDePasse")}
+      description={t("motDePasse.descriptionModifierMotDePasse")}
       footer={
         <div className="flex justify-end gap-2">
           <button
             className="px-4 py-2 border rounded text-red-500 hover:bg-red-900 cursor-pointer transition"
             onClick={onClose}
           >
-            {t("annuler", { ns: "commun" })}
+            {t("motDePasse.annuler")}
           </button>
           <button
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50 transition cursor-pointer"
             onClick={handleSave}
             disabled={success}
           >
-            {t("modifier", { ns: "commun" })}
+            {t("motDePasse.modifier")}
           </button>
         </div>
       }
@@ -90,26 +90,26 @@ export const ModalMotDePasse = ({
       {success && (
         <div className="flex items-center gap-2 text-green-500 mb-2">
           <Check className="w-4 h-4" />
-          <span>{t("motDePasseMisAJour")}</span>
+          <span>{t("motDePasse.motDePasseMisAJour")}</span>
         </div>
       )}
       {[
         {
-          label: t("motDePasseActuel"),
+          label: t("motDePasse.motDePasseActuel"),
           value: current,
           setValue: setCurrent,
           show: showCurrent,
           setShow: setShowCurrent,
         },
         {
-          label: t("nouveauMotDePasse"),
+          label: t("motDePasse.nouveauMotDePasse"),
           value: next,
           setValue: setNext,
           show: showNext,
           setShow: setShowNext,
         },
         {
-          label: t("confirmerMotDePasse"),
+          label: t("motDePasse.confirmerMotDePasse"),
           value: confirm,
           setValue: setConfirm,
           show: showConfirm,

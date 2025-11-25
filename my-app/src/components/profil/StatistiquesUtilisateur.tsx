@@ -44,7 +44,7 @@ export default function StatistiquesUtilisateur({ userId }: StatistiquesProps) {
         const statistiques = await getStatistiquesUtilisateur(userId);
         setStats(statistiques);
       } catch {
-        setError(t("erreurStats"));
+        setError(t("statistiquesUtilisateur.erreurStats"));
       } finally {
         setLoading(false);
       }
@@ -62,14 +62,16 @@ export default function StatistiquesUtilisateur({ userId }: StatistiquesProps) {
         <div className="bg-card text-card-foreground border border-border rounded-lg p-3 shadow-lg">
           <p className="font-semibold text-sm">{data.name}</p>
           <p className="text-xs text-muted-foreground">
-            {data.value} partie{data.value! > 1 ? "s" : ""} jouée
-            {data.value! > 1 ? "s" : ""}
+            {data.value} {t("statistiquesUtilisateur.partie")}
+            {data.value! > 1 ? t("statistiquesUtilisateur.s") : ""}{" "}
+            {t("statistiquesUtilisateur.jouee")}
+            {data.value! > 1 ? t("statistiquesUtilisateur.s") : ""}
           </p>
           <p className="text-xs text-muted-foreground">
             {data.payload && stats
               ? `${((data.value! / stats.nombrePartiesTotal) * 100).toFixed(
                   1
-                )}% du total`
+                )}% ${t("statistiquesUtilisateur.duTotal")}`
               : ""}
           </p>
         </div>
@@ -81,7 +83,9 @@ export default function StatistiquesUtilisateur({ userId }: StatistiquesProps) {
   if (loading) {
     return (
       <section className="bg-card text-card-foreground rounded-lg border p-6">
-        <h2 className="text-2xl font-medium mb-2">Statistiques </h2>
+        <h2 className="text-2xl font-medium mb-2">
+          {t("statistiquesUtilisateur.statistiques")}
+        </h2>
         <div className="animate-pulse space-y-4">
           <div className="h-4 bg-muted rounded w-1/3"></div>
           <div className="h-32 bg-muted rounded"></div>
@@ -97,7 +101,9 @@ export default function StatistiquesUtilisateur({ userId }: StatistiquesProps) {
   if (error || !stats) {
     return (
       <section className="bg-card text-card-foreground rounded-lg border p-6">
-        <h2 className="text-2xl font-medium mb-2">Statistiques </h2>
+        <h2 className="text-2xl font-medium mb-2">
+          {t("statistiquesUtilisateur.statistiques")}
+        </h2>
         <p className="text-destructive">{error}</p>
       </section>
     );
@@ -106,10 +112,11 @@ export default function StatistiquesUtilisateur({ userId }: StatistiquesProps) {
   if (stats.nombrePartiesTotal === 0) {
     return (
       <section className="bg-card text-card-foreground rounded-lg border p-6">
-        <h2 className="text-2xl font-medium mb-2">Statistiques </h2>
+        <h2 className="text-2xl font-medium mb-2">
+          {t("statistiquesUtilisateur.statistiques")}
+        </h2>
         <p className="text-muted-foreground">
-          Aucune partie enregistrée pour le moment. Jouez et sauvegardez vos
-          parties pour voir vos statistiques !
+          {t("statistiquesUtilisateur.aucunePartie")}
         </p>
       </section>
     );
@@ -122,11 +129,15 @@ export default function StatistiquesUtilisateur({ userId }: StatistiquesProps) {
 
   return (
     <section className="bg-card text-card-foreground rounded-lg border p-6">
-      <h2 className="text-2xl font-medium mb-2">Statistiques </h2>
+      <h2 className="text-2xl font-medium mb-2">
+        {t("statistiquesUtilisateur.statistiques")}
+      </h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="space-y-4">
-          <h3 className="text-lg">Répartition des jeux</h3>
+          <h3 className="text-lg">
+            {t("statistiquesUtilisateur.repartitionJeux")}
+          </h3>
 
           <div className="flex flex-wrap gap-3 justify-start mb-4">
             {dataGraphique.map((entry, index) => (
@@ -137,7 +148,7 @@ export default function StatistiquesUtilisateur({ userId }: StatistiquesProps) {
                 />
                 <span className="text-sm font-medium">{entry.name}</span>
                 <span className="text-xs text-muted-foreground">
-                  ({entry.value} parties)
+                  ({entry.value} {t("statistiquesUtilisateur.parties")})
                 </span>
               </div>
             ))}
@@ -171,49 +182,50 @@ export default function StatistiquesUtilisateur({ userId }: StatistiquesProps) {
         <div className="space-y-4">
           <div className="bg-blue-50 dark:bg-blue-950/50 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
             <h3 className="text-sm font-medium text-blue-800 dark:text-blue-300 mb-1">
-              🎮 Jeu préféré
+              🎮 {t("statistiquesUtilisateur.jeuPrefere")}
             </h3>
             <p className="text-lg font-semibold text-blue-900 dark:text-blue-100">
               {stats.jeuPrefere.nom}
             </p>
             <p className="text-sm text-blue-600 dark:text-blue-400">
-              {stats.jeuPrefere.nombreParties} parties
+              {stats.jeuPrefere.nombreParties}{" "}
+              {t("statistiquesUtilisateur.parties")}
             </p>
           </div>
 
           <div className="bg-green-50 dark:bg-green-950/50 p-4 rounded-lg border border-green-200 dark:border-green-800">
             <h3 className="text-sm font-medium text-green-800 dark:text-green-300 mb-1">
-              📈 Parties totales
+              📈 {t("statistiquesUtilisateur.partiesTotales")}
             </h3>
             <p className="text-2xl font-bold text-green-900 dark:text-green-100">
               {stats.nombrePartiesTotal}
             </p>
             <p className="text-sm text-green-600 dark:text-green-400">
-              parties sauvegardées
+              {t("statistiquesUtilisateur.partiesSauvegardees")}
             </p>
           </div>
 
           <div className="bg-purple-50 dark:bg-purple-950/50 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
             <h3 className="text-sm font-medium text-purple-800 dark:text-purple-300 mb-1">
-              📅 Moyenne mensuelle
+              📅 {t("statistiquesUtilisateur.moyenneMensuelle")}
             </h3>
             <p className="text-2xl font-bold text-purple-900 dark:text-purple-100">
               {stats.moyenneParMois}
             </p>
             <p className="text-sm text-purple-600 dark:text-purple-400">
-              parties par mois
+              {t("statistiquesUtilisateur.partiesParMois")}
             </p>
           </div>
 
           <div className="bg-orange-50 dark:bg-orange-950/50 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
             <h3 className="text-sm font-medium text-orange-800 dark:text-orange-300 mb-1">
-              🎯 Jeux différents
+              🎯 {t("statistiquesUtilisateur.jeuxDifferents")}
             </h3>
             <p className="text-2xl font-bold text-orange-900 dark:text-orange-100">
               {stats.nombreJeuxDifferents}
             </p>
             <p className="text-sm text-orange-600 dark:text-orange-400">
-              jeux découverts
+              {t("statistiquesUtilisateur.jeuxDecouverts")}
             </p>
           </div>
         </div>

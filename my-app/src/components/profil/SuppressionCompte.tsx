@@ -106,7 +106,6 @@ export default function SuppressionCompte({
             </p>
           </div>
 
-          {/* Confirmation */}
           <div className="space-y-2">
             <Label htmlFor="confirmation">{t("tapezSupprimer")}</Label>
             <Input

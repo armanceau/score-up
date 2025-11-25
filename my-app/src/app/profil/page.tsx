@@ -6,8 +6,10 @@ import { useRouter } from "next/navigation";
 import { InformationPersonnelle } from "@/components/profil/InformationPersonnelle";
 import { ZoneDangereuse } from "@/components/profil/ZoneDangereuse";
 import StatistiquesUtilisateur from "@/components/profil/StatistiquesUtilisateur";
+import { useTranslation } from "react-i18next";
 
 export default function ProfilPage() {
+  const { t } = useTranslation("profil");
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
   const router = useRouter();
@@ -27,9 +29,7 @@ export default function ProfilPage() {
       } else {
         const { data: userData, error } = await supabase.auth.getUser();
         if (error || !userData.user) {
-          setMessage(
-            "Erreur lors de la récupération des informations de l'utilisateur."
-          );
+          setMessage(t("erreurRecuperationUtilisateur"));
           setIsError(true);
         } else {
           setUser({
@@ -47,8 +47,8 @@ export default function ProfilPage() {
 
   return (
     <main className="flex flex-col justify-start max-w-2xl mx-auto px-6 py-10 text-zinc-900 dark:text-zinc-100 gap-6">
-      <h1 className="text-3xl font-bold">Profil</h1>
-      <p className="text-sm text-gray-500 -mt-5">Détails de votre profil</p>
+      <h1 className="text-3xl font-bold">{t("profil")}</h1>
+      <p className="text-sm text-gray-500 -mt-5">{t("detailProfil")}</p>
       {isError ? (
         <>
           <p>{message}</p>
@@ -57,7 +57,7 @@ export default function ProfilPage() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 px-4 py-2 rounded-md text-sm font-medium shadow-sm hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors cursor-pointer select-none mt-2 w-fit"
           >
-            Accueil
+            {t("accueil")}
             <span className="text-zinc-400">↗</span>
           </a>
         </>
