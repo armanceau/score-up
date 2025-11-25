@@ -48,7 +48,8 @@
     "erreurConfirmation": "Vous devez taper 'SUPPRIMER' pour confirmer",
     "erreurSuppression": "Erreur lors de la suppression du compte. Veuillez réessayer.",
     "suppressionEnCours": "Suppression...",
-    "supprimerDefinitivement": "Supprimer définitivement"
+    "supprimerDefinitivement": "Supprimer définitivement",
+    "annuler": "Annuler"
   },
   "zoneDangereuse": {
     "zoneDangereuse": "Zone dangereuse",

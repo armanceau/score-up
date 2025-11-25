@@ -48,7 +48,8 @@
     "erreurConfirmation": "You must type 'DELETE' to confirm",
     "erreurSuppression": "Error deleting account. Please try again.",
     "suppressionEnCours": "Deleting...",
-    "supprimerDefinitivement": "Delete permanently"
+    "supprimerDefinitivement": "Delete permanently",
+    "annuler": "Cancel"
   },
   "zoneDangereuse": {
     "zoneDangereuse": "Danger zone",
