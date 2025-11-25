@@ -15,7 +15,7 @@
   "bienvenueSur": "Bienvenue sur",
   "filtrerJeux": "Filtrer les jeux...",
   "tousLesJeux": "Tous les jeux",
-  "deuxAQuatreJoueurs": "2 à 4 joueurs", 
+  "deuxAQuatreJoueurs": "2 à 4 joueurs",
   "cinqJoueursEtPlus": "5 joueurs et +",
   "aucunJeuTrouve": "Aucun jeu trouvé pour ce filtre",
   "selectionnerCouleur": "Sélectionnez une couleur",
@@ -30,5 +30,12 @@
     "rose": "Rose",
     "orange": "Orange",
     "defaut": "Défaut"
-  }
+  },
+  "aPropos": "À propos",
+  "aProposContenu": "Cette application a été créée pour simplifier la gestion des règles de vos jeux préférés. Que ce soit pour une soirée entre amis ou un après-midi en famille, vous pouvez accéder rapidement aux règles, ajouter des joueurs, et suivre la partie en toute simplicité.",
+  "aProposAuteur1": "Fait avec ❤️ par",
+  "aProposAuteur2": "en utilisant Next.js, React, Tailwind CSS, et beaucoup de passion pour les jeux de société et le développement web 🐵.",
+  "conditionsUtilisation": "Conditions d’utilisation",
+  "politiqueConfidentialite": "Politique de confidentialité",
+  "bienvenue": "Bienvenue"
 }

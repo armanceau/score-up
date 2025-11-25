@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Lock, Eye, EyeOff, Mail } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 export default function AuthForm() {
   const [email, setEmail] = useState("");
@@ -15,6 +16,7 @@ export default function AuthForm() {
   const [isError, setIsError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  const { t } = useTranslation("authentification");
 
   useEffect(() => {
     const checkUser = async () => {
@@ -123,9 +125,9 @@ export default function AuthForm() {
             <div className="p-6 md:p-8">
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col items-center text-center">
-                  <h1 className="text-2xl font-bold">Bienvenue</h1>
+                  <h1 className="text-2xl font-bold">{t("bienvenue")}</h1>
                   <p className="text-muted-foreground text-balance">
-                    {isSignUp ? "Inscris-toi sur" : "Connecte-toi à ton compte"}{" "}
+                    {isSignUp ? t("inscriptionSur") : t("connexionCompte")}{" "}
                     <span className="text-blue-600 dark:text-blue-400">
                       Score Up
                     </span>
@@ -167,18 +169,18 @@ export default function AuthForm() {
                     className="-mt-2 -mb-2 text-sm text-center text-blue-600 dark:text-blue-400 cursor-pointer underline"
                     onClick={() => router.push("/motdepasseoublie")}
                   >
-                    Mot de passe oublié ?
+                    {t("motDePasseOublie")}
                   </p>
                 )}
                 <Button
                   onClick={handleAuth}
                   className="w-full bg-blue-600 dark:bg-blue-500 text-white"
                 >
-                  {isSignUp ? "S'inscrire" : "Se connecter"}
+                  {isSignUp ? t("sInscrire") : t("seConnecter")}
                 </Button>
                 <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                   <span className="bg-card text-muted-foreground relative z-10 px-2">
-                    Ou continuer avec
+                    {t("continuerAvec")}
                   </span>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -212,7 +214,9 @@ export default function AuthForm() {
                         fill="currentColor"
                       />
                     </svg>
-                    <span className="sr-only">Se connecter avec Google</span>
+                    <span className="sr-only">
+                      {t("seConnecterAvecGoogle")}
+                    </span>
                   </Button>
                   <Button
                     variant="outline"
@@ -230,7 +234,9 @@ export default function AuthForm() {
                     >
                       <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612" />
                     </svg>
-                    <span className="sr-only">Se connecter avec Discord</span>
+                    <span className="sr-only">
+                      {t("seConnecterAvecDiscord")}
+                    </span>
                   </Button>
                 </div>
 
@@ -238,22 +244,22 @@ export default function AuthForm() {
                   <p className="mt-4 text-sm text-center ">
                     {isSignUp ? (
                       <>
-                        Déjà un compte ?{" "}
+                        {t("dejaUnCompte")}{" "}
                         <span
                           className="cursor-pointer underline underline-offset-4"
                           onClick={() => setIsSignUp(false)}
                         >
-                          Se connecter
+                          {t("seConnecter")}
                         </span>
                       </>
                     ) : (
                       <>
-                        Pas encore de compte ?{" "}
+                        {t("pasEncoreCompte")}{" "}
                         <span
                           className="cursor-pointer underline underline-offset-4"
                           onClick={() => setIsSignUp(true)}
                         >
-                          S&apos;inscrire
+                          {t("sInscrire")}
                         </span>
                       </>
                     )}
@@ -275,11 +281,14 @@ export default function AuthForm() {
           </CardContent>
         </Card>
         <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-          En continuant, vous acceptez nos{" "}
-          <a href="/conditions-utilisation">Conditions d’utilisation</a> et
-          notre{" "}
+          {t("enContinuantVousAcceptezNos")}
+          <a href="/conditions-utilisation">
+            {" "}
+            {t("conditionsUtilisation")}
+          </a>{" "}
+          {t("etNotre")}{" "}
           <a href="/politique-de-confidentialite">
-            Politique de confidentialité
+            {t("politiqueConfidentialite")}
           </a>
           .
         </div>
