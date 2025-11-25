@@ -11,6 +11,7 @@ import frAuthentification from "../locales/fr/authentification.json";
 import frConditionUtilisation from "../locales/fr/conditions-utilisation.json";
 import frPolitiqueConfidentialite from "../locales/fr/politique-confidentialite.json";
 import frFormulaire from "../locales/fr/formulaire.json";
+import frHistorique from "../locales/fr/historique.json";
 
 import enCommun from "../locales/en/commun.json";
 import enNavigation from "../locales/en/navigation.json";
@@ -21,6 +22,7 @@ import enAuthenfictication from "../locales/en/authentification.json";
 import enConditionUtilisation from "../locales/en/conditions-utilisation.json";
 import enPolitiqueConfidentialite from "../locales/en/politique-confidentialite.json";
 import enFormulaire from "../locales/en/formulaire.json";
+import enHistorique from "../locales/en/historique.json";
 
 const resources = {
   fr: {
@@ -33,6 +35,7 @@ const resources = {
     conditionsUtilisation: frConditionUtilisation,
     politiqueConfidentialite: frPolitiqueConfidentialite,
     formulaire: frFormulaire,
+    historique: frHistorique,
   },
   en: {
     commun: enCommun,
@@ -44,6 +47,7 @@ const resources = {
     conditionsUtilisation: enConditionUtilisation,
     politiqueConfidentialite: enPolitiqueConfidentialite,
     formulaire: enFormulaire,
+    historique: enHistorique,
   },
 };
 
@@ -78,6 +82,7 @@ i18n
       "conditionsUtilisation",
       "politiqueConfidentialite",
       "formulaire",
+      "historique",
     ],
   });
 

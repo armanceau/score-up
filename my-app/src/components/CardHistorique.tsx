@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type Player = {
   name: string;
@@ -24,7 +25,7 @@ export default function CardHistorique({
   est_ascendant,
 }: CardHistoriqueProps) {
   const [open, setOpen] = useState(false);
-
+  const { t } = useTranslation("historique");
   const toggleOpen = () => setOpen(!open);
 
   const trierJoueurs = (joueurs: Player[]) =>
@@ -60,7 +61,7 @@ export default function CardHistorique({
 
       {open && (
         <div className="px-4 py-3 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
-          <h3 className="font-semibold mb-2">Tous les joueurs</h3>
+          <h3 className="font-semibold mb-2">{t("tousLesJoueurs")}</h3>
           <ul className="space-y-1 text-sm">
             {tousLesJoueurs.map((joueur) => (
               <li key={joueur.name}>
