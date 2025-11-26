@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 type Joueur = {
   nom: string;
@@ -19,6 +20,7 @@ export default function SaisieScoresManche({
   validerManche,
   emoji,
 }: SaisieScoresMancheProps) {
+  const { t } = useTranslation("jeu");
   const [inputScores, setInputScores] = React.useState<Record<string, string>>(
     {}
   );
@@ -47,7 +49,7 @@ export default function SaisieScoresManche({
 
   return (
     <section>
-      <h2 className="text-xl font-medium mb-4">Nouvelle manche</h2>
+      <h2 className="text-xl font-medium mb-4">{t("nouvelleManchen")}</h2>
       <div className="space-y-3">
         {joueurs.map((j) => (
           <div key={j.nom} className="flex items-center gap-4">
@@ -68,7 +70,7 @@ export default function SaisieScoresManche({
         onClick={validerManche}
         className="my-2 mb-4 inline-flex items-center gap-2 bg-green-50 dark:bg-green-900 text-green-700 cursor-pointer dark:text-green-300 border border-green-200 dark:border-green-700 px-4 py-2 rounded-md text-sm font-medium shadow-sm hover:bg-green-100 dark:hover:bg-green-800 transition-colors"
       >
-        Valider la manche
+        {t("validerManche")}
       </button>
     </section>
   );

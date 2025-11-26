@@ -1,6 +1,7 @@
 "use client";
 
 import { BaseModal } from "./BaseModal";
+import { useTranslation } from "react-i18next";
 
 type ModalRegleProps = {
   isOpen: boolean;
@@ -17,11 +18,12 @@ export default function ModalRegle({
   regles,
   lienExterneRegle,
 }: ModalRegleProps) {
+  const { t } = useTranslation("commun");
   return (
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      title={`Règles du jeu ${titre}`}
+      title={t(`reglesDuJeu`, { titre })}
     >
       {Array.isArray(regles) ? (
         regles.length > 0 ? (
@@ -31,13 +33,13 @@ export default function ModalRegle({
             ))}
           </ul>
         ) : (
-          <div>Aucune règle disponible pour le moment</div>
+          <div>{t("aucuneRegleDisponible")}</div>
         )
       ) : regles ? (
         <div className="whitespace-pre-line">{regles}</div>
       ) : (
         <div className="txt-gr text-sm text-gray-500">
-          Aucune règle disponible pour le moment.
+          {t("aucuneRegleDisponible")}
         </div>
       )}
 
@@ -48,7 +50,7 @@ export default function ModalRegle({
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 px-4 py-2 rounded-md text-sm font-medium shadow-sm hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors cursor-pointer select-none mt-2"
         >
-          Lien des règles
+          {t("lienDesRegles")}
           <span className="text-zinc-400">↗</span>
         </a>
       )}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Lock, Eye, EyeOff, Check, AlertCircle } from "lucide-react";
 import { BaseModal } from "./BaseModal";
 
@@ -24,18 +25,19 @@ export const ModalMotDePasse = ({
   const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const { t } = useTranslation("profil");
 
   const handleSave = async () => {
     if (!current || !next || !confirm) {
-      setError("Tous les champs sont obligatoires.");
+      setError(t("motDePasse.champsObligatoires"));
       return;
     }
     if (next !== confirm) {
-      setError("Les mots de passe ne correspondent pas.");
+      setError(t("motDePasse.motsDePasseNonIdentiques"));
       return;
     }
     if (next.length < 8) {
-      setError("Le nouveau mot de passe doit contenir au moins 8 caractères.");
+      setError(t("motDePasse.motDePasseTropCourt"));
       return;
     }
 
@@ -51,7 +53,7 @@ export const ModalMotDePasse = ({
         setConfirm("");
       }, 1500);
     } catch {
-      setError("Erreur lors de la mise à jour du mot de passe.");
+      setError(t("motDePasse.erreurMiseAJour"));
     }
   };
 
@@ -59,22 +61,22 @@ export const ModalMotDePasse = ({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      title="Modifier le mot de passe"
-      description="Saisis ton mot de passe actuel, puis ton nouveau mot de passe ci-dessous."
+      title={t("motDePasse.modifierMotDePasse")}
+      description={t("motDePasse.descriptionModifierMotDePasse")}
       footer={
         <div className="flex justify-end gap-2">
           <button
             className="px-4 py-2 border rounded text-red-500 hover:bg-red-900 cursor-pointer transition"
             onClick={onClose}
           >
-            Annuler
+            {t("motDePasse.annuler")}
           </button>
           <button
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50 transition cursor-pointer"
             onClick={handleSave}
             disabled={success}
           >
-            Modifier
+            {t("motDePasse.modifier")}
           </button>
         </div>
       }
@@ -88,26 +90,26 @@ export const ModalMotDePasse = ({
       {success && (
         <div className="flex items-center gap-2 text-green-500 mb-2">
           <Check className="w-4 h-4" />
-          <span>Mot de passe mis à jour !</span>
+          <span>{t("motDePasse.motDePasseMisAJour")}</span>
         </div>
       )}
       {[
         {
-          label: "Mot de passe actuel",
+          label: t("motDePasse.motDePasseActuel"),
           value: current,
           setValue: setCurrent,
           show: showCurrent,
           setShow: setShowCurrent,
         },
         {
-          label: "Nouveau mot de passe",
+          label: t("motDePasse.nouveauMotDePasse"),
           value: next,
           setValue: setNext,
           show: showNext,
           setShow: setShowNext,
         },
         {
-          label: "Confirmer le mot de passe",
+          label: t("motDePasse.confirmerMotDePasse"),
           value: confirm,
           setValue: setConfirm,
           show: showConfirm,

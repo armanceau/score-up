@@ -1,34 +1,26 @@
 "use client";
+import { useTranslation } from "react-i18next";
 
 export default function ConditionsUtilisation() {
+  const { t } = useTranslation("conditionsUtilisation");
   return (
     <div className="max-w-3xl mx-auto px-4 py-10 text-justify">
-      <h1 className="text-3xl font-bold mb-6">Conditions d’utilisation</h1>
+      <h1 className="text-3xl font-bold mb-6"> {t("conditionsUtilisation")}</h1>
 
       <p className="mb-4">
-        En utilisant notre application, vous acceptez les présentes conditions
-        d’utilisation. Nous vous encourageons à les lire attentivement.
+        {t("enUtilisantNotreApplicationVousAcceptezLesPresentesConditions")}
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">Accès au service</h2>
-      <p className="mb-4">
-        L’accès à nos services est réservé aux utilisateurs disposant d’un
-        compte valide. Nous nous réservons le droit de suspendre un compte en
-        cas d’utilisation abusive ou frauduleuse.
-      </p>
+      <h2 className="text-xl font-semibold mt-6 mb-2">{t("accesAuService")}</h2>
+      <p className="mb-4">{t("accesAuService2")}</p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">Responsabilités</h2>
-      <p className="mb-4">
-        Vous êtes responsable des informations que vous publiez et des actions
-        entreprises sur l’application. Toute violation de la loi entraînera une
-        suspension immédiate du compte.
-      </p>
+      <h2 className="text-xl font-semibold mt-6 mb-2">
+        {t("responsabilites")}
+      </h2>
+      <p className="mb-4">{t("responsabilites2")}</p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">Modifications</h2>
-      <p className="mb-4">
-        Nous pouvons mettre à jour ces conditions à tout moment. Vous serez
-        informé des changements par une notification ou via notre site/app.
-      </p>
+      <h2 className="text-xl font-semibold mt-6 mb-2">{t("modifications")}</h2>
+      <p className="mb-4">{t("modifications2")}</p>
     </div>
   );
 }

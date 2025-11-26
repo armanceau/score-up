@@ -1,6 +1,7 @@
 import { SquarePen, Trash } from "lucide-react";
 import { useState } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { useTranslation } from "react-i18next";
 
 type Joueur = {
   nom: string;
@@ -25,6 +26,7 @@ export default function ListeJoueurs({
   emoji,
   estAscendant,
 }: ListeJoueursProps) {
+  const { t } = useTranslation("jeu");
   const [editNom, setEditNom] = useState<string | null>(null);
   const [editScores, setEditScores] = useState<string[]>([]);
   const total = (scores: number[]) => scores.reduce((acc, val) => acc + val, 0);
@@ -47,7 +49,6 @@ export default function ListeJoueurs({
     }
   };
 
-  // Fonction pour obtenir l'emoji de la médaille
   const getMedailleEmoji = (position: number) => {
     switch (position) {
       case 1:
@@ -63,7 +64,7 @@ export default function ListeJoueurs({
 
   return (
     <section className="mb-10">
-      <h2 className="text-xl font-medium mb-4">Classement actuel</h2>
+      <h2 className="text-xl font-medium mb-4">{t("classementActuel")}</h2>
       <ol className="space-y-2">
         {joueursTries.map((j, index) => {
           const position = index + 1;
@@ -115,7 +116,7 @@ export default function ListeJoueurs({
                         </button>
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p>Mettre à jour les scores</p>
+                        <p>{t("mettreAJourScore")}</p>
                       </TooltipContent>
                     </Tooltip>
 
@@ -132,7 +133,7 @@ export default function ListeJoueurs({
                         </button>
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p>Annuler</p>
+                        <p>{t("annuler", { ns: "commun" })}</p>
                       </TooltipContent>
                     </Tooltip>
                   </div>
@@ -161,14 +162,14 @@ export default function ListeJoueurs({
                   <button
                     onClick={() => startEdit(j)}
                     className="hover:bg-blue-900 text-zinc-500 hover:text-blue-400 text-sm transition cursor-pointer p-1 rounded-sm w-7 flex items-center justify-center"
-                    title="Modifier les scores"
+                    title={t("modifierScores")}
                   >
                     <SquarePen size={18} />
                   </button>
                   <button
                     onClick={() => supprimerJoueur(j.nom)}
                     className="hover:bg-red-900 text-zinc-500 hover:text-red-400 text-sm transition cursor-pointer p-1 rounded-sm w-7 flex items-center justify-center"
-                    title="Supprimer"
+                    title={t("supprimer", { ns: "commun" })}
                   >
                     <Trash height={18} />
                   </button>

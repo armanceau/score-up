@@ -4,6 +4,7 @@ import { BaseModal } from "./BaseModal";
 import { SauvegarderPartieBouton } from "../jeu/SauvegarderPartieBouton";
 import { PartageBouton } from "../jeu/PartageBouton";
 import { PartageImage } from "../PartageImage";
+import { useTranslation } from "react-i18next";
 
 type ModalFinJeuProps = {
   isOpen: boolean;
@@ -28,14 +29,15 @@ export default function ModalFinJeu({
   onReset,
   est_ascendant,
 }: ModalFinJeuProps) {
+  const { t } = useTranslation("commun");
   const joueursTries = [...joueursAvecScoresTotaux].sort((a, b) => {
     const diff = a.score - b.score;
     return est_ascendant ? -diff : diff;
   });
 
   return (
-    <BaseModal isOpen={isOpen} onClose={onClose} title="Fin de partie">
-      <h3 className="text-lg font-semibold mb-3">Résultats :</h3>
+    <BaseModal isOpen={isOpen} onClose={onClose} title={t("finPartie")}>
+      <h3 className="text-lg font-semibold mb-3"> {t("resultats")} :</h3>
       <ul className="mb-4">
         {joueursTries.map((j) => (
           <li key={j.name} className="flex justify-between border-b py-1">

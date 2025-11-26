@@ -1,9 +1,11 @@
 "use client";
-
+import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
 export default function MotDePasseOubliePage() {
+  const { t } = useTranslation("authentification");
+
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
@@ -15,7 +17,7 @@ export default function MotDePasseOubliePage() {
     setLoading(true);
 
     if (!email) {
-      setMessage("Veuillez entrer votre email.");
+      setMessage(t("emailObligatoire"));
       setIsError(true);
       setLoading(false);
       return;
@@ -30,14 +32,12 @@ export default function MotDePasseOubliePage() {
         setMessage(error.message);
         setIsError(true);
       } else {
-        setMessage(
-          "Si cet email est enregistré, un lien de réinitialisation a été envoyé."
-        );
+        setMessage(t("lienReinitialisationEnvoye"));
         setIsError(false);
       }
     } catch (err) {
       console.error(err);
-      setMessage("Une erreur est survenue, réessayez plus tard.");
+      setMessage(t("erreurGenerique"));
       setIsError(true);
     } finally {
       setLoading(false);
@@ -49,17 +49,17 @@ export default function MotDePasseOubliePage() {
       <main className="flex justify-center font-sans px-6 py-16">
         <div className="w-full max-w-md p-8 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-700 transition-colors shadow-sm">
           <h2 className="text-3xl font-semibold text-center mb-6 text-zinc-900 dark:text-zinc-100">
-            Mot de passe oublié
+            {t("motDePasseOublie")}
           </h2>
 
           <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-            Entrez votre email pour recevoir un lien de réinitialisation.
+            {t("entrezVotreEmail")}
           </p>
 
           <div className="flex flex-col gap-4">
             <input
               type="email"
-              placeholder="Votre email"
+              placeholder={t("adresseEmail")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-2 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -70,7 +70,7 @@ export default function MotDePasseOubliePage() {
               disabled={loading}
               className="w-full bg-blue-600 dark:bg-blue-500 text-white py-2 px-4 rounded-md hover:opacity-90 transition cursor-pointer"
             >
-              {loading ? "Envoi en cours..." : "Envoyer le lien"}
+              {loading ? t("envoiEnCours") : t("envoyerLeLien")}
             </button>
 
             {message && (

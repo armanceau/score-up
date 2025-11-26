@@ -18,6 +18,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslation } from "react-i18next";
 
 type Player = {
   name: string;
@@ -39,6 +40,7 @@ export default function HistoriquePage() {
   const [jeuxVisibles, setJeuxVisibles] = useState<Jeu[]>([]);
   const [filters, setFilters] = useState({ date: "", jeu: "", joueurs: "" });
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation("historique");
 
   const router = useRouter();
 
@@ -128,7 +130,7 @@ export default function HistoriquePage() {
   return (
     <main className="max-w-2xl mx-auto px-6 py-10">
       <h1 className="text-3xl font-semibold text-center mb-8">
-        📜 Historique des parties
+        📜 {t("historique")}
       </h1>
 
       {/* FILTRES */}
@@ -148,24 +150,24 @@ export default function HistoriquePage() {
         </div>
 
         <div className="flex flex-col">
-          <label className="text-sm font-medium mb-1">Jeu</label>
+          <label className="text-sm font-medium mb-1">{t("jeu")}</label>
           <Combobox
-            options={[{ label: "Tous les jeux", value: "" }, ...jeuxOptions]}
+            options={[{ label: t("tousLesJeux"), value: "" }, ...jeuxOptions]}
             value={filters.jeu}
             onChange={(value) => setFilters({ ...filters, jeu: value })}
-            placeholder="Tous les jeux"
+            placeholder={t("tousLesJeux")}
             widthClass="w-48"
           />
         </div>
 
         <div className="flex flex-col">
           <Label htmlFor="joueurs" className="mb-1 text-sm font-medium">
-            Joueurs
+            {t("joueurs")}
           </Label>
           <Input
             id="joueurs"
             name="joueurs"
-            placeholder="Séparés par ,"
+            placeholder={t("joueursPlaceholder")}
             value={filters.joueurs}
             onChange={handleFilterChange}
             className="w-48 border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-sm px-3 py-2 rounded-md"
@@ -177,7 +179,7 @@ export default function HistoriquePage() {
             <TooltipTrigger asChild>
               <Button
                 variant="outline"
-                className="h-10 mt-6 border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-sm rounded-md"
+                className="h-9 mt-6 border-zinc-300 dark:border-zinc-700 bg-white hover:bg-blue-100 dark:bg-zinc-900 dark:hover:bg-blue-900 text-sm rounded-md"
                 onClick={() =>
                   setFilters({
                     date: "",
@@ -186,17 +188,16 @@ export default function HistoriquePage() {
                   })
                 }
               >
-                <FunnelX />
+                <FunnelX width={4} height={4} />
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Vider les filtres</p>
+              <p>{t("viderLesFiltres")}</p>
             </TooltipContent>
           </Tooltip>
         </div>
       </div>
 
-      {/* LISTE DES PARTIES OU SKELETON */}
       {loading ? (
         <div className="space-y-4">
           {Array.from({ length: 5 }).map((_, idx) => (
@@ -205,7 +206,7 @@ export default function HistoriquePage() {
         </div>
       ) : partiesFiltres.length === 0 ? (
         <p className="text-center text-gray-500">
-          Aucune partie correspondante.
+          {t("aucunePartieCorrespondante")}
         </p>
       ) : (
         <div className="space-y-4">

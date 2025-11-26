@@ -7,8 +7,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 export const Contact = () => {
+  const { t } = useTranslation("commun");
+
   return (
     <div className="fixed bottom-6 left-6 z-50">
       <Popover>
@@ -23,7 +26,7 @@ export const Contact = () => {
         </PopoverTrigger>
         <PopoverContent className="space-y-3" side="top" align="start">
           <p className="text-sm text-gray-500">
-            Une question, un bug, une remarque ?
+            {t("uneQuestionUnBugUneRemarque")}
           </p>
           <a
             href="mailto:arthur.manceau1@outlook.fr"
@@ -37,7 +40,7 @@ export const Contact = () => {
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-blue-400 transition-colors"
           >
-            <Linkedin size={18} /> Mon LinkedIn
+            <Linkedin size={18} /> {t("mon")} Linkedin
           </a>
         </PopoverContent>
       </Popover>

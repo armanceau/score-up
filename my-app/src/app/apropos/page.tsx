@@ -1,19 +1,18 @@
 "use client";
+import { useTranslation } from "react-i18next";
 
 export default function AProposPage() {
+  const { t } = useTranslation("commun");
   return (
     <section className="max-w-2xl mx-auto mt-10 px-4 text-center">
       <h2 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
-        À propos
+        {t("aPropos")}
       </h2>
       <p className="text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed">
-        Cette application a été créée pour simplifier la gestion des règles de
-        vos jeux préférés. Que ce soit pour une soirée entre amis ou un
-        après-midi en famille, vous pouvez accéder rapidement aux règles,
-        ajouter des joueurs, et suivre la partie en toute simplicité.
+        {t("aProposContenu")}
       </p>
       <p className="mt-2 text-zinc-500 dark:text-zinc-400 text-xs">
-        Fait avec ❤️ par{" "}
+        {t("aProposAuteur1")}{" "}
         <a
           href="https://www.linkedin.com/in/arthur-manceau/"
           target="_blank"
@@ -22,8 +21,7 @@ export default function AProposPage() {
         >
           Arthur Manceau
         </a>{" "}
-        en utilisant Next.js, React, Tailwind CSS, et beaucoup de passion pour
-        les jeux de société et le développement web 🐵.
+        {t("aProposAuteur2")}
       </p>
       <a
         href="https://github.com/armanceau/score-up"
@@ -51,13 +49,13 @@ export default function AProposPage() {
           href="/conditions-utilisation"
           className="hover:underline hover:text-blue-600 dark:hover:text-blue-400"
         >
-          Conditions d’utilisation
+          {t("conditionsUtilisation")}
         </a>
         <a
           href="/politique-de-confidentialite"
           className="hover:underline hover:text-blue-600 dark:hover:text-blue-400"
         >
-          Politique de confidentialité
+          {t("politiqueConfidentialite")}
         </a>
       </div>
     </section>
