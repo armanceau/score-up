@@ -238,8 +238,7 @@ export default function JeuPage({
         {joueurs.length > 0 && (
           <div className="mt-6">
             <p className="text-sm text-muted-foreground mb-3">
-              {joueurs.length} joueur{joueurs.length > 1 ? "s" : ""} ajouté
-              {joueurs.length > 1 ? "s" : ""}
+              {joueurs.length} {joueurs.length > 1 ? t("joueurAjoute_plural") : t("joueurAjoute")}
             </p>
           </div>
         )}

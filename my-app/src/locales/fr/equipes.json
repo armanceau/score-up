@@ -19,5 +19,7 @@
   "peuplement": "Peuplement des équipes…",
   "enregistrement": "Enregistrement en cours",
   "etape": "Étape {{current}} sur {{total}}",
-  "generateurEquipes": "Générateur d'équipes"
+  "generateurEquipes": "Générateur d'équipes",
+  "suivant": "Suivant",
+  "joueurSeul": "Joueur seul"
 }

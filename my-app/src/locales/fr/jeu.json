@@ -31,5 +31,14 @@
   "partageNonSupporte": "Le partage de fichier n'est pas supporté sur ce navigateur.",
   "erreurPartage": "Impossible de partager l'image.",
   "partageEnCours": "Partage en cours...",
-  "partager": "Partager"
+  "partager": "Partager",
+
+  "idManquant": "ID manquant",
+  "jeuIntrouvable": "Aïe, jeu introuvable...",
+  "erreurJeuIntrouvable": "Une erreur est survenue. Essaye de rafraîchir la page pour continuer.",
+  "rafraichir": "Rafraîchir",
+  "retourAccueil": "Retour à l'accueil",
+  "mettreAJourScore": "Mettre à jour les scores",
+  "joueurAjoute_plural": "joueurs ajoutés",
+  "joueurAjoute": "joueur ajouté"
 }

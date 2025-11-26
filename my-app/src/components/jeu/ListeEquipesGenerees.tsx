@@ -37,7 +37,8 @@ export default function ListeEquipesGenerees({
       (joueur) =>
         !equipesGenerees.some(
           (equipe, index) =>
-            joueur.nom === `${equipe.emoji} Équipe ${index + 1}`
+            joueur.nom ===
+            `${equipe.emoji} ${t("equipe", { number: index + 1 })}`
         )
     );
     setJoueurs(joueursFiltres);
@@ -67,7 +68,7 @@ export default function ListeEquipesGenerees({
               {equipe.emoji} {t("equipe", { number: idx + 1 })}
             </h3>
             <p className="text-xs text-green-600 dark:text-green-400 mb-2">
-              Membres :
+              {t("membres")} :
             </p>
             <ul className="space-y-1">
               {equipe.membres.map((membre, mIdx) => (

@@ -64,7 +64,7 @@ export default function ListeJoueurs({
 
   return (
     <section className="mb-10">
-      <h2 className="text-xl font-medium mb-4">Classement actuel</h2>
+      <h2 className="text-xl font-medium mb-4">{t("classementActuel")}</h2>
       <ol className="space-y-2">
         {joueursTries.map((j, index) => {
           const position = index + 1;
@@ -116,7 +116,7 @@ export default function ListeJoueurs({
                         </button>
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p>Mettre à jour les scores</p>
+                        <p>{t("mettreAJourScore")}</p>
                       </TooltipContent>
                     </Tooltip>
 

@@ -160,7 +160,7 @@ export default function GenerateurEquipes({
                 disabled={!numPlayers || parseInt(numPlayers) <= 0}
                 className="flex items-center gap-2"
               >
-                Suivant
+                {t("suivant")}
                 <ChevronRight className="w-5 h-5" />
               </Button>
             </div>
@@ -173,7 +173,7 @@ export default function GenerateurEquipes({
                   <Shuffle className="w-8 h-8 text-green-500" />
                 </div>
                 <h3 className="text-2xl font-semibold mb-4">
-                  Combien d&apos;équipes ?
+                  {t("combienEquipes")}
                 </h3>
                 <Input
                   type="number"
@@ -188,7 +188,7 @@ export default function GenerateurEquipes({
 
               <div>
                 <h4 className="text-lg font-semibold mb-3">
-                  Noms des joueurs (optionnel)
+                  {t("nomsJoueurs")}
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-64 overflow-y-auto">
                   {playerNames.map((name, idx) => (
@@ -199,7 +199,7 @@ export default function GenerateurEquipes({
                       onChange={(e) =>
                         handlePlayerNameChange(idx, e.target.value)
                       }
-                      placeholder={`Joueur ${idx + 1}`}
+                      placeholder={t(`joueur`, { number: idx + 1 })}
                     />
                   ))}
                 </div>
@@ -210,7 +210,7 @@ export default function GenerateurEquipes({
                 disabled={!numTeams || parseInt(numTeams) < 2}
                 className="w-full flex items-center justify-center gap-2"
               >
-                Générer les équipes
+                {t("genererEquipes")}
                 <ChevronRight className="w-5 h-5" />
               </Button>
             </div>
@@ -219,16 +219,13 @@ export default function GenerateurEquipes({
           {currentStep === 3 && (
             <div className="text-center space-y-6">
               <div className="text-6xl">😨</div>
-              <h3 className="text-2xl font-semibold">
-                Olalala un joueur va se retrouver tout seul…
-              </h3>
+              <h3 className="text-2xl font-semibold">{t("joueurSeul")}</h3>
               <p className="text-muted-foreground">
-                Avec {numPlayers} joueurs et {numTeams} équipes, certaines
-                équipes auront plus de membres que d&apos;autres.
+                {t("messageInegal", { players: numPlayers, teams: numTeams })}
               </p>
               <div className="flex gap-3 justify-center">
                 <Button variant="outline" onClick={() => setCurrentStep(2)}>
-                  Oh oh, on réfléchit
+                  {t("reflechir")}
                 </Button>
                 <Button
                   onClick={() => {
@@ -236,7 +233,7 @@ export default function GenerateurEquipes({
                     setCurrentStep(4);
                   }}
                 >
-                  Pas grave
+                  {t("pasGrave")}
                 </Button>
               </div>
             </div>
@@ -246,11 +243,9 @@ export default function GenerateurEquipes({
           {currentStep === 4 && (
             <div className="space-y-6">
               <div className="text-center">
-                <h3 className="text-2xl font-semibold mb-2">
-                  Est-ce que tout est ok ?
-                </h3>
+                <h3 className="text-2xl font-semibold mb-2">{t("toutOk")}</h3>
                 <p className="text-muted-foreground mb-6">
-                  Vérifie les équipes générées
+                  {t("verifierEquipes")}
                 </p>
               </div>
 
@@ -258,7 +253,7 @@ export default function GenerateurEquipes({
                 {teams.map((team, idx) => (
                   <div key={idx} className="bg-muted/50 rounded-xl p-4 border">
                     <h4 className="text-lg font-semibold mb-3 text-blue-600 dark:text-blue-400">
-                      {team.emoji} Équipe {idx + 1}
+                      {team.emoji} {t("equipe", { number: idx + 1 })}
                     </h4>
                     <ul className="space-y-1">
                       {team.membres.map((player, pIdx) => (

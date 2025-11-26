@@ -58,5 +58,7 @@
   "lienDesRegles": "Lien des règles",
   "partieDu": "Partie du {{date}}",
   "podium": "Podium",
-  "tousLesJoueurs": "Tous les joueurs"
+  "tousLesJoueurs": "Tous les joueurs",
+  "resultats": "Résultats",
+  "finPartie": "Fin de partie"
 }

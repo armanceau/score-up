@@ -19,5 +19,7 @@
   "peuplement": "Populating teams...",
   "enregistrement": "Saving in progress",
   "etape": "Step {{current}} of {{total}}",
-  "generateurEquipes": "Team Generator"
+  "generateurEquipes": "Team Generator",
+  "suivant": "Next",
+  "joueurSeul": "Single player"
 }

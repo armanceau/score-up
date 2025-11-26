@@ -58,5 +58,7 @@
   "lienDesRegles": "Link to the rules",
   "partieDu": "Game from {{date}}",
   "podium": "Podium",
-  "tousLesJoueurs": "All players"
+  "tousLesJoueurs": "All players",
+  "resultats": "Results",
+  "finPartie": "End of game"
 }
