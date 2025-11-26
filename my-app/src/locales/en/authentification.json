@@ -20,5 +20,13 @@
   "entrezVotreEmail": "Enter your email to receive a reset link.",
   "envoyerLeLien": "Send link",
   "envoiEnCours": "Sending...",
-  "adresseEmail": "Your email address"
+  "adresseEmail": "Your email address",
+  "tousLesChampsSontObligatoires": "All fields are required.",
+  "lesMotsDePasseNeCorrespondentPas": "Passwords do not match.",
+  "motDePasseMisAJourAvecSucces": "Password successfully updated!",
+  "veuillezUtiliserLeLienRecuParEmail": "Please use the link received by email to reset your password.",
+  "reinitialisationDuMotDePasse": "Password reset",
+  "nouveauMotDePasse": "New password",
+  "confirmerLeNouveauMotDePasse": "Confirm the new password",
+  "mettreAJourLeMotDePasse": "Update password"
 }

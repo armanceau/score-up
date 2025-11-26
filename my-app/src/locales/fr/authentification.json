@@ -20,5 +20,13 @@
   "entrezVotreEmail": "Entrez votre email pour recevoir un lien de réinitialisation.",
   "envoyerLeLien": "Envoyer le lien",
   "envoiEnCours": "Envoi en cours...",
-  "adresseEmail": "Votre adresse email"
+  "adresseEmail": "Votre adresse email",
+  "tousLesChampsSontObligatoires": "Tous les champs sont obligatoires.",
+  "lesMotsDePasseNeCorrespondentPas": "Les mots de passe ne correspondent pas.",
+  "motDePasseMisAJourAvecSucces": "Mot de passe mis à jour avec succès !",
+  "veuillezUtiliserLeLienRecuParEmail": "Veuillez utiliser le lien reçu par email pour réinitialiser votre mot de passe.",
+  "reinitialisationDuMotDePasse": "Réinitialisation du mot de passe",
+  "nouveauMotDePasse": "Nouveau mot de passe",
+  "confirmerLeNouveauMotDePasse": "Confirmer le nouveau mot de passe",
+  "mettreAJourLeMotDePasse": "Mettre à jour le mot de passe"
 }

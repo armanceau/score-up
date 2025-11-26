@@ -51,5 +51,12 @@
   "merciPourVotreDon": "Merci pour votre don !",
   "donSuccesDescription": "Votre soutien nous aide à améliorer Score Up et continuer à proposer un service gratuit.",
   "uneQuestionUnBugUneRemarque": "Une question, un bug, une remarque ?",
-  "mon": "Mon"
+  "mon": "Mon",
+  "commentJouer": "Comment jouer ?",
+  "reglesDuJeu": "Règles du jeu {{titre}}",
+  "aucuneRegleDisponible": "Aucune règle disponible pour le moment.",
+  "lienDesRegles": "Lien des règles",
+  "partieDu": "Partie du {{date}}",
+  "podium": "Podium",
+  "tousLesJoueurs": "Tous les joueurs"
 }

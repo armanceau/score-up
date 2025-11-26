@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export const PartageImage = React.forwardRef(function PartageImage(
   {
@@ -7,6 +8,7 @@ export const PartageImage = React.forwardRef(function PartageImage(
   }: { gameName: string; players: { name: string; score: number }[] },
   ref: React.Ref<HTMLDivElement>
 ) {
+  const { t } = useTranslation("commun");
   return (
     <div
       ref={ref}
@@ -14,11 +16,11 @@ export const PartageImage = React.forwardRef(function PartageImage(
     >
       <h2 className="text-xl font-bold mb-2">{gameName}</h2>
       <p className="text-sm text-zinc-500 mb-4">
-        Partie du {new Date().toLocaleDateString("fr-FR")}
+        {t("partieDu", { date: new Date().toLocaleDateString("fr-FR") })}
       </p>
 
       <div className="mb-4">
-        <h3 className="font-semibold">🏆 Podium</h3>
+        <h3 className="font-semibold">🏆 {t("podium")}</h3>
         <ol className="text-left pl-6 mt-1">
           {players.slice(0, 3).map((p, i) => (
             <li key={p.name}>
@@ -29,7 +31,7 @@ export const PartageImage = React.forwardRef(function PartageImage(
       </div>
 
       <div>
-        <h3 className="font-semibold mb-1">👥 Tous les joueurs</h3>
+        <h3 className="font-semibold mb-1">👥 {t("tousLesJoueurs")}</h3>
         <ul className="text-sm">
           {players.map((p) => (
             <li key={p.name}>
