@@ -5,10 +5,12 @@ import confetti from "canvas-confetti";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { TypingAnimation } from "@/components/ui/typing-animation";
+import { useTranslation } from "react-i18next";
 
 export default function DonSucces() {
   const router = useRouter();
   const [launchConfetti, setLaunchConfetti] = useState(false);
+  const { t } = useTranslation("commun");
 
   const handleTypingComplete = () => {
     setLaunchConfetti(true);
@@ -42,24 +44,23 @@ export default function DonSucces() {
     <main className="relative flex flex-col items-center justify-center mt-30 px-6 text-center">
       <h1 className="text-3xl font-bold mb-4 text-green-600">
         <TypingAnimation
-          words={["Merci pour votre don !"]}
+          words={[t("merciPourVotreDon")]}
           duration={100}
           showCursor
         />
       </h1>
 
       <TypingWatcher
-        text="Merci pour votre don !"
+        text={t("merciPourVotreDon")}
         duration={100}
         onComplete={handleTypingComplete}
       />
 
       <p className="mb-6 text-lg text-muted-foreground">
-        Votre soutien nous aide à améliorer Score Up et continuer à proposer un
-        service gratuit.
+        {t("donSuccesDescription")}
       </p>
 
-      <Button onClick={() => router.push("/")}>Retour à l&apos;accueil</Button>
+      <Button onClick={() => router.push("/")}>{t("retourAccueil")}</Button>
     </main>
   );
 }
@@ -85,5 +86,5 @@ function TypingWatcher({
     return () => clearTimeout(timeout);
   }, [index, text, duration, onComplete]);
 
-  return null; // on ne rend rien, juste pour watcher
+  return null;
 }

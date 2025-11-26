@@ -44,5 +44,12 @@
   "demandeDeJeuDescription": "Can't find your game? Request its addition!",
   "jeuManquant": "Missing a game?",
   "proposerUnJeu": "Suggest one via our form",
-  "choisirJeu": "Choose your game:"
+  "choisirJeu": "Choose your game:",
+  "retourAccueil": "Back to home",
+  "donAnnule": "Donation canceled",
+  "donAnnuleDescription": "You canceled your donation. No worries, you can come back anytime to support Score Up!",
+  "merciPourVotreDon": "Thank you for your donation!",
+  "donSuccesDescription": "Your support helps us improve Score Up and continue to offer a free service.",
+  "uneQuestionUnBugUneRemarque": "A question, a bug, a remark?",
+  "mon": "My"
 }

@@ -13,5 +13,12 @@
   "enContinuantVousAcceptezNos": "By continuing, you accept our",
   "etNotre": "and our",
   "conditionsUtilisation": "Terms of Use",
-  "politiqueConfidentialite": "Privacy Policy"
+  "politiqueConfidentialite": "Privacy Policy",
+  "emailObligatoire": "Please enter your email.",
+  "lienReinitialisationEnvoye": "If this email is registered, a reset link has been sent.",
+  "erreurGenerique": "An error occurred, please try again later.",
+  "entrezVotreEmail": "Enter your email to receive a reset link.",
+  "envoyerLeLien": "Send link",
+  "envoiEnCours": "Sending...",
+  "adresseEmail": "Your email address"
 }

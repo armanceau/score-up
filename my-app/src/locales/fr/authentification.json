@@ -13,5 +13,12 @@
   "enContinuantVousAcceptezNos": "En continuant, vous acceptez nos",
   "etNotre": "et notre",
   "conditionsUtilisation": "Conditions d’utilisation",
-  "politiqueConfidentialite": "Politique de confidentialité"
+  "politiqueConfidentialite": "Politique de confidentialité",
+  "emailObligatoire": "Veuillez entrer votre email.",
+  "lienReinitialisationEnvoye": "Si cet email est enregistré, un lien de réinitialisation a été envoyé.",
+  "erreurGenerique": "Une erreur est survenue, réessayez plus tard.",
+  "entrezVotreEmail": "Entrez votre email pour recevoir un lien de réinitialisation.",
+  "envoyerLeLien": "Envoyer le lien",
+  "envoiEnCours": "Envoi en cours...",
+  "adresseEmail": "Votre adresse email"
 }

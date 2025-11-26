@@ -44,5 +44,12 @@
   "demandeDeJeuDescription": "Tu ne trouves pas ton jeu ? Demande l'ajout de celui-ci !",
   "jeuManquant": "Jeu manquant ?",
   "proposerUnJeu": "Proposez-en un via notre formulaire",
-  "choisirJeu": "Choisis ton jeu :"
+  "choisirJeu": "Choisis ton jeu :",
+  "retourAccueil": "Retour à l'accueil",
+  "donAnnule": "Don annulé",
+  "donAnnuleDescription": "Vous avez annulé votre don. Pas de problème, vous pouvez revenir quand vous voulez soutenir Score Up !",
+  "merciPourVotreDon": "Merci pour votre don !",
+  "donSuccesDescription": "Votre soutien nous aide à améliorer Score Up et continuer à proposer un service gratuit.",
+  "uneQuestionUnBugUneRemarque": "Une question, un bug, une remarque ?",
+  "mon": "Mon"
 }
