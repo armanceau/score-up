@@ -161,14 +161,14 @@ export default function ListeJoueurs({
                 <div className="flex gap-05">
                   <button
                     onClick={() => startEdit(j)}
-                    className="hover:bg-blue-900 text-zinc-500 hover:text-blue-400 text-sm transition cursor-pointer p-1 rounded-sm w-7 flex items-center justify-center"
+                    className="hover:bg-blue-500 text-blue-500 hover:text-blue-200 text-sm transition cursor-pointer p-1 rounded-sm w-7 flex items-center justify-center"
                     title={t("modifierScores")}
                   >
                     <SquarePen size={18} />
                   </button>
                   <button
                     onClick={() => supprimerJoueur(j.nom)}
-                    className="hover:bg-red-900 text-zinc-500 hover:text-red-400 text-sm transition cursor-pointer p-1 rounded-sm w-7 flex items-center justify-center"
+                    className="hover:bg-red-500 text-red-500 hover:text-red-200 text-sm transition cursor-pointer p-1 rounded-sm w-7 flex items-center justify-center"
                     title={t("supprimer", { ns: "commun" })}
                   >
                     <Trash height={18} />
