@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Users, Shuffle, ChevronRight, RefreshCw } from "lucide-react";
 import {
   Dialog,
@@ -45,10 +45,26 @@ export default function GenerateurEquipes({
     setTeams([]);
   };
 
-  const closeModal = () => {
+  const closeModal = React.useCallback(() => {
     resetModal();
     onClose();
-  };
+  }, [onClose]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isOpen) {
+        closeModal();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, closeModal]);
 
   const handleStep1Next = () => {
     if (numPlayers && parseInt(numPlayers) > 0) {
