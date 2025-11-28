@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 
 interface BaseModalProps {
   isOpen: boolean;
@@ -36,8 +37,8 @@ export const BaseModal = ({
   }, [isOpen, onClose]);
   if (!isOpen) return null;
 
-  return (
-    <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+  const modalContent = (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <div className="bg-white dark:bg-zinc-900 rounded-xl shadow-xl p-6 max-w-md w-full animate-fade-in">
         <div className="flex justify-between items-center mb-4">
           <div className="flex flex-col">
@@ -65,4 +66,8 @@ export const BaseModal = ({
       </div>
     </div>
   );
+
+  return typeof window !== "undefined"
+    ? createPortal(modalContent, document.body)
+    : null;
 };
