@@ -2,10 +2,12 @@
 
 import { Copy, CopyCheck } from "lucide-react";
 import { useState } from "react";
+import { Combobox } from "../ui/combobox";
 
 export const MailTemplate = () => {
   const [copied, setCopied] = useState(false);
   const [statut, setStatut] = useState<boolean | null>(null);
+  const [selectedValue, setSelectedValue] = useState<string>("null");
   let phraseResultat = "";
 
   if (statut === true) {
@@ -36,8 +38,8 @@ Arthur de Score Up 🎲`;
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
+  const handleComboboxChange = (value: string) => {
+    setSelectedValue(value);
     if (value === "true") setStatut(true);
     else if (value === "false") setStatut(false);
     else setStatut(null);
@@ -57,16 +59,17 @@ Arthur de Score Up 🎲`;
         >
           {copied ? <CopyCheck height={15} /> : <Copy height={15} />}
         </button>
-        <select
-          name="Etat"
-          id="Etat"
-          onChange={handleChange}
-          className="border rounded-md p-1 bg-black"
-        >
-          <option value="true">Acceptée</option>
-          <option value="false">Refusée</option>
-          <option value="null">Réinitialiser</option>
-        </select>
+        <Combobox
+          options={[
+            { label: "Acceptée", value: "true" },
+            { label: "Refusée", value: "false" },
+            { label: "Réinitialiser", value: "null" },
+          ]}
+          value={selectedValue}
+          onChange={handleComboboxChange}
+          placeholder={"Choix du statut"}
+          widthClass="w-48"
+        />
       </div>
     </div>
   );
