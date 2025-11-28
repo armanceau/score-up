@@ -78,6 +78,47 @@ export default function GenerateurEquipes({
     setPlayerNames(newNames);
   };
 
+  const handleKeyDownStep1 = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (numPlayers && parseInt(numPlayers) > 0) {
+        handleStep1Next();
+      }
+    }
+  };
+
+  const handleKeyDownStep2Teams = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      // Focus sur le premier champ de nom de joueur
+      const firstInput = document.querySelector(
+        `input[data-player-index="0"]`
+      ) as HTMLInputElement;
+      if (firstInput) {
+        firstInput.focus();
+      }
+    }
+  };
+
+  const handleKeyDown = (index: number, event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const nextIndex = index + 1;
+      if (nextIndex < playerNames.length) {
+        const nextInput = document.querySelector(
+          `input[data-player-index="${nextIndex}"]`
+        ) as HTMLInputElement;
+        if (nextInput) {
+          nextInput.focus();
+        }
+      } else {
+        if (numTeams && parseInt(numTeams) >= 2) {
+          handleStep2Next();
+        }
+      }
+    }
+  };
+
   const generateTeams = () => {
     const filledNames = playerNames.map(
       (name, idx) => name.trim() || `Joueur ${idx + 1}`
@@ -152,8 +193,9 @@ export default function GenerateurEquipes({
                 min="1"
                 value={numPlayers}
                 onChange={(e) => setNumPlayers(e.target.value)}
+                onKeyDown={handleKeyDownStep1}
                 placeholder="Ex: 8"
-                className="max-w-xs mx-auto text-center text-2xl font-semibold"
+                className="max-w-xs mx-auto text-center text-2xl font-semibold focus-visible:ring-0 focus-visible:ring-offset-0"
               />
               <Button
                 onClick={handleStep1Next}
@@ -181,8 +223,9 @@ export default function GenerateurEquipes({
                   max={numPlayers}
                   value={numTeams}
                   onChange={(e) => setNumTeams(e.target.value)}
+                  onKeyDown={handleKeyDownStep2Teams}
                   placeholder="Ex: 2"
-                  className="max-w-xs mx-auto text-center text-2xl font-semibold mb-6"
+                  className="max-w-xs mx-auto text-center text-2xl font-semibold mb-6 focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
               </div>
 
@@ -199,6 +242,9 @@ export default function GenerateurEquipes({
                       onChange={(e) =>
                         handlePlayerNameChange(idx, e.target.value)
                       }
+                      className="focus-visible:ring-0 focus-visible:ring-offset-0"
+                      onKeyDown={(e) => handleKeyDown(idx, e)}
+                      data-player-index={idx}
                       placeholder={t(`joueur`, { number: idx + 1 })}
                     />
                   ))}

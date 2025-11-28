@@ -47,11 +47,33 @@ export default function SaisieScoresManche({
     }
   };
 
+  const handleKeyDown = (
+    currentPlayerIndex: number,
+    event: React.KeyboardEvent
+  ) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const nextIndex = currentPlayerIndex + 1;
+      if (nextIndex < joueurs.length) {
+        // Focus sur le prochain input
+        const nextInput = document.querySelector(
+          `input[data-player-index="${nextIndex}"]`
+        ) as HTMLInputElement;
+        if (nextInput) {
+          nextInput.focus();
+        }
+      } else {
+        const currentInput = event.target as HTMLInputElement;
+        currentInput.blur();
+      }
+    }
+  };
+
   return (
     <section>
       <h2 className="text-xl font-medium mb-4">{t("nouvelleManchen")}</h2>
       <div className="space-y-3">
-        {joueurs.map((j) => (
+        {joueurs.map((j, idx) => (
           <div key={j.nom} className="flex items-center gap-4">
             <label className="w-32 text-sm font-medium">{j.nom} :</label>
             <input
@@ -60,7 +82,9 @@ export default function SaisieScoresManche({
               placeholder="0"
               value={inputScores[j.nom] ?? ""}
               onChange={(e) => handleChange(j.nom, e.target.value)}
-              className="w-24 px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded-md bg-white dark:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-800 dark:focus:ring-zinc-500 text-sm transition"
+              onKeyDown={(e) => handleKeyDown(idx, e)}
+              data-player-index={idx}
+              className="w-24 px-2 py-1 border border-zinc-300 dark:border-zinc-700 rounded-md bg-white dark:bg-zinc-900 focus:outline-none focus:ring-0 focus:ring-offset-0 text-sm transition"
             />
             <span className="text-lg">{emoji}</span>
           </div>
